@@ -51,3 +51,5 @@ Thumbs.db
 *.tmp
 *.bak
 .cache/
+.env
+.claude/settings.local.json
