@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy4U - Your Health Operating System</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-orange': '#EF6113',
+                        'brand-cream': '#FFF9F2',
+                        'brand-dark': '#000000',
+                        'brand-muted': '#666666',
+                    },
+                    borderRadius: {
+                        'brand-xl': '20px',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Fade in animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Apply animations */
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .animate-delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        .animate-delay-400 {
+            animation-delay: 0.4s;
+        }
+
+        /* Image hover effects */
+        .image-hover {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+        }
+
+        .image-hover:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Smooth scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Button hover animation */
+        .btn-animate {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-animate::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-animate:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Metric number animation */
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .metric-animate {
+            animation: countUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+    </style>
+    <script src="components.js"></script>
+</head>
+<body class="font-sans bg-white text-black">
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <!-- Hero Section -->
+    <section class="bg-brand-cream min-h-screen px-6 py-20 md:px-12 lg:px-24 flex items-center">
+        <div class="max-w-6xl mx-auto">
+
+            <div class="flex items-center gap-3 mb-12 animate-on-scroll">
+                <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md image-hover">
+                    <img
+                        src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&h=200&fit=crop"
+                        alt="Healthcare Professional"
+                        class="w-full h-full object-cover"
+                    />
+                </div>
+                <div class="inline-flex items-center gap-2 bg-white/50 border border-green-100 px-4 py-2 rounded-full">
+                    <span class="text-green-600 text-sm">🛡️</span>
+                    <span class="text-gray-600 text-xs font-medium uppercase tracking-wider">Proven live at GavCure Clinic, Israel</span>
+                </div>
+            </div>
+
+            <div class="space-y-6 max-w-4xl">
+                <h2 class="text-brand-orange font-bold uppercase tracking-widest text-sm animate-on-scroll animate-delay-100">
+                    Your Health Operating System
+                </h2>
+                <h1 class="text-brand-dark text-6xl md:text-8xl font-bold leading-tight tracking-tight animate-on-scroll animate-delay-200">
+                    One AI Platform Connecting Patients, Clinics, and Care
+                </h1>
+                <p class="text-brand-muted text-xl md:text-2xl max-w-3xl leading-relaxed animate-on-scroll animate-delay-300">
+                    Healthy4U is an AI-native healthcare platform that unifies patient data, clinical workflows, and continuous monitoring into one intelligent system.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap gap-4 mt-12 animate-on-scroll animate-delay-400">
+                <a href="https://medical-b2b.healthy4u.world/auth/login" class="bg-brand-orange text-white px-8 py-4 rounded-full font-bold hover:opacity-90 transition-opacity btn-animate">
+                    See AI in Action
+                </a>
+                <a href="#case-study" class="bg-white border border-gray-200 text-brand-dark px-8 py-4 rounded-full font-bold hover:bg-gray-50 transition-colors btn-animate">
+                    See the Case Study
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="py-32 bg-white" id="features">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-6xl md:text-8xl font-bold mb-32 text-brand-dark max-w-4xl leading-tight">The problem we solve.</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-24">
+                <div class="space-y-8 reveal">
+                    <div class="flex items-start gap-4">
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=200&h=200&fit=crop" alt="Fragmented healthcare" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-4xl font-semibold text-brand-dark mt-4">Today's healthcare.<br/>Fragmented. Reactive.</h3>
+                    </div>
+                    <div class="space-y-6 text-brand-muted text-xl leading-relaxed pl-28">
+                        <p><span class="font-semibold text-brand-dark">Before the visit:</span> Patient data scattered across EMR, Apple Health, memory.</p>
+                        <p><span class="font-semibold text-brand-dark">During the visit:</span> Doctor spends 50% of time typing, not diagnosing.</p>
+                        <p><span class="font-semibold text-brand-dark">After the visit:</span> Connection lost. No follow-up. Patient forgets.</p>
+                    </div>
+                </div>
+                <div class="space-y-8 reveal">
+                    <div class="flex items-start gap-4">
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&h=200&fit=crop" alt="Continuous healthcare" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-4xl font-semibold text-brand-dark mt-4">With Healthy4U.<br/>Continuous. Proactive.</h3>
+                    </div>
+                    <div class="space-y-6 text-brand-muted text-xl leading-relaxed pl-28">
+                        <p><span class="font-semibold text-brand-dark">Before:</span> AI collects and structures data from wearables, symptoms, files.</p>
+                        <p><span class="font-semibold text-brand-dark">During:</span> Doctor focuses on patient. AI writes notes in 30 seconds.</p>
+                        <p><span class="font-semibold text-brand-dark">After:</span> 24/7 monitoring, insights, reminders. Care never stops.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="py-32 bg-brand-cream">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-5xl md:text-7xl font-semibold mb-24 text-brand-dark max-w-3xl">Proven results from real clinics.</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 reveal">
+                <div class="reveal">
+                    <div class="text-8xl font-bold mb-4 text-brand-orange metric-animate">97%</div>
+                    <div class="text-2xl font-semibold mb-3 text-brand-dark">less time on intake</div>
+                    <div class="text-lg text-brand-muted">240 hours saved per doctor per year</div>
+                </div>
+                <div class="reveal">
+                    <div class="text-8xl font-bold mb-4 text-brand-orange metric-animate">30%</div>
+                    <div class="text-2xl font-semibold mb-3 text-brand-dark">more patient capacity</div>
+                    <div class="text-lg text-brand-muted">$50K+ additional annual revenue</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toggle Section -->
+    <section class="py-32 bg-white" id="platform">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-6xl md:text-8xl font-bold mb-8 text-brand-dark max-w-4xl leading-tight">One platform.<br/>Two experiences.</h2>
+            <p class="text-xl text-brand-muted mb-16 max-w-2xl">Continuous care for everyone.</p>
+
+            <div class="flex gap-3 mb-24">
+                <button onclick="showToggle('patients')" id="patients-btn" class="px-8 py-3 bg-brand-orange text-white font-semibold rounded-full text-lg">
+                    For Patients
+                </button>
+                <button onclick="showToggle('clinics')" id="clinics-btn" class="px-8 py-3 bg-gray-100 text-brand-dark font-semibold rounded-full text-lg hover:bg-gray-200 transition-colors">
+                    For Clinics
+                </button>
+            </div>
+
+            <div id="clinics-content" class="toggle-content hidden">
+                <div class="max-w-4xl mx-auto mb-20">
+                    <h3 class="text-4xl font-semibold mb-6 text-brand-dark">Run smarter care. Increase revenue immediately.</h3>
+                    <p class="text-xl text-brand-muted leading-relaxed">Generate additional revenue: Earn $2.50/month per patient using Premium tier. Unlike scribe-only tools, Healthy4U creates new revenue streams.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 reveal">
+                    <div>
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&h=200&fit=crop" alt="AI Medical Scribe" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-2xl font-semibold mb-4 text-brand-dark">AI Medical Scribe</h4>
+                        <p class="text-lg text-brand-muted leading-relaxed">Automated documentation in 30 seconds, any language</p>
+                    </div>
+                    <div>
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                            <img src="https://images.unsplash.com/photo-1576671081837-49000212a370?w=200&h=200&fit=crop" alt="AI Clinical Consultant" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-2xl font-semibold mb-4 text-brand-dark">AI Clinical Consultant</h4>
+                        <p class="text-lg text-brand-muted leading-relaxed">Diagnostic suggestions, risk alerts, treatment options</p>
+                    </div>
+                    <div>
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop" alt="Patient Data Access" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-2xl font-semibold mb-4 text-brand-dark">Patient Data Access</h4>
+                        <p class="text-lg text-brand-muted leading-relaxed">Real-time wearable data, symptoms, compliance tracking</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="patients-content" class="toggle-content">
+                <div class="max-w-4xl mx-auto mb-20">
+                    <h3 class="text-4xl font-semibold mb-6 text-brand-dark">Your personal health assistant. 24/7.</h3>
+                    <p class="text-xl text-brand-muted leading-relaxed">Track health, get answers, stay connected with your doctor between visits.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 reveal">
+                    <div>
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=200&h=200&fit=crop" alt="AI Health Assistant" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-2xl font-semibold mb-4 text-brand-dark">AI Health Assistant</h4>
+                        <p class="text-lg text-brand-muted leading-relaxed">Ask questions, log symptoms, get guidance anytime</p>
+                    </div>
+                    <div>
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=200&h=200&fit=crop" alt="Health Tracking" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-2xl font-semibold mb-4 text-brand-dark">Health Tracking</h4>
+                        <p class="text-lg text-brand-muted leading-relaxed">Wearables integration, medication reminders, trends</p>
+                    </div>
+                    <div>
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                            <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?w=200&h=200&fit=crop" alt="Care Guidance" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-2xl font-semibold mb-4 text-brand-dark">Care Guidance</h4>
+                        <p class="text-lg text-brand-muted leading-relaxed">Personalized recommendations, appointment prep, follow-up monitoring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voice-First Section -->
+    <section class="py-32 bg-brand-cream">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-6xl md:text-8xl font-bold mb-8 text-brand-dark max-w-4xl leading-tight">Work hands-free.</h2>
+            <p class="text-2xl mb-24 text-brand-muted max-w-3xl">Full conversational control. In any language.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 mb-20">
+                <div>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-32 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                            <img src="images/doctor.jpeg" alt="Voice interface for physicians" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-3xl font-semibold text-brand-dark">For Physicians</h3>
+                    </div>
+                    <p class="text-xl mb-8 text-brand-muted">No typing. No clicking through menus. Just speak.</p>
+                    <ul class="space-y-5 text-lg text-brand-muted">
+                        <li class="italic">"Show me Sarah's blood pressure trends for the last 3 months"</li>
+                        <li class="italic">"Update John's medication dosage to 50mg twice daily"</li>
+                        <li class="italic">"Generate a compliance report for diabetic patients this quarter"</li>
+                        <li class="italic">"What are the risk factors for this patient?"</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-32 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                            <img src="images/patient.jpg" alt="Voice interface for patients" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-3xl font-semibold text-brand-dark">For Patients</h3>
+                    </div>
+                    <p class="text-xl mb-8 text-brand-muted">While cooking, driving, or exercising. Hands-free healthcare.</p>
+                    <ul class="space-y-5 text-lg text-brand-muted">
+                        <li class="italic">"What's my heart rate today compared to last week?"</li>
+                        <li class="italic">"Log my breakfast — scrambled eggs and avocado"</li>
+                        <li class="italic">"When should I take my blood pressure medication?"</li>
+                        <li class="italic">"Am I on track with my fitness goals?"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="max-w-4xl space-y-4 text-lg text-brand-muted">
+                <p>Natural conversation, not rigid commands.</p>
+                <p>Any language supported: English, Russian, Spanish, Hebrew, and more.</p>
+                <p>Zero learning curve. Just speak naturally.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiation Section -->
+    <section class="py-32 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-6xl md:text-8xl font-bold mb-32 text-brand-dark max-w-4xl leading-tight">Complete care.<br/>Not just documentation.</h2>
+
+            <div class="space-y-20 mb-20">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-8 text-brand-muted">Most AI tools solve one problem</h3>
+                    <div class="space-y-4 text-xl text-brand-muted leading-relaxed">
+                        <p>Scribe-only solutions automate documentation.</p>
+                        <p>Patient apps track symptoms, but data never reaches the doctor.</p>
+                        <p>Wearables monitor vitals, but take no clinical action.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=200&h=200&fit=crop" alt="Complete care cycle" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-3xl font-bold text-brand-dark mt-6">Healthy4U delivers the complete care cycle</h3>
+                    </div>
+                    <div class="space-y-4 text-xl text-brand-dark leading-relaxed pl-28">
+                        <p>AI Scribe + Clinical Consultant + Patient Data Access for physicians.</p>
+                        <p>24/7 AI Assistant + Health Tracking + Care Guidance for patients.</p>
+                        <p>Cross-modal intelligence that connects everything.</p>
+                        <p>Voice-first design. Full conversational control. Any language.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pl-28">
+                <a href="calculator.html" class="inline-block px-10 py-4 bg-brand-orange text-white font-semibold text-lg rounded-full hover:opacity-90 transition-opacity">
+                    Calculate Your Savings
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Pillars -->
+    <section class="py-32 bg-brand-cream">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-6xl md:text-8xl font-bold mb-32 text-brand-dark max-w-4xl leading-tight">Transform your practice.</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-24">
+                <div>
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop" alt="Revenue growth" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-4xl font-semibold text-brand-dark mt-4">Increase revenue<br/>$50K+ per year.</h3>
+                    </div>
+                    <div class="space-y-5 text-xl text-brand-muted mb-8 leading-relaxed pl-28">
+                        <p>27.5% clinic revenue increase</p>
+                        <p>20–35% better treatment acceptance</p>
+                        <p>$700 recovered per patient</p>
+                        <p>Passive income: $2.50/patient/month</p>
+                    </div>
+                    <p class="text-lg text-brand-muted leading-relaxed pl-28">When patients stay engaged between visits, they follow treatment plans, show up for appointments, and refer friends.</p>
+                </div>
+                <div>
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&h=200&fit=crop" alt="Time savings" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-4xl font-semibold text-brand-dark mt-4">Save 240+ hours<br/>per doctor, per year.</h3>
+                    </div>
+                    <div class="space-y-5 text-xl text-brand-muted mb-8 leading-relaxed pl-28">
+                        <p>97% less time on documentation</p>
+                        <p>30% more patient capacity</p>
+                        <p>Same staff, more output</p>
+                        <p>Doctors become diagnosticians, not clerks</p>
+                    </div>
+                    <p class="text-lg text-brand-muted leading-relaxed pl-28">AI handles the administrative burden. Doctors get time to practice medicine.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-32 bg-white" id="pricing">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-6xl md:text-8xl font-bold mb-8 text-brand-dark max-w-4xl leading-tight">Simple, transparent pricing.</h2>
+            <p class="text-xl mb-16 text-brand-muted max-w-3xl">Complete platform vs single-feature tools. We deliver 3x the value.</p>
+
+            <!-- Pricing Toggle -->
+            <div class="flex gap-3 mb-24">
+                <button onclick="showPricingToggle('patients')" id="pricing-patients-btn" class="px-8 py-3 bg-brand-orange text-white font-semibold rounded-full text-lg">
+                    For Patients
+                </button>
+                <button onclick="showPricingToggle('clinics')" id="pricing-clinics-btn" class="px-8 py-3 bg-gray-100 text-brand-dark font-semibold rounded-full text-lg hover:bg-gray-200 transition-colors">
+                    For Clinics
+                </button>
+            </div>
+
+            <!-- Clinics Pricing -->
+            <div id="clinics-pricing" class="pricing-content hidden">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Founder's Circle -->
+                <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-center mb-8">
+                        <div class="inline-block bg-brand-orange/10 text-brand-orange px-4 py-2 rounded-full text-sm font-semibold mb-6">FOUNDER'S CIRCLE</div>
+                        <div class="text-6xl font-bold mb-2 text-brand-dark">$174</div>
+                        <div class="text-brand-muted text-lg mb-4">/month per physician</div>
+                        <div class="text-brand-dark font-semibold mb-1">30% OFF Lifetime</div>
+                        <div class="text-brand-muted text-sm">First 3 Clinics Only</div>
+                    </div>
+                    <ul class="space-y-3 mb-10 text-brand-muted text-sm">
+                        <li>✓ Up to 600 AI transcriptions/month</li>
+                        <li>✓ Unlimited AI clinical consultant</li>
+                        <li>✓ Unlimited patient data access</li>
+                        <li>✓ Unlimited analytics & reports</li>
+                        <li>✓ Priority Support</li>
+                        <li>✓ Hall of Fame</li>
+                    </ul>
+                    <div class="text-center text-sm text-brand-muted mb-6">Payback: Immediate</div>
+                    <div class="space-y-3">
+                        <a href="#" class="block px-6 py-3 bg-brand-orange text-white font-semibold text-center rounded-full hover:opacity-90 transition-opacity">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Early Adopter -->
+                <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-center mb-8">
+                        <div class="inline-block bg-gray-100 text-brand-dark px-4 py-2 rounded-full text-sm font-semibold mb-6">EARLY ADOPTER</div>
+                        <div class="text-6xl font-bold mb-2 text-brand-dark">$199</div>
+                        <div class="text-brand-muted text-lg mb-4">/month per physician</div>
+                        <div class="text-brand-dark font-semibold mb-1">20% OFF Lifetime</div>
+                        <div class="text-brand-muted text-sm">Next 7 Clinics</div>
+                    </div>
+                    <ul class="space-y-3 mb-10 text-brand-muted text-sm">
+                        <li>✓ Up to 600 AI transcriptions/month</li>
+                        <li>✓ Unlimited AI clinical consultant</li>
+                        <li>✓ Unlimited patient data access</li>
+                        <li>✓ Unlimited analytics & reports</li>
+                        <li>✓ Priority Support</li>
+                    </ul>
+                    <div class="text-center text-sm text-brand-muted mb-6">Payback: Immediate</div>
+                    <div class="space-y-3">
+                        <a href="#" class="block px-6 py-3 bg-brand-orange text-white font-semibold text-center rounded-full hover:opacity-90 transition-opacity">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Professional -->
+                <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="text-center mb-8">
+                        <div class="inline-block bg-gray-100 text-brand-dark px-4 py-2 rounded-full text-sm font-semibold mb-6">PROFESSIONAL</div>
+                        <div class="text-6xl font-bold mb-2 text-brand-dark">$249</div>
+                        <div class="text-brand-muted text-lg mb-4">/month per physician</div>
+                        <div class="text-brand-dark font-semibold mb-1">Standard Pricing</div>
+                        <div class="text-brand-muted text-sm">All Features Included</div>
+                    </div>
+                    <ul class="space-y-3 mb-6 text-brand-muted text-sm">
+                        <li>✓ Up to 600 AI transcriptions/month</li>
+                        <li>✓ Unlimited AI clinical consultant</li>
+                        <li>✓ Unlimited patient data access</li>
+                        <li>✓ Unlimited analytics & reports</li>
+                        <li>✓ Standard Support</li>
+                    </ul>
+                    <div class="bg-brand-cream rounded-xl p-4 mb-6">
+                        <div class="text-xs font-semibold text-brand-dark mb-2">Overage:</div>
+                        <div class="text-xs text-brand-muted space-y-1">
+                            <div>601-800 visits: $0.15/visit</div>
+                            <div>801+ visits: Contact sales</div>
+                        </div>
+                    </div>
+                    <div class="text-center text-sm text-brand-muted mb-6">Payback: 1 month</div>
+                    <div class="space-y-3">
+                        <a href="#" class="block px-6 py-3 bg-brand-orange text-white font-semibold text-center rounded-full hover:opacity-90 transition-opacity">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <!-- Patients Pricing -->
+            <div id="patients-pricing" class="pricing-content">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Free Tier -->
+                    <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="text-center mb-8">
+                            <div class="inline-block bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold mb-6">FREE</div>
+                            <div class="text-6xl font-bold mb-2 text-brand-dark">$0</div>
+                            <div class="text-brand-muted text-lg mb-4">/month</div>
+                            <div class="text-brand-dark font-semibold mb-1">Basic Health Assistant</div>
+                            <div class="text-brand-muted text-sm">For Everyone</div>
+                        </div>
+                        <ul class="space-y-3 mb-10 text-brand-muted">
+                            <li>✓ 50 AI messages/month</li>
+                            <li>✓ 10 food photo analyses</li>
+                            <li>✓ 5 lab result analyses</li>
+                            <li>✓ Basic symptom tracking</li>
+                            <li>✓ Medication reminders</li>
+                            <li>✓ Health data sync</li>
+                        </ul>
+                        <div class="space-y-3">
+                            <a href="#" class="block px-6 py-3 bg-gray-100 text-brand-dark font-semibold text-center rounded-full hover:bg-gray-200 transition-colors">
+                                Get Started Free
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Premium Tier -->
+                    <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-xl transition-shadow border-2 border-brand-orange">
+                        <div class="text-center mb-8">
+                            <div class="inline-block bg-brand-orange/10 text-brand-orange px-4 py-2 rounded-full text-sm font-semibold mb-6">PREMIUM</div>
+                            <div class="text-6xl font-bold mb-2 text-brand-dark">$9.99</div>
+                            <div class="text-brand-muted text-lg mb-4">/month</div>
+                            <div class="text-brand-dark font-semibold mb-1">Complete Health Platform</div>
+                            <div class="text-brand-muted text-sm">Most Popular</div>
+                        </div>
+                        <ul class="space-y-3 mb-10 text-brand-muted">
+                            <li>✓ 500 AI messages/month</li>
+                            <li>✓ 150 food photo analyses</li>
+                            <li>✓ 20 lab result analyses</li>
+                            <li>✓ Advanced symptom analysis</li>
+                            <li>✓ Medication reminders</li>
+                            <li>✓ Health data sync</li>
+                            <li>✓ Personalized insights</li>
+                            <li>✓ Priority support</li>
+                        </ul>
+                        <div class="space-y-3">
+                            <a href="#" class="block px-6 py-3 bg-brand-orange text-white font-semibold text-center rounded-full hover:opacity-90 transition-opacity">
+                                Start Premium
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Top-ups -->
+                    <div class="bg-white rounded-3xl p-10 shadow-lg hover:shadow-xl transition-shadow">
+                        <div class="text-center mb-8">
+                            <div class="inline-block bg-gray-100 text-brand-dark px-4 py-2 rounded-full text-sm font-semibold mb-6">TOP-UPS</div>
+                            <div class="text-6xl font-bold mb-2 text-brand-dark">+</div>
+                            <div class="text-brand-muted text-lg mb-4">Add as needed</div>
+                            <div class="text-brand-dark font-semibold mb-1">Flexible Options</div>
+                            <div class="text-brand-muted text-sm">For Free & Premium users</div>
+                        </div>
+                        <ul class="space-y-3 mb-10 text-brand-muted">
+                            <li>+100 AI messages — $1.99</li>
+                            <li>+50 food photos — $2.49</li>
+                            <li>+10 lab analyses — $2.99</li>
+                        </ul>
+                        <div class="text-sm text-brand-muted italic mb-6">
+                            Top-ups never expire. Use anytime.
+                        </div>
+                        <div class="space-y-3">
+                            <a href="#" class="block px-6 py-3 bg-gray-100 text-brand-dark font-semibold text-center rounded-full hover:bg-gray-200 transition-colors">
+                                Buy Top-ups
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Partner Program Section -->
+    <section class="py-32 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex items-start gap-6 mb-16 reveal">
+                <div class="w-28 h-28 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=200&h=200&fit=crop" alt="Partner program" class="w-full h-full object-cover">
+                </div>
+                <div class="mt-4">
+                    <h2 class="text-6xl md:text-8xl font-bold mb-6 text-brand-dark max-w-3xl leading-tight">Become a partner.</h2>
+                    <p class="text-2xl text-brand-muted max-w-2xl">Join our growth. Share the value. Earn recurring revenue.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20 reveal">
+                <div>
+                    <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=200&h=200&fit=crop" alt="Connect clinics" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-3xl font-semibold mb-4 text-brand-dark">Connect clinics</h3>
+                    <p class="text-xl text-brand-muted leading-relaxed">Introduce Healthy4U to medical practices in your network. Help them transform their operations.</p>
+                </div>
+                <div>
+                    <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=200&h=200&fit=crop" alt="Refer patients" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-3xl font-semibold mb-4 text-brand-dark">Refer patients</h3>
+                    <p class="text-xl text-brand-muted leading-relaxed">Share the platform with your community. Help patients take control of their health journey.</p>
+                </div>
+                <div>
+                    <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=200&h=200&fit=crop" alt="Earn revenue" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-3xl font-semibold mb-4 text-brand-dark">Earn 10% revenue</h3>
+                    <p class="text-xl text-brand-muted leading-relaxed">Receive 10% of monthly subscription revenue from every clinic and patient you bring.</p>
+                </div>
+            </div>
+
+            <div class="bg-brand-cream rounded-3xl p-12 mb-16 reveal">
+                <h3 class="text-3xl font-semibold mb-8 text-brand-dark">Partner rewards calculator</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                    <div>
+                        <div class="text-sm text-brand-muted mb-2">5 physicians @ $249/mo</div>
+                        <div class="text-4xl font-bold text-brand-dark">$125/mo</div>
+                        <div class="text-sm text-brand-muted">recurring revenue</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-brand-muted mb-2">50 patients @ $9.99/mo</div>
+                        <div class="text-4xl font-bold text-brand-dark">$50/mo</div>
+                        <div class="text-sm text-brand-muted">recurring revenue</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-brand-muted mb-2">Total monthly income</div>
+                        <div class="text-5xl font-bold text-brand-orange">$175/mo</div>
+                        <div class="text-sm text-brand-muted">= $2,100/year</div>
+                    </div>
+                </div>
+                <p class="text-lg text-brand-muted italic">Lifetime recurring revenue. As long as your referrals stay active, you earn.</p>
+            </div>
+
+            <div class="space-y-8 text-xl text-brand-muted leading-relaxed mb-16 reveal">
+                <div>
+                    <h4 class="text-2xl font-semibold text-brand-dark mb-4">Who can become a partner?</h4>
+                    <ul class="space-y-3 pl-6">
+                        <li>✓ Healthcare consultants & advisors</li>
+                        <li>✓ Medical practice management firms</li>
+                        <li>✓ Health tech influencers & content creators</li>
+                        <li>✓ Wellness coaches & nutritionists</li>
+                        <li>✓ Medical device distributors</li>
+                        <li>✓ Anyone passionate about transforming healthcare</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="text-center reveal">
+                <a href="#" class="inline-block px-12 py-5 bg-brand-orange text-white font-bold text-xl rounded-full hover:opacity-90 transition-opacity btn-animate">
+                    Apply for Partner Program
+                </a>
+                <p class="text-brand-muted mt-6">Join 50+ partners already growing with us</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Continuous Care Loop -->
+    <section class="py-32 bg-brand-cream">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-6xl md:text-8xl font-bold mb-8 text-brand-dark max-w-3xl leading-tight">How it works.</h2>
+            <p class="text-2xl mb-32 text-brand-muted max-w-2xl">Care doesn't stop. It flows.</p>
+
+            <div class="space-y-20">
+                <div>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=200&h=200&fit=crop" alt="Before visit" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-5xl font-bold text-brand-orange">Before</div>
+                    </div>
+                    <div class="space-y-4 text-xl text-brand-muted leading-relaxed pl-24">
+                        <p><span class="font-semibold text-brand-dark">Patient App collects:</span> Sleep, nutrition, symptoms, vitals</p>
+                        <p><span class="font-semibold text-brand-dark">AI analyzes:</span> Patterns, trends, anomalies</p>
+                        <p><span class="font-semibold text-brand-dark">Doctor receives:</span> Structured patient overview before appointment</p>
+                    </div>
+                </div>
+
+                <div class="text-4xl text-brand-muted pl-24">↓</div>
+
+                <div>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&h=200&fit=crop" alt="During visit" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-5xl font-bold text-brand-orange">During</div>
+                    </div>
+                    <div class="space-y-4 text-xl text-brand-muted leading-relaxed pl-24">
+                        <p><span class="font-semibold text-brand-dark">AI generates:</span> Structured patient overview</p>
+                        <p><span class="font-semibold text-brand-dark">Doctor focuses:</span> On diagnosis, not typing. AI writes notes in 30 seconds.</p>
+                        <p><span class="font-semibold text-brand-dark">Clinical consultant:</span> Suggests diagnostics, risks, treatment options</p>
+                    </div>
+                </div>
+
+                <div class="text-4xl text-brand-muted pl-24">↓</div>
+
+                <div>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=200&h=200&fit=crop" alt="After visit" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-5xl font-bold text-brand-orange">After</div>
+                    </div>
+                    <div class="space-y-4 text-xl text-brand-muted leading-relaxed pl-24">
+                        <p><span class="font-semibold text-brand-dark">AI monitors:</span> Treatment compliance, medication adherence, symptom progression</p>
+                        <p><span class="font-semibold text-brand-dark">Patient receives:</span> Reminders, care guidance, answers 24/7</p>
+                        <p><span class="font-semibold text-brand-dark">Early warnings:</span> AI detects concerning patterns and alerts clinic</p>
+                    </div>
+                </div>
+
+                <div class="text-2xl font-semibold text-brand-muted pl-24">↻</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Study -->
+    <section class="py-32 bg-white" id="case-study">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex items-start gap-4 mb-8">
+                <div class="w-28 h-28 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=200&h=200&fit=crop" alt="Medical clinic success" class="w-full h-full object-cover">
+                </div>
+                <div class="mt-4">
+                    <h2 class="text-6xl md:text-8xl font-bold mb-4 text-brand-dark">Real results.</h2>
+                    <p class="text-2xl text-brand-muted">Israeli Family Medicine Practice. 3 physicians.</p>
+                </div>
+            </div>
+
+            <div class="mb-20 mt-24">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <div>
+                        <div class="text-brand-muted text-sm mb-2 uppercase tracking-wider">Monthly Savings</div>
+                        <div class="text-5xl font-bold mb-2 text-brand-dark">$2,400</div>
+                        <div class="text-brand-muted">240 hours saved</div>
+                    </div>
+                    <div>
+                        <div class="text-brand-muted text-sm mb-2 uppercase tracking-wider">Revenue Increase</div>
+                        <div class="text-5xl font-bold mb-2 text-brand-dark">$4,167</div>
+                        <div class="text-brand-muted">per month</div>
+                    </div>
+                    <div>
+                        <div class="text-brand-muted text-sm mb-2 uppercase tracking-wider">Cost</div>
+                        <div class="text-5xl font-bold mb-2 text-brand-dark">$522</div>
+                        <div class="text-brand-muted">per month</div>
+                    </div>
+                </div>
+                <div class="bg-brand-cream rounded-3xl p-12 mb-12">
+                    <div class="text-brand-muted text-sm mb-3 uppercase tracking-wider">Net Benefit</div>
+                    <div class="text-7xl font-bold mb-4 text-brand-orange">$11K</div>
+                    <div class="text-2xl text-brand-dark">over 6 months</div>
+                </div>
+                <div class="max-w-4xl">
+                    <p class="text-2xl italic mb-6 text-brand-dark leading-relaxed">
+                        "The value was not the technology itself, but operational clarity. We reduced staff overload and improved profitability without expanding the team."
+                    </p>
+                    <div class="text-brand-muted">— Clinic Owner, Israeli Family Medicine Practice</div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-4xl font-semibold mb-16 text-brand-dark">Key outcomes</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 reveal">
+                    <div>
+                        <div class="text-4xl font-bold mb-3 text-brand-orange">97%</div>
+                        <div class="text-lg font-semibold mb-2 text-brand-dark">Less documentation time</div>
+                        <p class="text-brand-muted">From 2 hours/day to 5 minutes</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-3 text-brand-orange">30%</div>
+                        <div class="text-lg font-semibold mb-2 text-brand-dark">More patient capacity</div>
+                        <p class="text-brand-muted">Same hours, no overtime</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-3 text-brand-orange">27.5%</div>
+                        <div class="text-lg font-semibold mb-2 text-brand-dark">Clinic revenue increase</div>
+                        <p class="text-brand-muted">Measured over 6 months</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-3 text-brand-orange">75%</div>
+                        <div class="text-lg font-semibold mb-2 text-brand-dark">Patient adoption</div>
+                        <p class="text-brand-muted">Active app usage</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-3 text-brand-orange">0</div>
+                        <div class="text-lg font-semibold mb-2 text-brand-dark">Staff turnover</div>
+                        <p class="text-brand-muted">Same team, better outcomes</p>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold mb-3 text-brand-orange">4.8/5</div>
+                        <div class="text-lg font-semibold mb-2 text-brand-dark">Patient satisfaction</div>
+                        <p class="text-brand-muted">847 surveys</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-32 bg-[#FFF9F1]">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-6xl md:text-8xl font-bold mb-8 leading-tight text-brand-dark">Ready to transform<br/>your practice?</h2>
+            <p class="text-2xl mb-12 text-brand-muted max-w-2xl">Join the first 10 clinics. Save 30% for life.</p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="calculator.html" class="px-10 py-4 bg-brand-orange text-white font-semibold text-lg rounded-full hover:opacity-90 transition-opacity">
+                    Calculate Your Savings
+                </a>
+                <a href="#" class="px-10 py-4 bg-white text-brand-dark font-semibold text-lg rounded-full hover:bg-gray-100 transition-colors">
+                    Book a Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <script>
+        function showToggle(type) {
+            // Update button styles
+            const clinicsBtn = document.getElementById('clinics-btn');
+            const patientsBtn = document.getElementById('patients-btn');
+            const clinicsContent = document.getElementById('clinics-content');
+            const patientsContent = document.getElementById('patients-content');
+
+            if (type === 'clinics') {
+                clinicsBtn.className = 'px-8 py-3 bg-brand-orange text-white font-semibold rounded-full text-lg';
+                patientsBtn.className = 'px-8 py-3 bg-gray-100 text-brand-dark font-semibold rounded-full text-lg hover:bg-gray-200 transition-colors';
+                clinicsContent.classList.remove('hidden');
+                patientsContent.classList.add('hidden');
+            } else {
+                patientsBtn.className = 'px-8 py-3 bg-brand-orange text-white font-semibold rounded-full text-lg';
+                clinicsBtn.className = 'px-8 py-3 bg-gray-100 text-brand-dark font-semibold rounded-full text-lg hover:bg-gray-200 transition-colors';
+                patientsContent.classList.remove('hidden');
+                clinicsContent.classList.add('hidden');
+            }
+        }
+
+        function showPricingToggle(type) {
+            // Update button styles for pricing section
+            const clinicsBtn = document.getElementById('pricing-clinics-btn');
+            const patientsBtn = document.getElementById('pricing-patients-btn');
+            const clinicsPricing = document.getElementById('clinics-pricing');
+            const patientsPricing = document.getElementById('patients-pricing');
+
+            if (type === 'clinics') {
+                clinicsBtn.className = 'px-8 py-3 bg-brand-orange text-white font-semibold rounded-full text-lg';
+                patientsBtn.className = 'px-8 py-3 bg-gray-100 text-brand-dark font-semibold rounded-full text-lg hover:bg-gray-200 transition-colors';
+                clinicsPricing.classList.remove('hidden');
+                patientsPricing.classList.add('hidden');
+            } else {
+                patientsBtn.className = 'px-8 py-3 bg-brand-orange text-white font-semibold rounded-full text-lg';
+                clinicsBtn.className = 'px-8 py-3 bg-gray-100 text-brand-dark font-semibold rounded-full text-lg hover:bg-gray-200 transition-colors';
+                patientsPricing.classList.remove('hidden');
+                clinicsPricing.classList.add('hidden');
+            }
+        }
+
+        // Scroll reveal animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+
+                revealElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const revealPoint = 100;
+
+                    if (elementTop < windowHeight - revealPoint) {
+                        element.classList.add('active');
+                    }
+                });
+            };
+
+            // Initial check
+            revealOnScroll();
+
+            // Check on scroll
+            window.addEventListener('scroll', revealOnScroll);
+        });
+    </script>
+</body>
+</html>

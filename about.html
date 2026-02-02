@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Healthy4U</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-orange': '#EF6113',
+                        'brand-cream': '#FFF9F2',
+                        'brand-dark': '#000000',
+                        'brand-muted': '#666666',
+                    },
+                    borderRadius: {
+                        'brand-xl': '20px',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Fade in animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Apply animations */
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .animate-delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        /* Image hover effects */
+        .image-hover {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+        }
+
+        .image-hover:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Smooth scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Button hover animation */
+        .btn-animate {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-animate::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-animate:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+    <script src="components.js"></script>
+</head>
+<body class="font-sans bg-white text-black">
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <!-- Hero Section -->
+    <section class="bg-brand-cream py-32">
+        <div class="max-w-6xl mx-auto px-6">
+            <h1 class="text-6xl md:text-8xl font-bold mb-12 leading-tight text-brand-dark max-w-4xl animate-on-scroll">
+                We're building healthcare that never stops caring.
+            </h1>
+            <p class="text-2xl md:text-3xl mb-12 text-brand-muted max-w-3xl leading-relaxed animate-on-scroll animate-delay-100">
+                A small team with a big mission: transform healthcare from fragmented episodes into continuous, intelligent care.
+            </p>
+        </div>
+    </section>
+
+    <!-- How It All Started -->
+    <section class="py-32 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-5xl md:text-7xl font-bold mb-20 text-brand-dark max-w-3xl leading-tight">How it all started.</h2>
+
+            <div class="space-y-8 text-xl text-brand-muted leading-relaxed max-w-4xl mb-20">
+                <p>
+                    It all started with a simple but profound desire—to create something that truly helps people and to leave a legacy that isn't measured just in money. Two years ago, while on a business trip in Cannes, sitting with colleagues over coffee, I jokingly showed them a prototype: I took a photo of my cup and demonstrated how the system could instantly recognize its composition and calories. We laughed, but in that moment, a question took root: what if we built something like this on the scale of a person's entire life? Six months later, we launched our first version on the App Store, featuring a chat, food logging, and a memory function, eventually integrating heart rate and wearable data.
+                </p>
+                <p>
+                    The true realization of our mission came after I moved to Europe and faced the reality of waiting weeks for a doctor's appointment. When I tried to find answers using ChatGPT, I hit the same wall every time: the AI remembered nothing from our previous conversations. I had to explain my symptoms and history all over again. It became obvious—the world needs an assistant with long-term memory that knows everything about you. We spent months experimenting with memory architecture, but the result was worth it: the more you interact with the system, the more deeply it understands you.
+                </p>
+                <p>
+                    The turning point came when we spontaneously presented our work to doctors at the GavCure clinic in Israel. I never expected them to get "hooked" on the product so quickly. One doctor confessed to me that, thanks to the system, he was able to simply listen to a patient for the first time in five years, without being distracted by forms or typing. It gave me goosebumps. From that moment, growth exploded: we added FHIR medical standards for data transfer between clinics, implemented voice recording for appointments, and created pre-checkup systems that patients fill out while still on their way to the clinic. Looking back, we realized we had evolved from a simple tracker into a complete ecosystem of analytics and AI consultations. Now, when a patient enters the office, the doctor already knows everything about them, as if they've been acquainted for years. This is Healthy4U—and I feel like we're just getting warmed up.
+                </p>
+            </div>
+
+            <!-- Founders Group Photo -->
+            <div class="mb-24 reveal">
+                <div class="max-w-xl mx-auto">
+                    <div class="rounded-2xl overflow-hidden shadow-lg image-hover">
+                        <img src="images/team_group_v2.jpg" alt="Healthy4U Co-founders" class="w-full h-auto object-cover">
+                    </div>
+                    <p class="text-center text-brand-muted mt-6 text-lg italic">Gennady, Sergey and Konstantin — the founding team</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Mission -->
+    <section class="py-32 bg-brand-cream">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-5xl md:text-7xl font-bold mb-20 text-brand-dark max-w-3xl leading-tight">Why we exist.</h2>
+
+            <div class="space-y-8 text-xl text-brand-muted leading-relaxed max-w-4xl">
+                <p>
+                    <span class="font-semibold text-brand-dark">Healthcare today is reactive.</span> You get sick, visit a doctor, receive treatment, and disconnect until the next problem. This episodic model was designed for acute care — broken bones, infections, emergencies.
+                </p>
+                <p>
+                    But <span class="font-semibold text-brand-dark">80% of healthcare costs come from chronic conditions</span> that require continuous monitoring, not episodic intervention. Diabetes doesn't care if you have an appointment next month. Heart disease doesn't pause between visits.
+                </p>
+                <p>
+                    We believe healthcare should flow like conversation — continuous, adaptive, always listening. Patients shouldn't have to remember every symptom. Doctors shouldn't waste half their time typing. AI should connect the dots humans can't see.
+                </p>
+                <p class="text-2xl font-semibold text-brand-dark">
+                    Our mission: Make continuous care the default, not the exception.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team -->
+    <section class="py-32 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-5xl md:text-7xl font-bold mb-8 text-brand-dark max-w-3xl leading-tight">The team.</h2>
+            <p class="text-xl mb-24 text-brand-muted max-w-2xl">We're a small, mission-driven team building the future of healthcare.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 reveal">
+                <!-- Team Member 1 -->
+                <div>
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                        <img src="images/gen.png" alt="Gennady Ochman" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-semibold text-brand-dark mb-2">Gennady Ochman</h3>
+                    <p class="text-lg text-brand-muted mb-3">CEO, Co-Founder</p>
+                    <p class="text-base text-brand-muted leading-relaxed">Clinic owner and healthcare innovator. Built and runs GavCure Clinic while pioneering AI-first patient care.</p>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div>
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                        <img src="images/serg.png" alt="Sergey Nemesh" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-semibold text-brand-dark mb-2">Sergey Nemesh</h3>
+                    <p class="text-lg text-brand-muted mb-3">CTO, Co-Founder</p>
+                    <p class="text-base text-brand-muted leading-relaxed">Technical architect and full-stack engineer. Built the AI infrastructure powering Healthy4U's platform.</p>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div>
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                        <img src="images/konst.png" alt="Konstantin Moroshin" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-semibold text-brand-dark mb-2">Konstantin Moroshin</h3>
+                    <p class="text-lg text-brand-muted mb-3">Chief Strategy Officer</p>
+                    <p class="text-base text-brand-muted leading-relaxed">Product strategist and business development expert. Drives market expansion and strategic partnerships.</p>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div>
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                        <img src="images/irina.jpg" alt="Irina Marchenko" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-semibold text-brand-dark mb-2">Irina Marchenko</h3>
+                    <p class="text-lg text-brand-muted mb-3">Project Manager</p>
+                    <p class="text-base text-brand-muted leading-relaxed">Ensures seamless coordination across teams and drives product delivery with precision.</p>
+                </div>
+
+                <!-- Team Member 5 -->
+                <div>
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                        <img src="images/pavel.jpg" alt="Pavel Vlasenko" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-semibold text-brand-dark mb-2">Pavel Vlasenko</h3>
+                    <p class="text-lg text-brand-muted mb-3">Backend Developer</p>
+                    <p class="text-base text-brand-muted leading-relaxed">Builds robust server infrastructure and APIs that power the platform's core functionality.</p>
+                </div>
+
+                <!-- Team Member 6 -->
+                <div>
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
+                        <img src="images/yaroslav.jpg" alt="Yaroslav Savchenko" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-2xl font-semibold text-brand-dark mb-2">Yaroslav Savchenko</h3>
+                    <p class="text-lg text-brand-muted mb-3">QA Engineer</p>
+                    <p class="text-base text-brand-muted leading-relaxed">Ensures product quality through rigorous testing and validation across all platform features.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="py-32 bg-brand-cream">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-5xl md:text-7xl font-bold mb-24 text-brand-dark max-w-3xl leading-tight">What we believe.</h2>
+
+            <div class="space-y-16">
+                <div class="reveal">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 bg-brand-orange flex items-center justify-center">
+                            <span class="text-4xl">🎯</span>
+                        </div>
+                        <h3 class="text-3xl font-semibold text-brand-dark mt-4">Patient-first, always</h3>
+                    </div>
+                    <p class="text-xl text-brand-muted leading-relaxed pl-24 max-w-3xl">
+                        Every feature decision starts with: "Does this make a patient's life better?" If the answer isn't a clear yes, we don't build it.
+                    </p>
+                </div>
+
+                <div class="reveal">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 bg-brand-orange flex items-center justify-center">
+                            <span class="text-4xl">🔒</span>
+                        </div>
+                        <h3 class="text-3xl font-semibold text-brand-dark mt-4">Privacy is non-negotiable</h3>
+                    </div>
+                    <p class="text-xl text-brand-muted leading-relaxed pl-24 max-w-3xl">
+                        Your data is yours. We built federated architecture so clinics own their data. We provide intelligence, not surveillance.
+                    </p>
+                </div>
+
+                <div class="reveal">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 bg-brand-orange flex items-center justify-center">
+                            <span class="text-4xl">🤝</span>
+                        </div>
+                        <h3 class="text-3xl font-semibold text-brand-dark mt-4">AI augments, never replaces</h3>
+                    </div>
+                    <p class="text-xl text-brand-muted leading-relaxed pl-24 max-w-3xl">
+                        Doctors make decisions. AI handles the grunt work — documentation, pattern detection, reminders. Humans diagnose. AI supports.
+                    </p>
+                </div>
+
+                <div class="reveal">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 bg-brand-orange flex items-center justify-center">
+                            <span class="text-4xl">🌍</span>
+                        </div>
+                        <h3 class="text-3xl font-semibold text-brand-dark mt-4">Built for everyone, everywhere</h3>
+                    </div>
+                    <p class="text-xl text-brand-muted leading-relaxed pl-24 max-w-3xl">
+                        Healthcare doesn't speak just English. Our platform works in any language, serves any practice size, deploys anywhere.
+                    </p>
+                </div>
+
+                <div class="reveal">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 bg-brand-orange flex items-center justify-center">
+                            <span class="text-4xl">⚡</span>
+                        </div>
+                        <h3 class="text-3xl font-semibold text-brand-dark mt-4">Move fast, stay careful</h3>
+                    </div>
+                    <p class="text-xl text-brand-muted leading-relaxed pl-24 max-w-3xl">
+                        Healthcare demands speed and caution. We ship quickly, but we validate rigorously. No compromise on safety.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Us Section -->
+    <section class="py-32 bg-white" id="join-us">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-5xl md:text-7xl font-bold mb-12 text-brand-dark max-w-3xl leading-tight">Want to join us?</h2>
+            <p class="text-2xl mb-12 text-brand-muted max-w-3xl leading-relaxed">
+                We're hiring engineers, designers, clinicians, and operators who believe healthcare should never stop caring.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6">
+                <a href="#" class="px-10 py-4 bg-brand-orange text-white font-semibold text-lg rounded-full hover:opacity-90 transition-opacity btn-animate">
+                    View Open Roles
+                </a>
+                <a href="mailto:careers@healthy4u.com" class="px-10 py-4 bg-white border border-gray-200 text-brand-dark font-semibold text-lg rounded-full hover:bg-gray-50 transition-colors btn-animate">
+                    careers@healthy4u.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-32 bg-[#FFF9F1]">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-5xl md:text-8xl font-bold mb-8 leading-tight text-brand-dark">Ready to transform your practice?</h2>
+            <p class="text-2xl mb-12 text-brand-muted max-w-2xl">Join the first 10 clinics. Save 30% for life.</p>
+            <div class="flex flex-col sm:flex-row gap-6">
+                <a href="calculator.html" class="px-10 py-5 bg-brand-orange text-white font-bold text-lg rounded-full hover:opacity-90 transition-opacity btn-animate">
+                    Calculate Your Savings
+                </a>
+                <a href="index.html" class="px-10 py-5 bg-white text-brand-dark font-bold text-lg rounded-full hover:bg-gray-100 transition-colors btn-animate">
+                    Book a Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <script>
+        // Scroll reveal animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+
+                revealElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const revealPoint = 100;
+
+                    if (elementTop < windowHeight - revealPoint) {
+                        element.classList.add('active');
+                    }
+                });
+            };
+
+            // Initial check
+            revealOnScroll();
+
+            // Check on scroll
+            window.addEventListener('scroll', revealOnScroll);
+        });
+    </script>
+</body>
+</html>

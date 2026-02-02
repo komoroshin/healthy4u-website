@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROI Calculator - Healthy4U</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-orange': '#EF6113',
+                        'brand-cream': '#FFF9F2',
+                        'brand-dark': '#000000',
+                        'brand-muted': '#666666',
+                    },
+                    borderRadius: {
+                        'brand-xl': '20px',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Fade in animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .animate-delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        /* Image hover effects */
+        .image-hover {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+        }
+
+        .image-hover:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Smooth scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Button hover animation */
+        .btn-animate {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-animate::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-animate:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Custom input styles */
+        input[type="number"],
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #EF6113;
+            box-shadow: 0 0 0 3px rgba(239, 97, 19, 0.1);
+        }
+
+        /* Number input arrows */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            opacity: 1;
+        }
+    </style>
+    <script src="components.js"></script>
+</head>
+<body class="font-sans bg-white text-black">
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <!-- Hero Section -->
+    <section class="bg-brand-cream py-32">
+        <div class="max-w-6xl mx-auto px-6">
+            <h1 class="text-6xl md:text-8xl font-bold mb-12 leading-tight text-brand-dark max-w-4xl animate-on-scroll">
+                Calculate your savings.
+            </h1>
+            <p class="text-2xl md:text-3xl mb-12 text-brand-muted max-w-3xl leading-relaxed animate-on-scroll animate-delay-100">
+                See the financial impact of implementing Healthy4U in your practice.
+            </p>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="py-32 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Input Card -->
+                <div class="space-y-8">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-8 text-brand-dark">Your practice</h2>
+
+                        <div class="space-y-6">
+                            <div>
+                                <label for="physicians" class="block text-lg font-semibold text-brand-dark mb-3">
+                                    Number of Physicians
+                                </label>
+                                <input
+                                    type="number"
+                                    id="physicians"
+                                    value="3"
+                                    min="1"
+                                    max="100"
+                                    oninput="calculateROI()"
+                                    class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg font-medium text-brand-dark focus:border-brand-orange transition-colors"
+                                >
+                                <p class="text-sm text-brand-muted mt-2">Full-time equivalent physicians in your practice</p>
+                            </div>
+
+                            <div>
+                                <label for="hourlyRate" class="block text-lg font-semibold text-brand-dark mb-3">
+                                    Physician Hourly Rate ($)
+                                </label>
+                                <input
+                                    type="number"
+                                    id="hourlyRate"
+                                    value="50"
+                                    min="10"
+                                    max="500"
+                                    oninput="calculateROI()"
+                                    class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg font-medium text-brand-dark focus:border-brand-orange transition-colors"
+                                >
+                                <p class="text-sm text-brand-muted mt-2">Average hourly compensation (salary ÷ 2080 hours/year)</p>
+                            </div>
+
+                            <div>
+                                <label for="hoursSaved" class="block text-lg font-semibold text-brand-dark mb-3">
+                                    Hours Saved per Week
+                                </label>
+                                <input
+                                    type="number"
+                                    id="hoursSaved"
+                                    value="4"
+                                    min="0"
+                                    max="20"
+                                    step="0.5"
+                                    oninput="calculateROI()"
+                                    class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg font-medium text-brand-dark focus:border-brand-orange transition-colors"
+                                >
+                                <p class="text-sm text-brand-muted mt-2">Expected time savings per physician (typically 4-6 hours)</p>
+                            </div>
+
+                            <div>
+                                <label for="pricingTier" class="block text-lg font-semibold text-brand-dark mb-3">
+                                    Pricing Tier
+                                </label>
+                                <select
+                                    id="pricingTier"
+                                    onchange="calculateROI()"
+                                    class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg font-medium text-brand-dark focus:border-brand-orange transition-colors"
+                                >
+                                    <option value="174">Founder's Circle - $174/month (30% off)</option>
+                                    <option value="199">Early Adopter - $199/month (20% off)</option>
+                                    <option value="224">Launch Partner - $224/month (10% off)</option>
+                                    <option value="249">Standard - $249/month</option>
+                                </select>
+                                <p class="text-sm text-brand-muted mt-2">Limited-time early adopter pricing available</p>
+                            </div>
+
+                            <div>
+                                <label for="currentCosts" class="block text-lg font-semibold text-brand-dark mb-3">
+                                    Current Monthly Costs ($)
+                                </label>
+                                <input
+                                    type="number"
+                                    id="currentCosts"
+                                    value="0"
+                                    min="0"
+                                    max="10000"
+                                    oninput="calculateROI()"
+                                    class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg font-medium text-brand-dark focus:border-brand-orange transition-colors"
+                                >
+                                <p class="text-sm text-brand-muted mt-2">Existing costs you'll eliminate (old scribe service, etc.)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Card -->
+                <div class="space-y-6">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8 text-brand-dark">Your results</h2>
+
+                    <div class="bg-gradient-to-br from-brand-orange to-orange-600 text-white rounded-2xl p-8">
+                        <div class="text-sm uppercase tracking-wider opacity-90 mb-2">Monthly Time Savings</div>
+                        <div class="text-5xl font-bold mb-2" id="monthlySavings">$0</div>
+                        <div class="text-sm opacity-90">per month</div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-gray-700 to-gray-800 text-white rounded-2xl p-8">
+                        <div class="text-sm uppercase tracking-wider opacity-90 mb-2">Healthy4U Monthly Cost</div>
+                        <div class="text-5xl font-bold mb-2" id="monthlyCost">$0</div>
+                        <div class="text-sm opacity-90">per month</div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-brand-orange to-orange-600 text-white rounded-2xl p-8">
+                        <div class="text-sm uppercase tracking-wider opacity-90 mb-2">Net Monthly Savings</div>
+                        <div class="text-5xl font-bold mb-2" id="netMonthlySavings">$0</div>
+                        <div class="text-sm opacity-90">per month</div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-gray-700 to-gray-800 text-white rounded-2xl p-8">
+                        <div class="text-sm uppercase tracking-wider opacity-90 mb-2">Payback Period</div>
+                        <div class="text-5xl font-bold mb-2" id="paybackPeriod">0</div>
+                        <div class="text-sm opacity-90">months</div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-brand-orange to-orange-600 text-white rounded-2xl p-8">
+                        <div class="text-sm uppercase tracking-wider opacity-90 mb-2">3-Year ROI</div>
+                        <div class="text-5xl font-bold mb-2" id="roi3Year">$0</div>
+                        <div class="text-sm opacity-90" id="roiPercent">(0% return)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="py-32 bg-brand-cream">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-5xl md:text-7xl font-bold mb-12 text-brand-dark">Compare platforms</h2>
+            <p class="text-xl text-brand-muted mb-16 max-w-3xl">See how Healthy4U stacks up against competitors</p>
+
+            <div class="overflow-x-auto">
+                <table class="w-full bg-white rounded-2xl overflow-hidden shadow-sm">
+                    <thead>
+                        <tr class="bg-gray-50 border-b-2 border-gray-200">
+                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Solution</th>
+                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Monthly/Physician</th>
+                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Features</th>
+                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Patient Side</th>
+                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Year 1 Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparisonBody">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breakdown Section -->
+    <section class="py-32 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-5xl md:text-7xl font-bold mb-12 text-brand-dark">3-year breakdown</h2>
+            <p class="text-xl text-brand-muted mb-16 max-w-3xl">See your cumulative savings over time</p>
+
+            <div class="overflow-x-auto">
+                <table class="w-full bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200">
+                    <thead>
+                        <tr class="bg-gray-50 border-b-2 border-gray-200">
+                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Metric</th>
+                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Year 1</th>
+                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Year 2</th>
+                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Year 3</th>
+                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Total (3-Year)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="breakdownBody">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-32 bg-[#FFF9F1]">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-5xl md:text-8xl font-bold mb-8 leading-tight text-brand-dark">Ready to get started?</h2>
+            <p class="text-2xl mb-12 text-brand-muted max-w-2xl">Join the first 10 clinics and save 30% for life.</p>
+            <div class="flex flex-col sm:flex-row gap-6">
+                <a href="index.html" class="px-10 py-5 bg-brand-orange text-white font-bold text-lg rounded-full hover:opacity-90 transition-opacity btn-animate">
+                    Book a Demo
+                </a>
+                <a href="index.html#case-study" class="px-10 py-5 bg-white text-brand-dark font-bold text-lg rounded-full hover:bg-gray-100 transition-colors btn-animate">
+                    See Case Study
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <script>
+        // Competitor data
+        const COMPETITORS = [
+            { name: 'Freed.ai', monthly: 99, features: 'Scribe only', patientSide: 'No' },
+            { name: 'Suki Assistant', monthly: 399, features: 'Scribe + Voice', patientSide: 'No' },
+            { name: 'DeepScribe', monthly: 750, features: 'Premium Scribe + Coding', patientSide: 'No' }
+        ];
+
+        function formatCurrency(value) {
+            return '$' + Math.round(value).toLocaleString();
+        }
+
+        function calculateROI() {
+            // Get inputs
+            const physicians = parseInt(document.getElementById('physicians').value) || 0;
+            const hourlyRate = parseInt(document.getElementById('hourlyRate').value) || 0;
+            const hoursSaved = parseFloat(document.getElementById('hoursSaved').value) || 0;
+            const pricingTier = parseInt(document.getElementById('pricingTier').value) || 249;
+            const currentCosts = parseInt(document.getElementById('currentCosts').value) || 0;
+
+            // Calculate savings
+            const monthlySavings = physicians * hoursSaved * 4 * hourlyRate; // 4 weeks per month
+            const monthlyCost = physicians * pricingTier;
+            const netMonthlySavings = monthlySavings - monthlyCost + currentCosts;
+
+            // Calculate payback (how much of a month to cover subscription cost)
+            let paybackPeriod = monthlySavings > 0 ? monthlyCost / monthlySavings : Infinity;
+
+            // Calculate 3-year ROI
+            const total3YearSavings = netMonthlySavings * 36;
+            const roi3Year = total3YearSavings;
+            const roiPercent = monthlyCost > 0 ? ((netMonthlySavings / monthlyCost) * 100) : Infinity;
+
+            // Update results
+            document.getElementById('monthlySavings').textContent = formatCurrency(monthlySavings);
+            document.getElementById('monthlyCost').textContent = formatCurrency(monthlyCost);
+            document.getElementById('netMonthlySavings').textContent = formatCurrency(netMonthlySavings);
+            document.getElementById('paybackPeriod').textContent = paybackPeriod === Infinity ? 'Never' : paybackPeriod.toFixed(1);
+            document.getElementById('roi3Year').textContent = formatCurrency(roi3Year);
+            document.getElementById('roiPercent').textContent = roiPercent === Infinity ? '(∞% return)' : `(${roiPercent.toFixed(0)}% monthly return)`;
+
+            // Update comparison table
+            updateComparisonTable(physicians, pricingTier);
+
+            // Update breakdown table
+            updateBreakdownTable(monthlySavings, monthlyCost, currentCosts, netMonthlySavings);
+        }
+
+        function updateComparisonTable(physicians, pricingTier) {
+            const tbody = document.getElementById('comparisonBody');
+            tbody.innerHTML = '';
+
+            // Add Healthy4U row
+            const healthy4uRow = tbody.insertRow();
+            healthy4uRow.className = 'bg-brand-cream border-b border-gray-100';
+            healthy4uRow.innerHTML = `
+                <td class="py-4 px-6 font-bold text-brand-dark">Healthy4U</td>
+                <td class="py-4 px-6 text-brand-dark">${formatCurrency(pricingTier)}</td>
+                <td class="py-4 px-6 text-brand-dark">Scribe + AI Consultant + Patient App</td>
+                <td class="py-4 px-6 text-brand-orange font-semibold">✓ Yes</td>
+                <td class="py-4 px-6 font-bold text-brand-dark">${formatCurrency(pricingTier * physicians * 12)}</td>
+            `;
+
+            // Add competitor rows
+            COMPETITORS.forEach(comp => {
+                const row = tbody.insertRow();
+                row.className = 'border-b border-gray-100';
+                const annualCost = comp.monthly * physicians * 12;
+
+                row.innerHTML = `
+                    <td class="py-4 px-6 text-brand-muted">${comp.name}</td>
+                    <td class="py-4 px-6 text-brand-muted">${formatCurrency(comp.monthly)}</td>
+                    <td class="py-4 px-6 text-brand-muted">${comp.features}</td>
+                    <td class="py-4 px-6 text-red-600 font-semibold">${comp.patientSide}</td>
+                    <td class="py-4 px-6 text-brand-muted">${formatCurrency(annualCost)}</td>
+                `;
+            });
+        }
+
+        function updateBreakdownTable(monthlySavings, monthlyCost, currentCosts, netMonthlySavings) {
+            const tbody = document.getElementById('breakdownBody');
+            tbody.innerHTML = '';
+
+            // Calculate yearly values
+            const year1Benefits = monthlySavings * 12;
+            const year1Costs = monthlyCost * 12;
+            const year1Eliminated = currentCosts * 12;
+            const year1Net = netMonthlySavings * 12;
+
+            const year2Benefits = monthlySavings * 12;
+            const year2Costs = monthlyCost * 12;
+            const year2Eliminated = currentCosts * 12;
+            const year2Net = netMonthlySavings * 12;
+
+            const year3Benefits = monthlySavings * 12;
+            const year3Costs = monthlyCost * 12;
+            const year3Eliminated = currentCosts * 12;
+            const year3Net = netMonthlySavings * 12;
+
+            const totalBenefits = year1Benefits + year2Benefits + year3Benefits;
+            const totalCosts = year1Costs + year2Costs + year3Costs;
+            const totalEliminated = year1Eliminated + year2Eliminated + year3Eliminated;
+            const totalNet = year1Net + year2Net + year3Net;
+
+            // Add rows
+            const rows = [
+                ['Time Savings (Benefits)', formatCurrency(year1Benefits), formatCurrency(year2Benefits), formatCurrency(year3Benefits), formatCurrency(totalBenefits)],
+                ['Healthy4U Costs', formatCurrency(year1Costs), formatCurrency(year2Costs), formatCurrency(year3Costs), formatCurrency(totalCosts)],
+                ['Eliminated Costs', formatCurrency(year1Eliminated), formatCurrency(year2Eliminated), formatCurrency(year3Eliminated), formatCurrency(totalEliminated)],
+                ['Net Savings', formatCurrency(year1Net), formatCurrency(year2Net), formatCurrency(year3Net), formatCurrency(totalNet)]
+            ];
+
+            rows.forEach((rowData, index) => {
+                const row = tbody.insertRow();
+                if (index === rows.length - 1) {
+                    row.className = 'bg-brand-cream font-bold border-t-2 border-brand-orange';
+                } else {
+                    row.className = 'border-b border-gray-100';
+                }
+                rowData.forEach((cellData, cellIndex) => {
+                    const cell = row.insertCell();
+                    cell.textContent = cellData;
+                    cell.className = 'py-4 px-6 text-brand-dark';
+                    if (cellIndex === 0) {
+                        cell.className += ' font-semibold';
+                    }
+                });
+            });
+        }
+
+        // Scroll reveal animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Calculate on page load
+            calculateROI();
+
+            // Scroll reveal
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                revealElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const revealPoint = 100;
+                    if (elementTop < windowHeight - revealPoint) {
+                        element.classList.add('active');
+                    }
+                });
+            };
+            revealOnScroll();
+            window.addEventListener('scroll', revealOnScroll);
+        });
+    </script>
+</body>
+</html>

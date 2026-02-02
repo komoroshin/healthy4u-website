@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecosystem - Healthy4U</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-orange': '#EF6113',
+                        'brand-cream': '#FFF9F2',
+                        'brand-dark': '#000000',
+                        'brand-muted': '#666666',
+                    },
+                    borderRadius: {
+                        'brand-xl': '20px',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Fade in animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Apply animations */
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .animate-delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .animate-delay-300 {
+            animation-delay: 0.3s;
+        }
+
+        /* Image hover effects */
+        .image-hover {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+        }
+
+        .image-hover:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Smooth scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Button hover animation */
+        .btn-animate {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-animate::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-animate:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+    <script src="components.js"></script>
+</head>
+<body class="font-sans bg-white text-black">
+    <!-- Header Container -->
+    <div id="header-container"></div>
+
+    <!-- Hero Section -->
+    <section class="bg-brand-cream py-32">
+        <div class="max-w-6xl mx-auto px-6">
+            <h1 class="text-6xl md:text-8xl font-bold mb-12 leading-tight text-brand-dark max-w-4xl animate-on-scroll">
+                The ecosystem.
+            </h1>
+            <p class="text-3xl md:text-4xl font-semibold mb-12 text-brand-dark max-w-3xl leading-snug animate-on-scroll animate-delay-100">
+                Transform healthcare from fragmented episodes into continuous, intelligent care.
+            </p>
+            <p class="text-xl max-w-3xl leading-relaxed text-brand-muted animate-on-scroll animate-delay-200">
+                Doctor sees only 1% of your health picture. We deliver 100% — automatically collected, cross-analyzed, always up to date.
+            </p>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="py-32 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-5xl md:text-7xl font-bold mb-20 text-brand-dark max-w-3xl leading-tight">Our philosophy</h2>
+            <div class="space-y-8 text-xl text-brand-muted leading-relaxed max-w-4xl">
+                <p>
+                    Traditional healthcare is <span class="font-semibold text-brand-dark">episodic</span>: you visit the doctor when sick, they type notes, you leave, connection lost.
+                </p>
+                <p>
+                    <span class="font-semibold text-brand-dark">We believe healthcare should be continuous</span>: data flows before, during, and after every interaction. AI connects the dots. Care never stops.
+                </p>
+                <p>
+                    This is not "telemedicine" or "remote monitoring." This is a complete <span class="font-semibold text-brand-dark">health operating system</span> designed to keep clinics and patients in sync 24/7.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Overview Diagram -->
+    <section class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex items-start gap-6 reveal">
+                <div class="w-32 h-32 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=300&h=300&fit=crop" alt="Ecosystem architecture" class="w-full h-full object-cover">
+                </div>
+                <div class="mt-8">
+                    <h3 class="text-3xl font-semibold text-brand-dark mb-4">Three-Layer Architecture</h3>
+                    <p class="text-xl text-brand-muted leading-relaxed">Patient Experience → Physician Intelligence → AI Orchestration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Layer 1: Patient Experience -->
+    <section class="py-32 bg-brand-cream">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-24">
+                <div class="text-sm uppercase tracking-wider text-brand-orange font-semibold mb-4">Layer 1</div>
+                <h2 class="text-5xl md:text-7xl font-bold mb-6 text-brand-dark max-w-3xl leading-tight">Patient Experience</h2>
+                <p class="text-2xl text-brand-muted max-w-2xl">Empower patients to actively participate in their own care</p>
+            </div>
+
+            <div class="space-y-20">
+                <!-- Pre-Visit -->
+                <div class="reveal">
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=200&h=200&fit=crop" alt="Pre-visit data collection" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-3xl font-semibold text-brand-dark mt-6">Pre-visit data collection</h4>
+                    </div>
+
+                    <div class="space-y-6 text-lg text-brand-muted leading-relaxed pl-28">
+                        <p><span class="font-semibold text-brand-dark">Wearables integration:</span> Fitbit, Apple Health, Garmin, Oura. Sleep, heart rate, steps, glucose.</p>
+                        <p><span class="font-semibold text-brand-dark">Voice symptom logging:</span> "I have a headache and nausea" → AI structures: onset, severity, triggers.</p>
+                        <p><span class="font-semibold text-brand-dark">Document upload:</span> Lab results, imaging, prescriptions from other providers.</p>
+                        <p><span class="font-semibold text-brand-dark">Pre-visit questionnaire:</span> AI asks clarifying questions based on chief complaint.</p>
+                    </div>
+                    <div class="mt-8 p-6 bg-white/50 rounded-2xl ml-28">
+                        <p class="text-lg text-brand-muted italic">Patients arrive prepared. Doctor sees structured context before the visit, not reactive Q&A.</p>
+                    </div>
+                </div>
+
+                <!-- 24/7 AI Health Assistant -->
+                <div class="reveal">
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                            <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?w=200&h=200&fit=crop" alt="AI Health Assistant" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-3xl font-semibold text-brand-dark mt-6">24/7 AI Health Assistant</h4>
+                    </div>
+
+                    <div class="space-y-6 text-lg text-brand-muted leading-relaxed pl-28">
+                        <p><span class="font-semibold text-brand-dark">Hands-free interaction:</span> Voice commands in any language (English, Russian, Spanish, Hebrew, etc.)</p>
+                        <p><span class="font-semibold text-brand-dark">Symptom guidance:</span> "I have chest pain" → AI: "Is it sharp or dull? Does it radiate?" → Triage urgency.</p>
+                        <p><span class="font-semibold text-brand-dark">Medication reminders:</span> "It's 8am. Time to take your blood pressure medication."</p>
+                        <p><span class="font-semibold text-brand-dark">Health tracking:</span> "Log my weight: 180 lbs" → AI: "Down 2 lbs since last week. Great progress!"</p>
+                    </div>
+                    <div class="mt-8 p-6 bg-white/50 rounded-2xl ml-28">
+                        <p class="text-lg text-brand-muted italic">Healthcare should be accessible without opening an app. Voice = zero friction = higher engagement.</p>
+                    </div>
+                </div>
+
+                <!-- Post-Visit Monitoring -->
+                <div class="reveal">
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=200&h=200&fit=crop" alt="Post-visit monitoring" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-3xl font-semibold text-brand-dark mt-6">Post-visit continuous monitoring</h4>
+                    </div>
+
+                    <div class="space-y-6 text-lg text-brand-muted leading-relaxed pl-28">
+                        <p><span class="font-semibold text-brand-dark">Treatment compliance tracking:</span> Did patient take medication? Attend follow-up?</p>
+                        <p><span class="font-semibold text-brand-dark">Symptom progression:</span> AI monitors: "Patient reported 'still dizzy' 3 days post-medication change" → Alert doctor.</p>
+                        <p><span class="font-semibold text-brand-dark">Proactive guidance:</span> "Your blood pressure is trending up. Consider reducing salt intake."</p>
+                    </div>
+                    <div class="mt-8 p-6 bg-white/50 rounded-2xl ml-28">
+                        <p class="text-lg text-brand-muted italic">Most treatment failures happen after the visit. We close that gap.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Layer 2: Physician Intelligence -->
+    <section class="py-32 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-24">
+                <div class="text-sm uppercase tracking-wider text-brand-orange font-semibold mb-4">Layer 2</div>
+                <h2 class="text-5xl md:text-7xl font-bold mb-6 text-brand-dark max-w-3xl leading-tight">Physician Intelligence Layer</h2>
+                <p class="text-2xl text-brand-muted max-w-2xl">Transform doctors from clerks into diagnosticians</p>
+            </div>
+
+            <div class="space-y-20">
+                <!-- AI Medical Scribe -->
+                <div class="reveal">
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&h=200&fit=crop" alt="AI Medical Scribe" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-3xl font-semibold text-brand-dark mt-6">AI Medical Scribe (Voice-Driven)</h4>
+                    </div>
+
+                    <div class="space-y-6 text-lg text-brand-muted leading-relaxed pl-28">
+                        <p><span class="font-semibold text-brand-dark">Real-time transcription:</span> Doctor speaks naturally, AI writes structured SOAP notes</p>
+                        <p><span class="font-semibold text-brand-dark">Any language:</span> Consultation in Russian, notes generated in English (or vice versa)</p>
+                        <p><span class="font-semibold text-brand-dark">30-second generation:</span> Complete note ready before patient leaves the room</p>
+                        <p><span class="font-semibold text-brand-dark">ICD-10/billing codes:</span> Automatically suggested based on conversation</p>
+                    </div>
+                    <div class="mt-8 p-6 bg-brand-cream rounded-2xl ml-28">
+                        <p class="text-lg text-brand-muted italic">Doctor makes eye contact with patient, not keyboard. -97% documentation time.</p>
+                    </div>
+                </div>
+
+                <!-- AI Clinical Consultant -->
+                <div class="reveal">
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                            <img src="https://images.unsplash.com/photo-1576671081837-49000212a370?w=200&h=200&fit=crop" alt="AI Clinical Consultant" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-3xl font-semibold text-brand-dark mt-6">AI Clinical Consultant (Decision Support)</h4>
+                    </div>
+
+                    <div class="space-y-6 text-lg text-brand-muted leading-relaxed pl-28">
+                        <p><span class="font-semibold text-brand-dark">Diagnostic suggestions:</span> Based on symptoms + patient history + vitals</p>
+                        <p><span class="font-semibold text-brand-dark">Risk alerts:</span> "Patient on ACE inhibitor + new hyperkalemia reading → review medication"</p>
+                        <p><span class="font-semibold text-brand-dark">Treatment options:</span> Evidence-based protocols for this phenotype</p>
+                        <p><span class="font-semibold text-brand-dark">Conversational interface:</span> "What are differential diagnoses for fatigue + weight loss in a 45yo diabetic?"</p>
+                    </div>
+                    <div class="mt-8 p-6 bg-brand-cream rounded-2xl ml-28">
+                        <p class="text-lg text-brand-muted italic">AI doesn't replace clinical judgment. It augments it — like having a specialist on call 24/7.</p>
+                    </div>
+                </div>
+
+                <!-- Patient Data Dashboard -->
+                <div class="reveal">
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop" alt="Patient Data Dashboard" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-3xl font-semibold text-brand-dark mt-6">Patient Data Dashboard (Voice-Accessible)</h4>
+                    </div>
+
+                    <div class="space-y-6 text-lg text-brand-muted leading-relaxed pl-28">
+                        <p><span class="font-semibold text-brand-dark">Unified timeline:</span> Visits, labs, medications, wearable data, patient-reported symptoms — all in one view</p>
+                        <p><span class="font-semibold text-brand-dark">Voice commands:</span> "Show me Sarah's blood pressure trends for the last 3 months" → Chart appears</p>
+                        <p><span class="font-semibold text-brand-dark">Pre-visit summary:</span> AI generates: "Key concerns: recurring headaches, new sleep apnea symptoms"</p>
+                    </div>
+                    <div class="mt-8 p-6 bg-brand-cream rounded-2xl ml-28">
+                        <p class="text-lg text-brand-muted italic">Doctor sees 100% of health picture, not just what patient remembers to mention.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Layer 3: Intelligence & Orchestration -->
+    <section class="py-32 bg-brand-cream">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-24">
+                <div class="text-sm uppercase tracking-wider text-brand-orange font-semibold mb-4">Layer 3</div>
+                <h2 class="text-5xl md:text-7xl font-bold mb-6 text-brand-dark max-w-3xl leading-tight">Intelligence & Orchestration Layer</h2>
+                <p class="text-2xl text-brand-muted max-w-2xl">Connect all data sources and detect what humans can't see</p>
+            </div>
+
+            <div class="space-y-20">
+                <!-- Cross-Modal AI -->
+                <div class="reveal">
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=200&h=200&fit=crop" alt="Cross-Modal AI" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-3xl font-semibold text-brand-dark mt-6">Cross-Modal AI Engine</h4>
+                    </div>
+
+                    <div class="space-y-6 text-lg text-brand-muted leading-relaxed pl-28">
+                        <p><span class="font-semibold text-brand-dark">Multimodal fusion:</span> Combines voice, wearables, labs, imaging, EMR text</p>
+                        <p><span class="font-semibold text-brand-dark">Pattern detection:</span> Identifies correlations humans miss (e.g., sleep quality → glucose spikes)</p>
+                        <p><span class="font-semibold text-brand-dark">Predictive alerts:</span> "Based on vitals + symptoms, 73% probability of UTI → suggest urinalysis"</p>
+                    </div>
+
+                    <div class="mt-8 p-8 bg-white rounded-2xl shadow-sm ml-28">
+                        <h5 class="text-2xl font-semibold mb-4 text-brand-dark">Real-World Example:</h5>
+                        <p class="text-lg text-brand-muted leading-relaxed">
+                            AI notices: Diabetic patient → sleep quality dropped last 3 days (Fitbit) + missing insulin doses (compliance tracker) +
+                            complaining of fatigue (voice log) → <span class="font-semibold text-brand-dark">AI generates alert to doctor</span> → doctor calls patient →
+                            prevents hyperglycemic crisis.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Flexible Deployment -->
+                <div class="reveal">
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=200&h=200&fit=crop" alt="Flexible deployment" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-3xl font-semibold text-brand-dark mt-6">Flexible Deployment & LLM Agnostic</h4>
+                    </div>
+
+                    <div class="space-y-6 text-lg text-brand-muted leading-relaxed pl-28">
+                        <p><span class="font-semibold text-brand-dark">Any LLM:</span> Works with OpenAI, Anthropic, open-source models (Llama, Mistral, etc.)</p>
+                        <p><span class="font-semibold text-brand-dark">Full on-premise option:</span> Deploy entirely within clinic infrastructure — no cloud, no data leaves your network</p>
+                        <p><span class="font-semibold text-brand-dark">Hybrid deployment:</span> Or choose cloud, on-premise, or hybrid based on your security requirements</p>
+                        <p><span class="font-semibold text-brand-dark">No vendor lock-in:</span> Switch LLM providers or deployment model anytime without data migration</p>
+                    </div>
+                    <div class="mt-8 p-6 bg-white/50 rounded-2xl ml-28">
+                        <p class="text-lg text-brand-muted italic">Healthcare needs choice, not dependency. You control where your data lives, which AI models you trust, and how you scale.</p>
+                    </div>
+                </div>
+
+                <!-- Continuous Learning -->
+                <div class="reveal">
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=200&h=200&fit=crop" alt="Continuous learning" class="w-full h-full object-cover">
+                        </div>
+                        <h4 class="text-3xl font-semibold text-brand-dark mt-4">Continuous Learning</h4>
+                    </div>
+                    <div class="space-y-6 text-lg text-brand-muted leading-relaxed pl-24">
+                        <p><span class="font-semibold text-brand-dark">AI learns from outcomes:</span> Which treatment plans work for specific phenotypes</p>
+                        <p><span class="font-semibold text-brand-dark">Personalized medicine:</span> Recommendations adapt to individual patient response</p>
+                        <p><span class="font-semibold text-brand-dark">Population health insights:</span> Aggregate trends (anonymized) help improve protocols</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Bottom -->
+    <section class="py-32 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-5xl md:text-7xl font-bold mb-20 text-brand-dark max-w-3xl leading-tight">Mission Statement</h2>
+            <div class="space-y-8 text-xl md:text-2xl text-brand-muted leading-relaxed max-w-4xl">
+                <p>We don't build "AI platforms". We don't make "healthcare software".</p>
+                <p><span class="font-semibold text-brand-dark">We are building the Health Operating System</span> — the infrastructure layer that transforms
+                fragmented episodes of care into continuous, intelligent relationships.</p>
+                <p>Healthcare should flow like conversation, adapt like intelligence, and never stop caring.</p>
+            </div>
+            <div class="mt-16">
+                <p class="text-3xl md:text-4xl font-bold text-brand-dark max-w-2xl">We are the Health Operating System.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-32 bg-[#FFF9F1]">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-5xl md:text-8xl font-bold mb-8 leading-tight text-brand-dark">Ready to Join the Ecosystem?</h2>
+            <p class="text-2xl mb-12 text-brand-muted max-w-2xl">See how the complete platform works for your practice</p>
+            <div class="flex flex-col sm:flex-row gap-6">
+                <a href="calculator.html" class="px-10 py-5 bg-brand-orange text-white font-bold text-lg rounded-full hover:opacity-90 transition-opacity btn-animate">
+                    Calculate Your Savings
+                </a>
+                <a href="index.html" class="px-10 py-5 bg-white text-brand-dark font-bold text-lg rounded-full hover:bg-gray-100 transition-colors btn-animate">
+                    Book a Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <script>
+        // Scroll reveal animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+
+                revealElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const revealPoint = 100;
+
+                    if (elementTop < windowHeight - revealPoint) {
+                        element.classList.add('active');
+                    }
+                });
+            };
+
+            // Initial check
+            revealOnScroll();
+
+            // Check on scroll
+            window.addEventListener('scroll', revealOnScroll);
+        });
+    </script>
+</body>
+</html>
