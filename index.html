@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Healthy4U - Your Health Operating System</title>
     <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -12,21 +15,311 @@
                 extend: {
                     colors: {
                         'brand-orange': '#EF6113',
+                        'brand-orange-light': '#FF7A3D',
+                        'brand-orange-dark': '#D35510',
                         'brand-cream': '#FFF9F2',
+                        'brand-cream-dark': '#FFF3E6',
                         'brand-dark': '#000000',
                         'brand-muted': '#666666',
+                        'brand-accent': '#4F46E5',
+                        'brand-accent-light': '#818CF8',
                     },
                     borderRadius: {
                         'brand-xl': '20px',
                     },
                     fontFamily: {
-                        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Sora', 'Inter', 'sans-serif'],
                     },
                 },
             },
         }
     </script>
     <style>
+        /* Premium Gradient Animations */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .gradient-animate {
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        .float-animate {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Premium Card Hover Effects */
+        .card-premium {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .card-premium:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12), 0 10px 30px rgba(239, 97, 19, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        /* Magnetic Button Effect */
+        .btn-magnetic {
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-magnetic::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, #EF6113, #FF7A3D, #EF6113);
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+            filter: blur(10px);
+        }
+
+        .btn-magnetic:hover::before {
+            opacity: 0.7;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .btn-magnetic:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(239, 97, 19, 0.4);
+        }
+
+        .btn-magnetic:active {
+            transform: translateY(0);
+        }
+
+        /* Smooth reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Text gradient */
+        .text-gradient {
+            background: linear-gradient(135deg, #EF6113 0%, #FF7A3D 50%, #4F46E5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Premium typography */
+        .text-display {
+            font-family: 'Sora', 'Inter', sans-serif;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        /* Dot pattern background */
+        .dot-pattern {
+            background-image: radial-gradient(circle, rgba(239, 97, 19, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FFF9F2;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #EF6113;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D35510;
+        }
+
+        /* Image hover effects */
+        .image-hover {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+        }
+
+        .image-hover:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Noise Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 9999;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Scroll Progress Indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #EF6113, #FF7A3D, #4F46E5);
+            z-index: 10000;
+            transition: width 0.1s ease-out;
+        }
+
+        /* 3D Card Tilt Effect */
+        .card-tilt {
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        .card-tilt:hover {
+            transform: perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg)) scale(1.02);
+        }
+
+        .card-tilt > * {
+            transform: translateZ(20px);
+        }
+
+        /* Advanced Mesh Gradient Background */
+        .mesh-gradient {
+            background:
+                radial-gradient(at 40% 20%, rgba(239, 97, 19, 0.15) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, rgba(79, 70, 229, 0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, rgba(255, 122, 61, 0.15) 0px, transparent 50%),
+                radial-gradient(at 80% 100%, rgba(239, 97, 19, 0.15) 0px, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(79, 70, 229, 0.15) 0px, transparent 50%);
+            animation: meshMove 20s ease infinite;
+        }
+
+        @keyframes meshMove {
+            0%, 100% {
+                background-position: 0% 0%, 100% 0%, 0% 50%, 100% 100%, 0% 100%;
+            }
+            25% {
+                background-position: 20% 20%, 80% 20%, 20% 50%, 80% 80%, 20% 80%;
+            }
+            50% {
+                background-position: 40% 10%, 60% 30%, 10% 60%, 90% 70%, 10% 90%;
+            }
+            75% {
+                background-position: 30% 30%, 70% 10%, 30% 40%, 70% 90%, 30% 70%;
+            }
+        }
+
+        /* Staggered List Animation */
+        .stagger-item {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stagger-item.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .stagger-item:nth-child(1) { transition-delay: 0.1s; }
+        .stagger-item:nth-child(2) { transition-delay: 0.2s; }
+        .stagger-item:nth-child(3) { transition-delay: 0.3s; }
+        .stagger-item:nth-child(4) { transition-delay: 0.4s; }
+        .stagger-item:nth-child(5) { transition-delay: 0.5s; }
+        .stagger-item:nth-child(6) { transition-delay: 0.6s; }
+
+        /* Number Counter Animation */
+        .counter {
+            transition: all 0.3s ease;
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+
+        /* Enhanced Glassmorphism */
+        .glass-premium {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        /* Glow on Hover */
+        .glow-on-hover {
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .glow-on-hover:hover {
+            box-shadow: 0 0 30px rgba(239, 97, 19, 0.4), 0 0 60px rgba(239, 97, 19, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Text Balance */
+        .text-balance {
+            text-wrap: balance;
+        }
+
+        /* Improved Focus States */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #EF6113;
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
         /* Fade in animations */
         @keyframes fadeInUp {
             from {
@@ -39,27 +332,6 @@
             }
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Apply animations */
         .animate-on-scroll {
             opacity: 0;
             animation: fadeInUp 0.8s ease-out forwards;
@@ -80,79 +352,23 @@
         .animate-delay-400 {
             animation-delay: 0.4s;
         }
-
-        /* Image hover effects */
-        .image-hover {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
-        }
-
-        .image-hover:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Smooth scroll reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Button hover animation */
-        .btn-animate {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .btn-animate::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn-animate:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* Metric number animation */
-        @keyframes countUp {
-            from {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .metric-animate {
-            animation: countUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
     </style>
     <script src="components.js"></script>
 </head>
-<body class="font-sans bg-white text-black">
+<body class="font-sans bg-white text-black antialiased">
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- Header Container -->
     <div id="header-container"></div>
 
     <!-- Hero Section -->
-    <section class="bg-brand-cream min-h-screen px-6 py-20 md:px-12 lg:px-24 flex items-center">
-        <div class="max-w-6xl mx-auto">
+    <section class="relative bg-gradient-to-br from-brand-cream via-white to-brand-cream-dark mesh-gradient min-h-screen px-6 py-20 md:px-12 lg:px-24 flex items-center overflow-hidden">
+        <div class="absolute inset-0 dot-pattern opacity-30"></div>
+        <div class="absolute top-20 right-20 w-96 h-96 bg-brand-orange opacity-10 rounded-full filter blur-3xl float-animate parallax" data-speed="0.3"></div>
+        <div class="absolute bottom-20 left-20 w-80 h-80 bg-brand-accent opacity-10 rounded-full filter blur-3xl float-animate parallax" style="animation-delay: 1s;" data-speed="0.5"></div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
 
             <div class="flex items-center gap-3 mb-12 animate-on-scroll">
                 <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md image-hover">
@@ -162,9 +378,9 @@
                         class="w-full h-full object-cover"
                     />
                 </div>
-                <div class="inline-flex items-center gap-2 bg-white/50 border border-green-100 px-4 py-2 rounded-full">
+                <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full shadow-lg">
                     <span class="text-green-600 text-sm">🛡️</span>
-                    <span class="text-gray-600 text-xs font-medium uppercase tracking-wider">Proven live at GavCure Clinic, Israel</span>
+                    <span class="text-brand-muted text-xs font-medium uppercase tracking-wider">Proven live at GavCure Clinic, Israel</span>
                 </div>
             </div>
 
@@ -172,19 +388,25 @@
                 <h2 class="text-brand-orange font-bold uppercase tracking-widest text-sm animate-on-scroll animate-delay-100">
                     Your Health Operating System
                 </h2>
-                <h1 class="text-brand-dark text-6xl md:text-8xl font-bold leading-tight tracking-tight animate-on-scroll animate-delay-200">
-                    One AI Platform Connecting Patients, Clinics, and Care
+                <h1 class="text-display text-brand-dark text-6xl md:text-8xl lg:text-9xl font-bold leading-none animate-on-scroll animate-delay-200">
+                    One <span class="text-gradient">AI Platform</span>
+                    <span class="block">Connecting Patients, Clinics, and Care</span>
                 </h1>
                 <p class="text-brand-muted text-xl md:text-2xl max-w-3xl leading-relaxed animate-on-scroll animate-delay-300">
                     Healthy4U is an AI-native healthcare platform that unifies patient data, clinical workflows, and continuous monitoring into one intelligent system.
                 </p>
             </div>
 
-            <div class="flex flex-wrap gap-4 mt-12 animate-on-scroll animate-delay-400">
-                <a href="https://medical-b2b.healthy4u.world/auth/login" class="bg-brand-orange text-white px-8 py-4 rounded-full font-bold hover:opacity-90 transition-opacity btn-animate">
-                    See AI in Action
+            <div class="flex flex-col sm:flex-row gap-6 mt-12 animate-on-scroll animate-delay-400">
+                <a href="https://medical-b2b.healthy4u.world/auth/login" class="group relative px-12 py-6 bg-gradient-to-r from-brand-orange to-brand-orange-light text-white font-bold text-xl rounded-full btn-magnetic overflow-hidden">
+                    <span class="relative z-10 flex items-center gap-3">
+                        See AI in Action
+                        <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </span>
                 </a>
-                <a href="#case-study" class="bg-white border border-gray-200 text-brand-dark px-8 py-4 rounded-full font-bold hover:bg-gray-50 transition-colors btn-animate">
+                <a href="#case-study" class="group px-12 py-6 bg-white text-brand-dark font-bold text-xl rounded-full hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-brand-orange">
                     See the Case Study
                 </a>
             </div>
@@ -193,32 +415,39 @@
     </section>
 
     <!-- Problem Section -->
-    <section class="py-32 bg-white" id="features">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-6xl md:text-8xl font-bold mb-32 text-brand-dark max-w-4xl leading-tight">The problem we solve.</h2>
+    <section class="py-32 md:py-40 bg-white" id="features">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="reveal text-display text-5xl md:text-7xl lg:text-8xl font-bold mb-20 md:mb-32 leading-tight">
+                The problem <span class="text-gradient">we solve.</span>
+            </h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-24">
-                <div class="space-y-8 reveal">
-                    <div class="flex items-start gap-4">
-                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=200&h=200&fit=crop" alt="Fragmented healthcare" class="w-full h-full object-cover">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24">
+                <div class="reveal-scale card-premium card-tilt bg-gradient-to-br from-white to-red-50/30 rounded-3xl p-10 md:p-12 border border-red-100/50 glow-on-hover">
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-lg flex-shrink-0 image-hover">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=200&h=200&fit=crop" alt="Fragmented healthcare" class="w-full h-full object-cover"/>
                         </div>
-                        <h3 class="text-4xl font-semibold text-brand-dark mt-4">Today's healthcare.<br/>Fragmented. Reactive.</h3>
+                        <h3 class="text-3xl md:text-4xl font-bold text-brand-dark mt-4">
+                            Today's healthcare.<br/><span class="text-red-600">Fragmented. Reactive.</span>
+                        </h3>
                     </div>
-                    <div class="space-y-6 text-brand-muted text-xl leading-relaxed pl-28">
+                    <div class="space-y-6 text-lg md:text-xl text-brand-muted leading-relaxed">
                         <p><span class="font-semibold text-brand-dark">Before the visit:</span> Patient data scattered across EMR, Apple Health, memory.</p>
                         <p><span class="font-semibold text-brand-dark">During the visit:</span> Doctor spends 50% of time typing, not diagnosing.</p>
                         <p><span class="font-semibold text-brand-dark">After the visit:</span> Connection lost. No follow-up. Patient forgets.</p>
                     </div>
                 </div>
-                <div class="space-y-8 reveal">
-                    <div class="flex items-start gap-4">
-                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
-                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&h=200&fit=crop" alt="Continuous healthcare" class="w-full h-full object-cover">
+
+                <div class="reveal-scale card-premium card-tilt bg-gradient-to-br from-white to-brand-cream rounded-3xl p-10 md:p-12 border border-brand-orange/20 shadow-xl glow-on-hover">
+                    <div class="flex items-start gap-4 mb-8">
+                        <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-lg flex-shrink-0 image-hover">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&h=200&fit=crop" alt="Continuous healthcare" class="w-full h-full object-cover"/>
                         </div>
-                        <h3 class="text-4xl font-semibold text-brand-dark mt-4">With Healthy4U.<br/>Continuous. Proactive.</h3>
+                        <h3 class="text-3xl md:text-4xl font-bold text-brand-dark mt-4">
+                            With Healthy4U.<br/><span class="text-brand-orange">Continuous. Proactive.</span>
+                        </h3>
                     </div>
-                    <div class="space-y-6 text-brand-muted text-xl leading-relaxed pl-28">
+                    <div class="space-y-6 text-lg md:text-xl text-brand-muted leading-relaxed">
                         <p><span class="font-semibold text-brand-dark">Before:</span> AI collects and structures data from wearables, symptoms, files.</p>
                         <p><span class="font-semibold text-brand-dark">During:</span> Doctor focuses on patient. AI writes notes in 30 seconds.</p>
                         <p><span class="font-semibold text-brand-dark">After:</span> 24/7 monitoring, insights, reminders. Care never stops.</p>
@@ -229,19 +458,25 @@
     </section>
 
     <!-- Trust Bar -->
-    <section class="py-32 bg-brand-cream">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-semibold mb-24 text-brand-dark max-w-3xl">Proven results from real clinics.</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 reveal">
-                <div class="reveal">
-                    <div class="text-8xl font-bold mb-4 text-brand-orange metric-animate">97%</div>
-                    <div class="text-2xl font-semibold mb-3 text-brand-dark">less time on intake</div>
-                    <div class="text-lg text-brand-muted">240 hours saved per doctor per year</div>
+    <section class="py-32 md:py-40 bg-gradient-to-br from-brand-cream via-brand-cream-dark to-brand-cream relative overflow-hidden">
+        <div class="absolute inset-0 dot-pattern opacity-20"></div>
+
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <h2 class="reveal text-display text-4xl md:text-6xl lg:text-7xl font-bold mb-16 md:mb-24 leading-tight">
+                Proven results from <span class="text-gradient">real clinics.</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+                <div class="reveal-scale glass-premium rounded-3xl p-10 md:p-12 shadow-2xl glow-on-hover card-tilt">
+                    <div class="text-7xl md:text-8xl font-bold mb-4 text-gradient counter" data-target="97">0%</div>
+                    <div class="text-2xl md:text-3xl font-semibold mb-3 text-brand-dark text-balance">less time on intake</div>
+                    <div class="text-lg md:text-xl text-brand-muted">240 hours saved per doctor per year</div>
                 </div>
-                <div class="reveal">
-                    <div class="text-8xl font-bold mb-4 text-brand-orange metric-animate">30%</div>
-                    <div class="text-2xl font-semibold mb-3 text-brand-dark">more patient capacity</div>
-                    <div class="text-lg text-brand-muted">$50K+ additional annual revenue</div>
+
+                <div class="reveal-scale glass-premium rounded-3xl p-10 md:p-12 shadow-2xl glow-on-hover card-tilt" style="transition-delay: 0.1s;">
+                    <div class="text-7xl md:text-8xl font-bold mb-4 text-gradient counter" data-target="30">0%</div>
+                    <div class="text-2xl md:text-3xl font-semibold mb-3 text-brand-dark text-balance">more patient capacity</div>
+                    <div class="text-lg md:text-xl text-brand-muted">$50K+ additional annual revenue</div>
                 </div>
             </div>
         </div>
