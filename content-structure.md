@@ -7,7 +7,7 @@
 ## 1. HERO СЕКЦИЯ
 
 ### Структура:
-- Бейдж с изображением врача (20×20px)
+- Бейдж с изображением врача
 - Статус бейдж: "Proven live at GavCure Clinic, Israel"
 - Заголовок с большим текстом
 - Описание
@@ -46,7 +46,7 @@
 **Заголовок секции:**
 - "The problem we solve."
 
-**Карточка 1 (красная тема):**
+**Карточка 1:**
 
 Заголовок:
 - "Today's healthcare."
@@ -59,7 +59,7 @@
 
 Изображение: photo-1576091160550-2173dba999ef (Fragmented healthcare)
 
-**Карточка 2 (оранжевая тема):**
+**Карточка 2:**
 
 Заголовок:
 - "With Healthy4U."
@@ -605,7 +605,7 @@ CTA: "Buy Top-ups"
 - 3 метрики (Monthly Savings, Revenue Increase, Cost)
 - Большая карточка Net Benefit
 - Цитата + автор
-- Заголовок + 6 результатов (grid 3×2)
+- Заголовок + 6 результатов
 
 ### Контент:
 
@@ -659,7 +659,7 @@ CTA: "Buy Top-ups"
 **Заголовок:**
 - "Key outcomes"
 
-**6 результатов (grid 3×2):**
+**6 результатов:**
 
 1. **97%** - "Less documentation time" - "From 2 hours/day to 5 minutes"
 2. **30%** - "More patient capacity" - "Same hours, no overtime"
@@ -716,25 +716,3 @@ CTA: "Buy Top-ups"
 - Основная CTA: https://medical-b2b.healthy4u.world/auth/login
 - Calculator: calculator.html
 - Внутренние якори: #case-study, #features, #platform, #pricing
-
-### Цветовая палитра:
-- Brand Orange: #EF6113
-- Brand Orange Light: #FF7A3D
-- Brand Orange Dark: #D35510
-- Brand Cream: #FFF9F2
-- Brand Accent: #4F46E5
-
----
-
-## ПРИМЕЧАНИЯ ДЛЯ ВЕРСТКИ
-
-1. Все секции используют padding: 32-40 (py-32 md:py-40)
-2. Max width контейнеров: 1280px (max-w-6xl) или 1024px (max-w-5xl)
-3. Grid системы: 1 колонка на мобиле, 2-3 на десктопе
-4. Все карточки имеют rounded-3xl (большие скругления)
-5. Бейджи имеют rounded-full (полностью круглые)
-6. Используется fluid typography для адаптивности
-7. Тени: soft, medium, hard, brutal, premium
-8. Анимации: hover, reveal, counter, tilt
-9. Все CTA кнопки - оранжевые с белым текстом
-10. Вторичные кнопки - белые с темным текстом
