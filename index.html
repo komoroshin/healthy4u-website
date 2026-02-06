@@ -5,1788 +5,1923 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Healthy4U - Your Health Operating System</title>
     <link rel="icon" type="image/png" href="images/logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-orange': '#EF6113',
-                        'brand-orange-light': '#FF7A3D',
-                        'brand-orange-dark': '#D35510',
-                        'brand-orange-darker': '#B84D0D',
-                        'brand-cream': '#FFF9F2',
-                        'brand-cream-light': '#FFFBF7',
-                        'brand-cream-dark': '#FFF3E6',
-                        'brand-dark': '#000000',
-                        'brand-gray': '#1A1A1A',
-                        'brand-gray-light': '#333333',
-                        'brand-muted': '#4A4A4A',
-                        'brand-muted-light': '#666666',
-                        'brand-accent': '#4F46E5',
-                        'brand-accent-light': '#818CF8',
-                        'brand-accent-dark': '#3730A3',
-                    },
-                    borderRadius: {
-                        'brand-xl': '20px',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
-                        'display': ['Sora', 'Inter', 'sans-serif'],
-                    },
-                    fontSize: {
-                        'fluid-xs': 'clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)',
-                        'fluid-sm': 'clamp(0.875rem, 0.8rem + 0.375vw, 1rem)',
-                        'fluid-base': 'clamp(1rem, 0.95rem + 0.25vw, 1.125rem)',
-                        'fluid-lg': 'clamp(1.125rem, 1rem + 0.625vw, 1.25rem)',
-                        'fluid-xl': 'clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem)',
-                        'fluid-2xl': 'clamp(1.5rem, 1.3rem + 1vw, 1.875rem)',
-                        'fluid-3xl': 'clamp(1.875rem, 1.6rem + 1.375vw, 2.25rem)',
-                        'fluid-4xl': 'clamp(2.25rem, 1.9rem + 1.75vw, 3rem)',
-                        'fluid-5xl': 'clamp(3rem, 2.5rem + 2.5vw, 4rem)',
-                        'fluid-6xl': 'clamp(3.75rem, 3rem + 3.75vw, 5rem)',
-                        'fluid-7xl': 'clamp(4.5rem, 3.5rem + 5vw, 6rem)',
-                        'fluid-8xl': 'clamp(6rem, 4.5rem + 7.5vw, 8rem)',
-                    },
-                    boxShadow: {
-                        'soft': '0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06)',
-                        'medium': '0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06)',
-                        'hard': '0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08)',
-                        'brutal': '0 12px 32px rgba(0, 0, 0, 0.16), 0 8px 16px rgba(0, 0, 0, 0.12)',
-                        'premium': '0 20px 60px rgba(0, 0, 0, 0.12), 0 10px 30px rgba(239, 97, 19, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5)',
-                        'glow-orange': '0 0 20px rgba(239, 97, 19, 0.3), 0 0 40px rgba(239, 97, 19, 0.15)',
-                        'glow-orange-strong': '0 0 30px rgba(239, 97, 19, 0.4), 0 0 60px rgba(239, 97, 19, 0.2)',
-                    },
-                },
-            },
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
     <style>
-        /* Premium Gradient Animations */
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        :root {
+            /* Colors */
+            --color-primary: #FF490E;
+            --color-primary-dark: #E6420D;
+            --color-secondary: #0C3C28;
+            --color-secondary-light: #155240;
+            --color-positive: #23C965;
+            --color-positive-dark: #1BA352;
+            --color-negative: #FF554A;
+            --color-accent-orange: #FF9800;
+
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #FF490E 0%, #E6420D 100%);
+            --gradient-secondary: linear-gradient(135deg, #0C3C28 0%, #155240 100%);
+            --gradient-positive: linear-gradient(135deg, #23C965 0%, #1BA352 100%);
+            --gradient-01: linear-gradient(135deg, #C1F9D7 0%, #FFFFFF 100%);
+            --gradient-02: linear-gradient(135deg, #F8D970 0%, #FFFFFF 100%);
+            --gradient-soft-green: linear-gradient(135deg, #E8F5E9, #FFFFFF);
+            --gradient-soft-yellow: linear-gradient(135deg, #FFF9E6, #FFFFFF);
+            --gradient-soft-orange: linear-gradient(135deg, #FFF3E0, #FFFFFF);
+
+            /* Spacing */
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-2xl: 64px;
+            --spacing-3xl: 80px;
+            --spacing-4xl: 120px;
+
+            /* Typography */
+            --font-display: 'Bricolage Grotesque', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-primary: 0 8px 24px rgba(255, 73, 14, 0.25);
+            --shadow-positive: 0 8px 24px rgba(35, 201, 101, 0.25);
+            --shadow-secondary: 0 8px 24px rgba(12, 60, 40, 0.25);
+
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-full: 9999px;
+
+            /* Animation */
+            --duration-fast: 150ms;
+            --duration-normal: 300ms;
+            --duration-slow: 500ms;
+            --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
+            --ease-in: cubic-bezier(0.4, 0, 1, 1);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .gradient-animate {
-            background-size: 200% 200%;
-            animation: gradientShift 8s ease infinite;
+        body {
+            font-family: var(--font-body);
+            line-height: 1.7;
+            color: #2d3436;
+            background: #fff;
+            overflow-x: hidden;
         }
 
-        .float-animate {
-            animation: float 6s ease-in-out infinite;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            line-height: 1.15;
+            font-weight: 800;
         }
 
-        /* Glassmorphism */
-        .glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
         }
 
-        .glass-dark {
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Premium Card Hover Effects */
-        .card-premium {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d;
-        }
-
-        .card-premium:hover {
-            transform: translateY(-12px) scale(1.02);
-        }
-
-        /* Magnetic Button Effect */
-        .btn-magnetic {
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .btn-magnetic::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            background: linear-gradient(45deg, #EF6113, #FF7A3D, #EF6113);
-            border-radius: inherit;
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: -1;
-            filter: blur(10px);
-        }
-
-        .btn-magnetic:hover::before {
-            opacity: 0.7;
-            animation: gradientShift 3s ease infinite;
-        }
-
-        .btn-magnetic:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn-magnetic:active {
-            transform: translateY(0);
-        }
-
-        /* Smooth reveal animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-scale {
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .reveal-scale.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Text gradient */
-        .text-gradient {
-            background: linear-gradient(135deg, #EF6113 0%, #FF7A3D 50%, #4F46E5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Premium typography */
-        .text-display {
-            font-family: 'Sora', 'Inter', sans-serif;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-        }
-
-        /* Dot pattern background */
-        .dot-pattern {
-            background-image: radial-gradient(circle, rgba(239, 97, 19, 0.1) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #FFF9F2;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #EF6113;
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #D35510;
-        }
-
-        /* Image hover effects */
-        .image-hover {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
-        }
-
-        .image-hover:hover {
-            transform: translateY(-4px) scale(1.02);
-        }
-
-        /* Noise Texture Overlay */
-        body::before {
-            content: '';
-            position: fixed;
+        /* Navigation */
+        nav {
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.03;
-            z-index: 9999;
-            pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            z-index: 100;
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid #f1f3f5;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95);
         }
 
-        /* Scroll Progress Indicator */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: linear-gradient(90deg, #EF6113, #FF7A3D, #4F46E5);
-            z-index: 10000;
-            transition: width 0.1s ease-out;
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
         }
 
-        /* 3D Card Tilt Effect */
-        .card-tilt {
-            transform-style: preserve-3d;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform;
+        .logo {
+            height: 44px;
         }
 
-        .card-tilt:hover {
-            transform: perspective(1000px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg)) scale(1.02);
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        .card-tilt > * {
-            transform: translateZ(20px);
-        }
-
-        /* Advanced Mesh Gradient Background */
-        .mesh-gradient {
-            background:
-                radial-gradient(at 40% 20%, rgba(239, 97, 19, 0.15) 0px, transparent 50%),
-                radial-gradient(at 80% 0%, rgba(79, 70, 229, 0.15) 0px, transparent 50%),
-                radial-gradient(at 0% 50%, rgba(255, 122, 61, 0.15) 0px, transparent 50%),
-                radial-gradient(at 80% 100%, rgba(239, 97, 19, 0.15) 0px, transparent 50%),
-                radial-gradient(at 0% 100%, rgba(79, 70, 229, 0.15) 0px, transparent 50%);
-            animation: meshMove 20s ease infinite;
-        }
-
-        @keyframes meshMove {
-            0%, 100% {
-                background-position: 0% 0%, 100% 0%, 0% 50%, 100% 100%, 0% 100%;
-            }
-            25% {
-                background-position: 20% 20%, 80% 20%, 20% 50%, 80% 80%, 20% 80%;
-            }
-            50% {
-                background-position: 40% 10%, 60% 30%, 10% 60%, 90% 70%, 10% 90%;
-            }
-            75% {
-                background-position: 30% 30%, 70% 10%, 30% 40%, 70% 90%, 30% 70%;
-            }
-        }
-
-        /* Staggered List Animation */
-        .stagger-item {
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .stagger-item.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .stagger-item:nth-child(1) { transition-delay: 0.1s; }
-        .stagger-item:nth-child(2) { transition-delay: 0.2s; }
-        .stagger-item:nth-child(3) { transition-delay: 0.3s; }
-        .stagger-item:nth-child(4) { transition-delay: 0.4s; }
-        .stagger-item:nth-child(5) { transition-delay: 0.5s; }
-        .stagger-item:nth-child(6) { transition-delay: 0.6s; }
-
-        /* Number Counter Animation */
-        .counter {
-            transition: all 0.3s ease;
-        }
-
-        /* Parallax Effect */
-        .parallax {
-            transition: transform 0.1s ease-out;
-            will-change: transform;
-        }
-
-        /* Enhanced Glassmorphism */
-        .glass-premium {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-        }
-
-        /* Glow on Hover */
-        .glow-on-hover {
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-        }
-
-        .glow-on-hover:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Text Balance */
-        .text-balance {
-            text-wrap: balance;
-        }
-
-        /* Improved Focus States */
-        a:focus-visible,
-        button:focus-visible {
-            outline: 3px solid #EF6113;
-            outline-offset: 4px;
-            border-radius: 4px;
-        }
-
-        /* Ripple Effect for Buttons */
-        .btn-ripple {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-ripple::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn-ripple:active::after {
-            width: 300px;
-            height: 300px;
-        }
-
-        /* Loading States */
-        .loading {
-            position: relative;
-            pointer-events: none;
-            opacity: 0.7;
-        }
-
-        .loading::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 20px;
-            height: 20px;
-            margin: -10px 0 0 -10px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top-color: #fff;
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Better Button Hover States */
-        .btn-enhanced {
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .btn-enhanced::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .btn-enhanced:hover::before {
-            opacity: 1;
-        }
-
-        /* Fade in animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        .animate-delay-100 {
-            animation-delay: 0.1s;
-        }
-
-        .animate-delay-200 {
-            animation-delay: 0.2s;
-        }
-
-        .animate-delay-300 {
-            animation-delay: 0.3s;
-        }
-
-        .animate-delay-400 {
-            animation-delay: 0.4s;
-        }
-
-        /* ========================================
-           WORLD-CLASS ENHANCEMENTS
-           ======================================== */
-
-        /* Breathing Pulse Animation - Evokes Life/Health */
-        @keyframes breathe {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 0.6;
-            }
-            50% {
-                transform: scale(1.05);
-                opacity: 0.8;
-            }
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            10% { transform: scale(1.1); }
-            20% { transform: scale(1); }
-            30% { transform: scale(1.15); }
-            40% { transform: scale(1); }
-        }
-
-        .pulse-breathe::before {
-            content: '';
-            position: absolute;
-            inset: -20px;
-            background: radial-gradient(circle, rgba(239, 97, 19, 0.15), transparent 70%);
-            border-radius: inherit;
-            animation: breathe 4s ease-in-out infinite;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Liquid Morph Effect on Hover */
-        .liquid-morph {
-            position: relative;
-            transition: border-radius 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .liquid-morph:hover {
-            border-radius: 45% 55% 60% 40% / 55% 45% 55% 45%;
-            animation: morphShape 8s ease-in-out infinite;
-        }
-
-        @keyframes morphShape {
-            0%, 100% {
-                border-radius: 45% 55% 60% 40% / 55% 45% 55% 45%;
-            }
-            25% {
-                border-radius: 55% 45% 40% 60% / 45% 55% 45% 55%;
-            }
-            50% {
-                border-radius: 40% 60% 55% 45% / 60% 40% 60% 40%;
-            }
-            75% {
-                border-radius: 60% 40% 45% 55% / 40% 60% 40% 60%;
-            }
-        }
-
-        /* Data Visualization Accent Lines */
-        .data-accent {
-            position: relative;
-            overflow: visible;
-        }
-
-        .data-accent::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg,
-                transparent 0%,
-                #EF6113 20%,
-                #FF7A3D 40%,
-                #EF6113 60%,
-                transparent 100%);
-            opacity: 0;
-            transition: opacity 0.6s ease;
-        }
-
-        .data-accent:hover::after {
-            opacity: 0.6;
-            animation: dataFlow 2s ease-in-out infinite;
-        }
-
-        @keyframes dataFlow {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        /* EKG Heartbeat Line Pattern */
-        .ekg-line {
-            position: relative;
-        }
-
-        .ekg-line::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg,
-                transparent,
-                #EF6113 10%,
-                #EF6113 12%,
-                transparent 12%,
-                transparent 14%,
-                #EF6113 14%,
-                #EF6113 18%,
-                transparent 18%,
-                transparent 30%,
-                #EF6113 30%,
-                #EF6113 31%,
-                transparent 31%,
-                transparent);
-            background-size: 200% 100%;
-            opacity: 0.3;
-            animation: ekgPulse 3s linear infinite;
-        }
-
-        @keyframes ekgPulse {
-            0% { background-position: 100% 0; }
-            100% { background-position: -100% 0; }
-        }
-
-        /* Magnetic Cursor Effect */
-        .magnetic-hover {
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        .nav-links a {
+            color: #2d3436;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color var(--duration-normal);
             cursor: pointer;
         }
 
-        .magnetic-hover:hover {
-            transform: translate(var(--mouse-x, 0), var(--mouse-y, 0));
+        .nav-links a:hover {
+            color: var(--color-primary);
         }
 
-        /* Sophisticated Number Scale Up */
-        .number-scale {
-            display: inline-block;
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        /* Sticky CTA Bar */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--color-secondary);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+            transform: translateY(100%);
+            transition: transform var(--duration-normal) var(--ease-out);
+            z-index: 999;
         }
 
-        .number-scale:hover {
-            transform: scale(1.15) translateY(-4px);
-        }
-
-        /* Spring Physics Hover */
-        @keyframes spring {
-            0% { transform: scale(1) translateY(0); }
-            40% { transform: scale(1.08) translateY(-8px); }
-            60% { transform: scale(0.98) translateY(-2px); }
-            80% { transform: scale(1.02) translateY(-4px); }
-            100% { transform: scale(1) translateY(-5px); }
-        }
-
-        .spring-hover:hover {
-            animation: spring 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        /* Organic Blob Background */
-        .blob-bg {
-            position: absolute;
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            filter: blur(40px);
-            opacity: 0.15;
-            animation: blobFloat 20s ease-in-out infinite;
-        }
-
-        @keyframes blobFloat {
-            0%, 100% {
-                transform: translate(0, 0) rotate(0deg);
-                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            }
-            25% {
-                transform: translate(50px, -30px) rotate(90deg);
-                border-radius: 50% 50% 40% 60% / 50% 60% 40% 50%;
-            }
-            50% {
-                transform: translate(-30px, 40px) rotate(180deg);
-                border-radius: 60% 40% 50% 50% / 60% 40% 60% 40%;
-            }
-            75% {
-                transform: translate(20px, -50px) rotate(270deg);
-                border-radius: 40% 60% 60% 40% / 50% 40% 60% 50%;
-            }
-        }
-
-        /* Shimmer Effect for Stats */
-        .shimmer {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .shimmer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                transparent,
-                rgba(255, 255, 255, 0.3),
-                transparent);
-            animation: shimmerSlide 3s infinite;
-        }
-
-        @keyframes shimmerSlide {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        /* Elevated Card with Depth */
-        .card-elevated {
-            position: relative;
-            transform-style: preserve-3d;
-        }
-
-        .card-elevated::before {
-            content: '';
-            position: absolute;
-            inset: 10px;
-            background: inherit;
-            border-radius: inherit;
-            transform: translateZ(-20px);
-            opacity: 0.5;
-            filter: blur(20px);
-        }
-
-        /* Micro-interaction: Badge Bounce */
-        .badge-bounce {
-            animation: badgeBounce 2s ease-in-out infinite;
-        }
-
-        @keyframes badgeBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        /* Status Indicator Pulse */
-        .status-pulse {
-            position: relative;
-        }
-
-        .status-pulse::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: inherit;
-            background: currentColor;
-            opacity: 0.6;
-            animation: statusRing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-        }
-
-        @keyframes statusRing {
-            0% {
-                transform: scale(1);
-                opacity: 0.6;
-            }
-            100% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        /* Gradient Border Animation */
-        .gradient-border {
-            position: relative;
-            background: white;
-        }
-
-        .gradient-border::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            padding: 2px;
-            background: linear-gradient(135deg, #EF6113, #FF7A3D, #4F46E5, #EF6113);
-            background-size: 300% 300%;
-            -webkit-mask:
-                linear-gradient(#fff 0 0) content-box,
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            animation: gradientRotate 4s linear infinite;
-        }
-
-        @keyframes gradientRotate {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Text Reveal on Scroll */
-        .text-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .text-reveal.active {
-            opacity: 1;
+        .sticky-cta.visible {
             transform: translateY(0);
         }
 
-        /* Cursor Spotlight Effect */
-        .cursor-spotlight {
+        .sticky-cta-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .sticky-cta-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: var(--font-body);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .btn-secondary {
+            background: var(--color-secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-secondary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(12, 60, 40, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: white !important;
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+            transition: transform 100ms cubic-bezier(0.4, 0, 1, 1);
+        }
+
+        .btn-large {
+            padding: 20px 48px;
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: 10px var(--spacing-md);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .badge-positive {
+            background: var(--color-positive);
+            color: white;
+        }
+
+        .badge-urgent {
+            background: var(--color-negative);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-soft-green);
+            padding: var(--spacing-4xl) 0;
             position: relative;
             overflow: hidden;
-            --spotlight-x: 50%;
-            --spotlight-y: 50%;
         }
 
-        .cursor-spotlight::after {
+        .hero input[type="email"]:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(255, 73, 14, 0.1);
+        }
+
+        @media (max-width: 968px) {
+            .hero .container > div {
+                grid-template-columns: 1fr !important;
+                gap: var(--spacing-xl) !important;
+            }
+
+            .hero .hero-title {
+                text-align: center !important;
+            }
+
+            .hero .hero-description {
+                text-align: center !important;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            color: var(--color-primary);
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: var(--color-secondary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-family: var(--font-display);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .hero-title .highlight {
+            color: var(--color-primary);
+            position: relative;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 750px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .hero-proof {
+            font-size: 1.1rem;
+            color: var(--color-secondary);
+            font-weight: 700;
+            margin-bottom: var(--spacing-xl);
+            font-style: italic;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-xl);
+        }
+
+        /* Section Styles */
+        section {
+            padding: var(--spacing-4xl) 0;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: var(--spacing-3xl) 0;
+            }
+        }
+
+        .section-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .section-subtitle {
+            font-size: 1.375rem;
+            color: #636e72;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto var(--spacing-xl);
+            line-height: 1.7;
+        }
+
+        /* Trust Bar - Compact stats */
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-2xl);
+            flex-wrap: wrap;
+            padding: var(--spacing-xl) 0;
+        }
+
+        .trust-stat {
+            text-align: center;
+        }
+
+        .trust-stat-value {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--color-primary);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .trust-stat-label {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+        }
+
+        /* Trust Logos */
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-2xl);
+            flex-wrap: wrap;
+            padding: var(--spacing-xl) 0;
+            opacity: 0.6;
+        }
+
+        .trust-logo {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            padding: 12px var(--spacing-md);
+            background: white;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Post-it Note Style (for testimonials) */
+        .note {
+            background: var(--gradient-soft-yellow);
+            padding: var(--spacing-lg);
+            border-radius: 4px;
+            box-shadow: var(--shadow-md);
+            transform: rotate(-1deg);
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .note:hover {
+            transform: rotate(0deg) translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .note-text {
+            font-size: 1.125rem;
+            font-style: italic;
+            color: #2d3436;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.6;
+        }
+
+        .note-author {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .card-title {
+            font-size: 1.875rem;
+            font-weight: 800;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.3;
+        }
+
+        .card-subtitle {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            font-weight: 700;
+        }
+
+        .card-text {
+            color: #636e72;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.05rem;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .stat-card {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all var(--duration-normal) var(--ease-out);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-value {
+            font-size: 5.5rem;
+            font-weight: 900;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .stat-sublabel {
+            color: #636e72;
+            font-size: 1.05rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: var(--spacing-md);
+            margin: var(--spacing-xl) 0;
+            position: relative;
+        }
+
+        .timeline::before {
             content: '';
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(239, 97, 19, 0.08), transparent 70%);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-            left: var(--spotlight-x);
-            top: var(--spotlight-y);
-            transform: translate(-50%, -50%);
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-positive) 0%, var(--color-primary) 100%);
+            z-index: 0;
         }
 
-        .cursor-spotlight:hover::after {
-            opacity: 1;
+        .timeline-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-dot {
+            width: 40px;
+            height: 40px;
+            background: var(--color-positive);
+            border-radius: 50%;
+            margin: 0 auto var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.125rem;
+            box-shadow: 0 4px 12px rgba(35, 201, 101, 0.3);
+        }
+
+        .timeline-label {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .timeline-text {
+            font-size: 0.95rem;
+            color: #636e72;
+            line-height: 1.6;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            background: white;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: var(--spacing-md);
+            text-align: center;
+            border-bottom: 1px solid #f1f3f5;
+        }
+
+        .comparison-table th {
+            background: var(--color-secondary);
+            color: white;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .comparison-table th:first-child {
+            text-align: left;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+
+        .comparison-table .check::before {
+            content: '✓';
+            color: var(--color-positive);
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .comparison-table .cross::before {
+            content: '✗';
+            color: #dfe6e9;
+            font-size: 1.5rem;
+        }
+
+        .comparison-table .highlight-col {
+            background: #f0fdf4;
+        }
+
+        .comparison-table th.highlight-col {
+            color: var(--color-secondary);
+        }
+
+        /* Risk Reversal */
+        .risk-reversal {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: #f8f9fa;
+            border-radius: var(--radius-md);
+        }
+
+        .risk-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: #636e72;
+        }
+
+        .risk-item::before {
+            content: '✓';
+            color: var(--color-positive);
+            font-weight: 800;
+            font-size: 1.25rem;
+        }
+
+        /* Toggle Buttons */
+        .toggle-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            margin-bottom: var(--spacing-xl);
+            flex-wrap: wrap;
+        }
+
+        .toggle-btn {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            border: 2px solid var(--color-primary);
+            background: white;
+            color: var(--color-primary);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-out);
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+
+        .toggle-btn.active {
+            background: var(--color-primary);
+            color: white;
+            box-shadow: var(--shadow-primary);
+        }
+
+        .toggle-btn:hover:not(.active) {
+            background: rgba(255, 73, 14, 0.05);
+        }
+
+        .toggle-content {
+            display: none;
+        }
+
+        .toggle-content.active {
+            display: block;
+        }
+
+        /* Voice Grid */
+        .voice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        @media (max-width: 768px) {
+            .voice-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .voice-column {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .voice-image {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .command-list {
+            list-style: none;
+            margin-top: var(--spacing-md);
+        }
+
+        .command-item {
+            padding: var(--spacing-sm) 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
+            border-radius: var(--radius-md);
+            margin-bottom: 12px;
+            color: #636e72;
+            font-style: italic;
+            font-size: 0.95rem;
+            transition: all var(--duration-normal);
+        }
+
+        .command-item:hover {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            transform: translateX(4px);
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .pricing-card {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            border: 2px solid transparent;
+            transition: all var(--duration-normal) var(--ease-out);
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--color-primary);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .pricing-badge {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .pricing-price {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--color-secondary);
+            margin-bottom: 0;
+            line-height: 1;
+        }
+
+        .pricing-period {
+            color: #636e72;
+            font-size: 0.95rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: var(--spacing-md) 0;
+        }
+
+        .pricing-features li {
+            padding: 12px 0 12px 0;
+            color: #636e72;
+            font-size: 1rem;
+        }
+
+        .pricing-features li::before {
+            content: '✓ ';
+            color: var(--color-positive);
+            font-weight: 800;
+            margin-right: 8px;
+        }
+
+        .partner-list {
+            list-style: none;
+        }
+
+        .partner-list li {
+            padding: 8px 0;
+            color: #636e72;
+            font-size: 1rem;
+        }
+
+        .partner-list li::before {
+            content: '✓ ';
+            color: var(--color-positive);
+            font-weight: 800;
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-secondary);
+            color: white;
+            margin-top: var(--spacing-4xl);
+        }
+
+        .footer-content {
+            padding: var(--spacing-3xl) 0 var(--spacing-xl);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer-column h4 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color var(--duration-normal);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .social-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-sm { margin-bottom: var(--spacing-sm); }
+        .mb-md { margin-bottom: var(--spacing-md); }
+        .mb-lg { margin-bottom: var(--spacing-lg); }
+        .mb-xl { margin-bottom: var(--spacing-xl); }
+        .mt-sm { margin-top: var(--spacing-sm); }
+        .mt-md { margin-top: var(--spacing-md); }
+        .mt-lg { margin-top: var(--spacing-lg); }
+        .mt-xl { margin-top: var(--spacing-xl); }
+
+        /* Special Backgrounds */
+        .bg-sage {
+            background: var(--gradient-soft-green);
+        }
+
+        .bg-cream {
+            background: var(--gradient-soft-yellow);
+        }
+
+        .bg-white-soft {
+            background: #FAFBFC;
         }
     </style>
-    <script src="components.js"></script>
 </head>
-<body class="font-sans bg-white text-black antialiased">
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-
-    <!-- Header Container -->
-    <div id="header-container"></div>
-
-    <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-brand-cream via-white to-brand-cream-dark mesh-gradient min-h-screen px-6 py-20 md:px-12 lg:px-24 flex items-center overflow-hidden">
-        <div class="absolute inset-0 dot-pattern opacity-30"></div>
-        <div class="absolute top-20 right-20 w-96 h-96 bg-brand-orange blob-bg parallax" data-speed="0.3"></div>
-        <div class="absolute bottom-20 left-20 w-80 h-80 bg-brand-accent blob-bg parallax" style="animation-delay: 10s;" data-speed="0.5"></div>
-        <div class="absolute top-1/2 left-1/2 w-[500px] h-[500px] bg-brand-orange-light blob-bg" style="animation-delay: 5s;"></div>
-
-        <div class="max-w-6xl mx-auto relative z-10">
-
-            <div class="flex items-center gap-3 mb-12 animate-on-scroll">
-                <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md image-hover">
-                    <img
-                        src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&h=200&fit=crop"
-                        alt="Healthcare Professional"
-                        class="w-full h-full object-cover"
-                    />
-                </div>
-                <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full shadow-lg badge-bounce pulse-breathe">
-                    <span class="text-green-600 text-sm status-pulse">🛡️</span>
-                    <span class="text-brand-muted text-xs font-medium uppercase tracking-wider">Proven live at GavCure Clinic, Israel</span>
-                </div>
+<body>
+    <!-- Sticky CTA Bar -->
+    <div class="sticky-cta" id="stickyCta">
+        <div class="container">
+            <div class="sticky-cta-content">
+                <div class="sticky-cta-text">See real results from Israeli clinics</div>
+                <a href="calculator.html" class="btn btn-primary">Calculate Your Savings</a>
             </div>
+        </div>
+    </div>
 
-            <div class="space-y-6 max-w-4xl">
-                <h2 class="text-brand-orange font-bold uppercase tracking-widest text-sm animate-on-scroll animate-delay-100">
-                    Your Health Operating System
-                </h2>
-                <h1 class="text-display text-brand-dark text-6xl md:text-8xl lg:text-9xl font-bold leading-none animate-on-scroll animate-delay-200">
-                    One <span class="text-gradient">AI Platform</span>
-                    <span class="block">Connecting Patients, Clinics, and Care</span>
-                </h1>
-                <p class="text-brand-muted text-xl md:text-2xl max-w-3xl leading-relaxed animate-on-scroll animate-delay-300">
-                    Healthy4U is an AI-native healthcare platform that unifies patient data, clinical workflows, and continuous monitoring into one intelligent system.
-                </p>
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-6 mt-12 animate-on-scroll animate-delay-400">
-                <a href="https://medical-b2b.healthy4u.world/auth/login" class="group relative px-12 py-6 bg-gradient-to-r from-brand-orange to-brand-orange-light text-white font-bold text-fluid-xl rounded-full btn-magnetic btn-ripple btn-enhanced shadow-medium hover:shadow-glow-orange-strong overflow-hidden">
-                    <span class="relative z-10 flex items-center gap-3">
-                        See AI in Action
-                        <svg class="w-6 h-6 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                        </svg>
-                    </span>
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html">
+                    <img src="h4ulogo.svg" alt="Healthy4U" class="logo">
                 </a>
-                <a href="#case-study" class="group px-12 py-6 bg-white text-brand-dark font-bold text-fluid-xl rounded-full shadow-soft hover:shadow-medium transition-all duration-300 border-2 border-transparent hover:border-brand-orange">
-                    See the Case Study
-                </a>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Problem Section -->
-    <section class="py-32 md:py-40 bg-white" id="features">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="reveal text-display text-5xl md:text-7xl lg:text-8xl font-bold mb-20 md:mb-32 leading-tight">
-                The problem <span class="text-gradient">we solve.</span>
-            </h2>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24">
-                <div class="reveal-scale card-premium card-tilt bg-gradient-to-br from-white to-red-50/30 rounded-3xl p-10 md:p-12 border border-red-100/50 shadow-medium hover:shadow-brutal glow-on-hover cursor-spotlight">
-                    <div class="flex items-start gap-4 mb-8">
-                        <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-soft hover:shadow-hard flex-shrink-0 image-hover liquid-morph">
-                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=200&h=200&fit=crop" alt="Fragmented healthcare" class="w-full h-full object-cover"/>
-                        </div>
-                        <h3 class="text-fluid-3xl md:text-fluid-4xl font-bold text-brand-dark mt-4">
-                            Today's healthcare.<br/><span class="text-red-600">Fragmented. Reactive.</span>
-                        </h3>
-                    </div>
-                    <div class="space-y-6 text-fluid-lg md:text-fluid-xl text-brand-muted leading-relaxed">
-                        <p><span class="font-semibold text-brand-dark">Before the visit:</span> Patient data scattered across EMR, Apple Health, memory.</p>
-                        <p><span class="font-semibold text-brand-dark">During the visit:</span> Doctor spends 50% of time typing, not diagnosing.</p>
-                        <p><span class="font-semibold text-brand-dark">After the visit:</span> Connection lost. No follow-up. Patient forgets.</p>
-                    </div>
-                </div>
-
-                <div class="reveal-scale card-premium card-tilt bg-gradient-to-br from-white to-brand-cream rounded-3xl p-10 md:p-12 border border-brand-orange/20 shadow-medium hover:shadow-premium glow-on-hover hover:shadow-glow-orange-strong gradient-border cursor-spotlight">
-                    <div class="flex items-start gap-4 mb-8">
-                        <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-soft hover:shadow-hard flex-shrink-0 image-hover liquid-morph">
-                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&h=200&fit=crop" alt="Continuous healthcare" class="w-full h-full object-cover"/>
-                        </div>
-                        <h3 class="text-fluid-3xl md:text-fluid-4xl font-bold text-brand-dark mt-4">
-                            With Healthy4U.<br/><span class="text-brand-orange">Continuous. Proactive.</span>
-                        </h3>
-                    </div>
-                    <div class="space-y-6 text-fluid-lg md:text-fluid-xl text-brand-muted leading-relaxed">
-                        <p><span class="font-semibold text-brand-dark">Before:</span> AI collects and structures data from wearables, symptoms, files.</p>
-                        <p><span class="font-semibold text-brand-dark">During:</span> Doctor focuses on patient. AI writes notes in 30 seconds.</p>
-                        <p><span class="font-semibold text-brand-dark">After:</span> 24/7 monitoring, insights, reminders. Care never stops.</p>
-                    </div>
+                <div class="nav-links">
+                    <a href="ecosystem.html">Ecosystem</a>
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#pricing">Pricing</a>
+                    <a href="index.html#case-study">Case Study</a>
+                    <a href="about.html">About</a>
+                    <a href="https://medical-b2b.healthy4u.world/auth/login" class="btn btn-outline" style="padding: 12px 28px; font-size: 0.95rem;">See Demo</a>
                 </div>
             </div>
         </div>
-    </section>
+    </nav>
 
-    <!-- Trust Bar -->
-    <section class="py-32 md:py-40 bg-gradient-to-br from-brand-cream via-brand-cream-dark to-brand-cream relative overflow-hidden">
-        <div class="absolute inset-0 dot-pattern opacity-20"></div>
-        <div class="absolute top-10 right-10 w-[600px] h-[600px] bg-brand-orange blob-bg" style="animation-delay: 3s;"></div>
-        <div class="absolute bottom-20 left-10 w-[500px] h-[500px] bg-brand-accent blob-bg" style="animation-delay: 7s;"></div>
-
-        <div class="max-w-6xl mx-auto px-6 relative z-10 ekg-line">
-            <h2 class="reveal text-display text-4xl md:text-6xl lg:text-7xl font-bold mb-16 md:mb-24 leading-tight">
-                Proven results from <span class="text-gradient">real clinics.</span>
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
-                <div class="reveal-scale glass-premium rounded-3xl p-10 md:p-12 shadow-hard hover:shadow-premium glow-on-hover hover:shadow-glow-orange card-tilt pulse-breathe shimmer">
-                    <div class="text-fluid-7xl md:text-fluid-8xl font-bold mb-4 text-gradient counter number-scale" data-target="97">0%</div>
-                    <div class="text-fluid-2xl md:text-fluid-3xl font-semibold mb-3 text-brand-dark text-balance">less time on intake</div>
-                    <div class="text-fluid-lg md:text-fluid-xl text-brand-muted">240 hours saved per doctor per year</div>
-                </div>
-
-                <div class="reveal-scale glass-premium rounded-3xl p-10 md:p-12 shadow-hard hover:shadow-premium glow-on-hover hover:shadow-glow-orange card-tilt pulse-breathe shimmer" style="transition-delay: 0.1s;">
-                    <div class="text-fluid-7xl md:text-fluid-8xl font-bold mb-4 text-gradient counter number-scale" data-target="30">0%</div>
-                    <div class="text-fluid-2xl md:text-fluid-3xl font-semibold mb-3 text-brand-dark text-balance">more patient capacity</div>
-                    <div class="text-fluid-lg md:text-fluid-xl text-brand-muted">$50K+ additional annual revenue</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Toggle Section -->
-    <section class="py-32 bg-white" id="platform">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-6xl md:text-8xl font-bold mb-8 text-brand-dark max-w-4xl leading-tight">One platform.<br/>Two experiences.</h2>
-            <p class="text-xl text-brand-muted mb-16 max-w-2xl">Continuous care for everyone.</p>
-
-            <div class="flex gap-3 mb-24">
-                <button onclick="showToggle('patients')" id="patients-btn" class="px-8 py-3 bg-brand-orange text-white font-semibold rounded-full text-fluid-lg shadow-medium hover:shadow-glow-orange transition-all duration-300">
-                    For Patients
-                </button>
-                <button onclick="showToggle('clinics')" id="clinics-btn" class="px-8 py-3 bg-gray-100 text-brand-dark font-semibold rounded-full text-fluid-lg shadow-soft hover:shadow-medium hover:bg-gray-200 transition-all duration-300">
-                    For Clinics
-                </button>
-            </div>
-
-            <div id="clinics-content" class="toggle-content hidden">
-                <div class="max-w-4xl mx-auto mb-20">
-                    <h3 class="text-4xl font-semibold mb-6 text-brand-dark">Run smarter care. Increase revenue immediately.</h3>
-                    <p class="text-xl text-brand-muted leading-relaxed">Generate additional revenue: Earn $2.50/month per patient using Premium tier. Unlike scribe-only tools, Healthy4U creates new revenue streams.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 reveal">
-                    <div class="spring-hover">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover liquid-morph magnetic-hover">
-                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&h=200&fit=crop" alt="AI Medical Scribe" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="text-2xl font-semibold mb-4 text-brand-dark data-accent">AI Medical Scribe</h4>
-                        <p class="text-lg text-brand-muted leading-relaxed">Automated documentation in 30 seconds, any language</p>
-                    </div>
-                    <div class="spring-hover">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover liquid-morph magnetic-hover">
-                            <img src="https://images.unsplash.com/photo-1576671081837-49000212a370?w=200&h=200&fit=crop" alt="AI Clinical Consultant" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="text-2xl font-semibold mb-4 text-brand-dark data-accent">AI Clinical Consultant</h4>
-                        <p class="text-lg text-brand-muted leading-relaxed">Diagnostic suggestions, risk alerts, treatment options</p>
-                    </div>
-                    <div class="spring-hover">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover liquid-morph magnetic-hover">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop" alt="Patient Data Access" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="text-2xl font-semibold mb-4 text-brand-dark data-accent">Patient Data Access</h4>
-                        <p class="text-lg text-brand-muted leading-relaxed">Real-time wearable data, symptoms, compliance tracking</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="patients-content" class="toggle-content">
-                <div class="max-w-4xl mx-auto mb-20">
-                    <h3 class="text-4xl font-semibold mb-6 text-brand-dark">Your personal health assistant. 24/7.</h3>
-                    <p class="text-xl text-brand-muted leading-relaxed">Track health, get answers, stay connected with your doctor between visits.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 reveal">
-                    <div class="spring-hover">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover liquid-morph magnetic-hover">
-                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=200&h=200&fit=crop" alt="AI Health Assistant" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="text-2xl font-semibold mb-4 text-brand-dark data-accent">AI Health Assistant</h4>
-                        <p class="text-lg text-brand-muted leading-relaxed">Ask questions, log symptoms, get guidance anytime</p>
-                    </div>
-                    <div class="spring-hover">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover liquid-morph magnetic-hover">
-                            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=200&h=200&fit=crop" alt="Health Tracking" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="text-2xl font-semibold mb-4 text-brand-dark data-accent">Health Tracking</h4>
-                        <p class="text-lg text-brand-muted leading-relaxed">Wearables integration, medication reminders, trends</p>
-                    </div>
-                    <div class="spring-hover">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover liquid-morph magnetic-hover">
-                            <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?w=200&h=200&fit=crop" alt="Care Guidance" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="text-2xl font-semibold mb-4 text-brand-dark data-accent">Care Guidance</h4>
-                        <p class="text-lg text-brand-muted leading-relaxed">Personalized recommendations, appointment prep, follow-up monitoring</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Voice-First Section -->
-    <section class="py-32 bg-brand-cream">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-6xl md:text-8xl font-bold mb-8 text-brand-dark max-w-4xl leading-tight">Work hands-free.</h2>
-            <p class="text-2xl mb-24 text-brand-muted max-w-3xl">Full conversational control. In any language.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 mb-20">
+    <!-- 1. HERO -->
+    <section class="hero">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-3xl); align-items: flex-start;">
+                <!-- Left Column -->
                 <div>
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="w-32 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                            <img src="images/doctor.jpeg" alt="Voice interface for physicians" class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-3xl font-semibold text-brand-dark">For Physicians</h3>
+                    <h1 class="hero-title" style="text-align: left; margin-bottom: var(--spacing-md);">
+                        The Continuous Care Platform<br>
+                        <span class="highlight" style="position: relative; display: inline-block;">
+                            That Closes the Loop
+                            <svg style="position: absolute; bottom: -8px; left: 0; width: 100%; height: 12px;" viewBox="0 0 300 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 10C50 5 100 2 150 5C200 8 250 4 298 7" stroke="#FF490E" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                        </span>
+                    </h1>
+
+                    <p class="hero-description" style="text-align: left; margin-bottom: var(--spacing-xl);">
+                        Doctor sees 1% of your health picture. We deliver 100% — automatically collected, cross-analyzed, always up to date.
+                    </p>
+
+                    <!-- Email Form -->
+                    <div style="display: flex; gap: 12px; margin-bottom: var(--spacing-md);">
+                        <input type="email" placeholder="Enter work email" style="flex: 1; padding: 16px 24px; border: 2px solid #e0e0e0; border-radius: var(--radius-full); font-size: 1rem; font-family: var(--font-body); outline: none; transition: border-color 0.3s;">
+                        <button class="btn btn-primary" style="padding: 16px 32px; white-space: nowrap;">Book a Demo</button>
                     </div>
-                    <p class="text-xl mb-8 text-brand-muted">No typing. No clicking through menus. Just speak.</p>
-                    <ul class="space-y-5 text-lg text-brand-muted">
-                        <li class="italic">"Show me Sarah's blood pressure trends for the last 3 months"</li>
-                        <li class="italic">"Update John's medication dosage to 50mg twice daily"</li>
-                        <li class="italic">"Generate a compliance report for diabetic patients this quarter"</li>
-                        <li class="italic">"What are the risk factors for this patient?"</li>
+
+                    <p style="font-size: 1.125rem; color: var(--color-secondary); font-weight: 700; margin-bottom: var(--spacing-xl); font-style: italic;">
+                        Israeli clinic increased revenue by 27.5% in 6 months
+                    </p>
+
+                    <!-- Stats -->
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--spacing-lg); padding-top: var(--spacing-lg); border-top: 1px solid #e0e0e0;">
+                        <div>
+                            <div style="font-size: 3rem; font-weight: 900; color: var(--color-secondary); line-height: 1; margin-bottom: 8px;">97%</div>
+                            <div style="color: #636e72; font-size: 0.95rem;">less time on intake</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 3rem; font-weight: 900; color: var(--color-secondary); line-height: 1; margin-bottom: 8px;">30%</div>
+                            <div style="color: #636e72; font-size: 0.95rem;">more patient capacity</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Column - Image -->
+                <div style="position: relative;">
+                    <img src="images/talk.jpg" alt="Doctor and patient consultation" style="width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. CASE STUDY (MOVED UP!) -->
+    <section id="case-study" class="bg-cream">
+        <div class="container">
+            <div class="text-center mb-xl">
+                <h2 class="section-title" style="margin-bottom: var(--spacing-md);">Real results.</h2>
+                <p style="font-size: 1.5rem; color: #636e72; font-weight: 500;">Israeli Family Medicine Practice. 3 physicians.</p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-label">Month 1</div>
+                    <div class="timeline-text">Setup & Integration</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-label">Month 2-3</div>
+                    <div class="timeline-text">Staff training<br>30% adoption</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-label">Month 4-6</div>
+                    <div class="timeline-text">Full deployment</div>
+                </div>
+            </div>
+
+            <div class="stats-grid mb-xl" style="margin-top: var(--spacing-2xl);">
+                <div class="stat-card">
+                    <div class="stat-label" style="font-size: 1.125rem; margin-bottom: var(--spacing-xs);">Monthly Savings</div>
+                    <div class="stat-value" style="font-size: 4rem;">$2,400</div>
+                    <div class="stat-sublabel">240 hours saved</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label" style="font-size: 1.125rem; margin-bottom: var(--spacing-xs);">Revenue Increase</div>
+                    <div class="stat-value" style="font-size: 4rem;">$4,167</div>
+                    <div class="stat-sublabel">per month</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label" style="font-size: 1.125rem; margin-bottom: var(--spacing-xs);">Cost</div>
+                    <div class="stat-value" style="font-size: 4rem;">$522</div>
+                    <div class="stat-sublabel">per month</div>
+                </div>
+            </div>
+
+            <!-- Testimonial - Post-it Style -->
+            <div style="max-width: 1000px; margin: 0 auto var(--spacing-xl);">
+                <div class="note">
+                    <p class="note-text">"The value was not the technology itself, but operational clarity. We reduced staff overload and improved profitability without expanding the team."</p>
+                    <p class="note-author">— Clinic Owner, Israeli Family Medicine Practice</p>
+                </div>
+            </div>
+
+            <div class="card" style="max-width: 1100px; margin: 0 auto;">
+                <h3 class="card-title text-center mb-xl" style="font-size: 2.25rem;">Key outcomes</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-xl);">
+                    <div class="text-center">
+                        <div style="font-size: 4rem; font-weight: 900; color: var(--color-primary); line-height: 1;">97%</div>
+                        <p style="font-weight: 700; color: var(--color-secondary); margin: var(--spacing-sm) 0; font-size: 1.25rem;">Less documentation time</p>
+                        <p style="color: #636e72; font-size: 1.05rem;">From 2 hours/day to 5 minutes</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div style="font-size: 4rem; font-weight: 900; color: var(--color-primary); line-height: 1;">30%</div>
+                        <p style="font-weight: 700; color: var(--color-secondary); margin: var(--spacing-sm) 0; font-size: 1.25rem;">More patient capacity</p>
+                        <p style="color: #636e72; font-size: 1.05rem;">Same hours, no overtime</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div style="font-size: 4rem; font-weight: 900; color: var(--color-primary); line-height: 1;">27.5%</div>
+                        <p style="font-weight: 700; color: var(--color-secondary); margin: var(--spacing-sm) 0; font-size: 1.25rem;">Clinic revenue increase</p>
+                        <p style="color: #636e72; font-size: 1.05rem;">Measured over 6 months</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div style="font-size: 4rem; font-weight: 900; color: var(--color-primary); line-height: 1;">75%</div>
+                        <p style="font-weight: 700; color: var(--color-secondary); margin: var(--spacing-sm) 0; font-size: 1.25rem;">Patient adoption</p>
+                        <p style="color: #636e72; font-size: 1.05rem;">Active app usage</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div style="font-size: 4rem; font-weight: 900; color: var(--color-primary); line-height: 1;">0</div>
+                        <p style="font-weight: 700; color: var(--color-secondary); margin: var(--spacing-sm) 0; font-size: 1.25rem;">Staff turnover</p>
+                        <p style="color: #636e72; font-size: 1.05rem;">Same team, better outcomes</p>
+                    </div>
+
+                    <div class="text-center">
+                        <div style="font-size: 4rem; font-weight: 900; color: var(--color-primary); line-height: 1;">4.8/5</div>
+                        <p style="font-weight: 700; color: var(--color-secondary); margin: var(--spacing-sm) 0; font-size: 1.25rem;">Patient satisfaction</p>
+                        <p style="color: #636e72; font-size: 1.05rem;">847 surveys</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PROBLEM → SOLUTION -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">The problem we solve.</h2>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3 class="card-title">Today's healthcare.</h3>
+                    <p class="card-subtitle">Fragmented. Reactive.</p>
+                    <p class="card-text"><strong>Before the visit:</strong> Patient data scattered across EMR, Apple Health, memory.</p>
+                    <p class="card-text"><strong>During the visit:</strong> Doctor spends 50% of time typing, not diagnosing.</p>
+                    <p class="card-text"><strong>After the visit:</strong> Connection lost. No follow-up. Patient forgets.</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">With Healthy4U.</h3>
+                    <p class="card-subtitle">Continuous. Proactive.</p>
+                    <p class="card-text"><strong>Before:</strong> AI collects and structures data from wearables, symptoms, files.</p>
+                    <p class="card-text"><strong>During:</strong> Doctor focuses on patient. AI writes notes in 30 seconds.</p>
+                    <p class="card-text"><strong>After:</strong> 24/7 monitoring, insights, reminders. Care never stops.</p>
+
+                    <!-- Testimonial -->
+                    <div class="note" style="margin-top: var(--spacing-md);">
+                        <p class="note-text" style="font-size: 1rem;">"My hands are finally free to focus on patients, not paperwork."</p>
+                        <p class="note-author" style="font-size: 0.875rem;">— Dr. Sarah M., GavCure Clinic</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. HOW IT WORKS (MOVED UP!) -->
+    <section class="bg-white-soft">
+        <div class="container">
+            <h2 class="section-title">Your Health Operating System.</h2>
+            <p class="section-subtitle">Care doesn't stop. It flows.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3 class="card-title">Before</h3>
+                    <p class="card-text"><strong>Patient App collects:</strong> Sleep, nutrition, symptoms, vitals</p>
+                    <p class="card-text"><strong>AI analyzes:</strong> Patterns, trends, anomalies</p>
+                    <p class="card-text"><strong>Doctor receives:</strong> Structured patient overview before appointment</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">During</h3>
+                    <p class="card-text"><strong>AI generates:</strong> Structured patient overview</p>
+                    <p class="card-text"><strong>Doctor focuses:</strong> On diagnosis, not typing. AI writes notes in 30 seconds.</p>
+                    <p class="card-text"><strong>Clinical consultant:</strong> Suggests diagnostics, risks, treatment options</p>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">After</h3>
+                    <p class="card-text"><strong>AI monitors:</strong> Treatment compliance, medication adherence, symptom progression</p>
+                    <p class="card-text"><strong>Patient receives:</strong> Reminders, care guidance, answers 24/7</p>
+                    <p class="card-text"><strong>Early warnings:</strong> AI detects concerning patterns and alerts clinic</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-lg">
+                <div style="font-size: 5.5rem; color: var(--color-primary); font-weight: 800;">↻</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PLATFORM TOGGLE -->
+    <section id="platform" class="bg-cream">
+        <div class="container">
+            <h2 class="section-title">One platform.<br>Two experiences.</h2>
+            <p class="section-subtitle">Continuous care for everyone.</p>
+
+            <div class="toggle-buttons">
+                <button class="toggle-btn" onclick="togglePlatform('patients')" id="btn-patients">For Patients</button>
+                <button class="toggle-btn active" onclick="togglePlatform('clinics')" id="btn-clinics">For Clinics</button>
+            </div>
+
+            <div class="toggle-content active" id="content-clinics">
+                <h3 class="text-center mb-md" style="font-size: 2.5rem; font-weight: 800; color: var(--color-secondary);">Run smarter care. Increase revenue immediately.</h3>
+
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <p style="font-size: 1.125rem; line-height: 1.7; color: #636e72; margin-bottom: var(--spacing-lg);">
+                        Free your staff from paperwork. Let AI handle documentation while you focus on what matters—patient care.
+                    </p>
+
+                    <ul style="list-style: none; margin: 0; padding: 0; margin-bottom: var(--spacing-lg);">
+                        <li style="padding: 12px 0; color: #2d3436; font-size: 1rem; display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="color: var(--color-primary); font-weight: 800; font-size: 1.25rem; line-height: 1;">✓</span>
+                            <span>AI-Scribe for automatic recording & transcription</span>
+                        </li>
+                        <li style="padding: 12px 0; color: #2d3436; font-size: 1rem; display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="color: var(--color-primary); font-weight: 800; font-size: 1.25rem; line-height: 1;">✓</span>
+                            <span>Smart intake forms that patients complete beforehand</span>
+                        </li>
+                        <li style="padding: 12px 0; color: #2d3436; font-size: 1rem; display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="color: var(--color-primary); font-weight: 800; font-size: 1.25rem; line-height: 1;">✓</span>
+                            <span>FHIR/HL7 standardized health records</span>
+                        </li>
+                        <li style="padding: 12px 0; color: #2d3436; font-size: 1rem; display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="color: var(--color-primary); font-weight: 800; font-size: 1.25rem; line-height: 1;">✓</span>
+                            <span>Built-in telemedicine capabilities</span>
+                        </li>
                     </ul>
-                </div>
 
-                <div>
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="w-32 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                            <img src="images/patient.jpg" alt="Voice interface for patients" class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-3xl font-semibold text-brand-dark">For Patients</h3>
-                    </div>
-                    <p class="text-xl mb-8 text-brand-muted">While cooking, driving, or exercising. Hands-free healthcare.</p>
-                    <ul class="space-y-5 text-lg text-brand-muted">
-                        <li class="italic">"What's my heart rate today compared to last week?"</li>
-                        <li class="italic">"Log my breakfast — scrambled eggs and avocado"</li>
-                        <li class="italic">"When should I take my blood pressure medication?"</li>
-                        <li class="italic">"Am I on track with my fitness goals?"</li>
+                    <a href="https://medical-b2b.healthy4u.world" class="btn btn-primary" style="display: inline-flex;">Get Access</a>
+                </div>
+            </div>
+
+            <div class="toggle-content" id="content-patients">
+                <h3 class="text-center mb-md" style="font-size: 2.5rem; font-weight: 800; color: var(--color-secondary);">Your Health, Continuously Understood.</h3>
+
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <p style="font-size: 1.125rem; line-height: 1.7; color: #636e72; margin-bottom: var(--spacing-lg);">
+                        A personal AI assistant that knows your health history, tracks your vitals, and keeps you connected to care—24/7.
+                    </p>
+
+                    <ul style="list-style: none; margin: 0; padding: 0; margin-bottom: var(--spacing-lg);">
+                        <li style="padding: 12px 0; color: #2d3436; font-size: 1rem; display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="color: var(--color-primary); font-weight: 800; font-size: 1.25rem; line-height: 1;">✓</span>
+                            <span>Personal AI health assistant available anytime</span>
+                        </li>
+                        <li style="padding: 12px 0; color: #2d3436; font-size: 1rem; display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="color: var(--color-primary); font-weight: 800; font-size: 1.25rem; line-height: 1;">✓</span>
+                            <span>24/7 health tracking (Apple/Android Health integration)</span>
+                        </li>
+                        <li style="padding: 12px 0; color: #2d3436; font-size: 1rem; display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="color: var(--color-primary); font-weight: 800; font-size: 1.25rem; line-height: 1;">✓</span>
+                            <span>Symptoms, vitals, and medical files in one place</span>
+                        </li>
+                        <li style="padding: 12px 0; color: #2d3436; font-size: 1rem; display: flex; align-items: flex-start; gap: 12px;">
+                            <span style="color: var(--color-primary); font-weight: 800; font-size: 1.25rem; line-height: 1;">✓</span>
+                            <span>Voice-controlled for hands-free access</span>
+                        </li>
                     </ul>
-                </div>
-            </div>
 
-            <div class="max-w-4xl space-y-4 text-lg text-brand-muted">
-                <p>Natural conversation, not rigid commands.</p>
-                <p>Any language supported: English, Russian, Spanish, Hebrew, and more.</p>
-                <p>Zero learning curve. Just speak naturally.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Differentiation Section -->
-    <section class="py-32 bg-white">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-6xl md:text-8xl font-bold mb-32 text-brand-dark max-w-4xl leading-tight">Complete care.<br/>Not just documentation.</h2>
-
-            <div class="space-y-20 mb-20">
-                <div>
-                    <h3 class="text-2xl font-semibold mb-8 text-brand-muted">Most AI tools solve one problem</h3>
-                    <div class="space-y-4 text-xl text-brand-muted leading-relaxed">
-                        <p>Scribe-only solutions automate documentation.</p>
-                        <p>Patient apps track symptoms, but data never reaches the doctor.</p>
-                        <p>Wearables monitor vitals, but take no clinical action.</p>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="flex items-start gap-4 mb-8">
-                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
-                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=200&h=200&fit=crop" alt="Complete care cycle" class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-3xl font-bold text-brand-dark mt-6">Healthy4U delivers the complete care cycle</h3>
-                    </div>
-                    <div class="space-y-4 text-xl text-brand-dark leading-relaxed pl-28">
-                        <p>AI Scribe + Clinical Consultant + Patient Data Access for physicians.</p>
-                        <p>24/7 AI Assistant + Health Tracking + Care Guidance for patients.</p>
-                        <p>Cross-modal intelligence that connects everything.</p>
-                        <p>Voice-first design. Full conversational control. Any language.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pl-28">
-                <a href="calculator.html" class="inline-block px-10 py-4 bg-brand-orange text-white font-semibold text-fluid-lg rounded-full btn-ripple btn-enhanced shadow-medium hover:shadow-glow-orange-strong transition-all duration-300">
-                    Calculate Your Savings
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Value Pillars -->
-    <section class="py-32 bg-brand-cream">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-6xl md:text-8xl font-bold mb-32 text-brand-dark max-w-4xl leading-tight">Transform your practice.</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-24">
-                <div>
-                    <div class="flex items-start gap-4 mb-8">
-                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop" alt="Revenue growth" class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-4xl font-semibold text-brand-dark mt-4">Increase revenue<br/>$50K+ per year.</h3>
-                    </div>
-                    <div class="space-y-5 text-xl text-brand-muted mb-8 leading-relaxed pl-28">
-                        <p>27.5% clinic revenue increase</p>
-                        <p>20–35% better treatment acceptance</p>
-                        <p>$700 recovered per patient</p>
-                        <p>Passive income: $2.50/patient/month</p>
-                    </div>
-                    <p class="text-lg text-brand-muted leading-relaxed pl-28">When patients stay engaged between visits, they follow treatment plans, show up for appointments, and refer friends.</p>
-                </div>
-                <div>
-                    <div class="flex items-start gap-4 mb-8">
-                        <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
-                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&h=200&fit=crop" alt="Time savings" class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-4xl font-semibold text-brand-dark mt-4">Save 240+ hours<br/>per doctor, per year.</h3>
-                    </div>
-                    <div class="space-y-5 text-xl text-brand-muted mb-8 leading-relaxed pl-28">
-                        <p>97% less time on documentation</p>
-                        <p>30% more patient capacity</p>
-                        <p>Same staff, more output</p>
-                        <p>Doctors become diagnosticians, not clerks</p>
-                    </div>
-                    <p class="text-lg text-brand-muted leading-relaxed pl-28">AI handles the administrative burden. Doctors get time to practice medicine.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="py-32 bg-white" id="pricing">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-6xl md:text-8xl font-bold mb-8 text-brand-dark max-w-4xl leading-tight">Simple, transparent pricing.</h2>
-            <p class="text-xl mb-16 text-brand-muted max-w-3xl">Complete platform vs single-feature tools. We deliver 3x the value.</p>
-
-            <!-- Pricing Toggle -->
-            <div class="flex gap-3 mb-24">
-                <button onclick="showPricingToggle('patients')" id="pricing-patients-btn" class="px-8 py-3 bg-brand-orange text-white font-semibold rounded-full text-fluid-lg shadow-medium hover:shadow-glow-orange transition-all duration-300">
-                    For Patients
-                </button>
-                <button onclick="showPricingToggle('clinics')" id="pricing-clinics-btn" class="px-8 py-3 bg-gray-100 text-brand-dark font-semibold rounded-full text-fluid-lg shadow-soft hover:shadow-medium hover:bg-gray-200 transition-all duration-300">
-                    For Clinics
-                </button>
-            </div>
-
-            <!-- Clinics Pricing -->
-            <div id="clinics-pricing" class="pricing-content hidden">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Founder's Circle -->
-                <div class="bg-white rounded-3xl p-10 shadow-medium hover:shadow-brutal transition-all duration-300 hover:-translate-y-2">
-                    <div class="text-center mb-8">
-                        <div class="inline-block bg-brand-orange/10 text-brand-orange px-4 py-2 rounded-full text-fluid-sm font-semibold mb-6">FOUNDER'S CIRCLE</div>
-                        <div class="text-fluid-6xl font-bold mb-2 text-brand-dark">$174</div>
-                        <div class="text-brand-muted text-fluid-lg mb-4">/month per physician</div>
-                        <div class="text-brand-dark font-semibold mb-1">30% OFF Lifetime</div>
-                        <div class="text-brand-muted text-fluid-sm">First 3 Clinics Only</div>
-                    </div>
-                    <ul class="space-y-3 mb-10 text-brand-muted text-sm">
-                        <li>✓ Up to 600 AI transcriptions/month</li>
-                        <li>✓ Unlimited AI clinical consultant</li>
-                        <li>✓ Unlimited patient data access</li>
-                        <li>✓ Unlimited analytics & reports</li>
-                        <li>✓ Priority Support</li>
-                        <li>✓ Hall of Fame</li>
-                    </ul>
-                    <div class="text-center text-sm text-brand-muted mb-6">Payback: Immediate</div>
-                    <div class="space-y-3">
-                        <a href="#" class="block px-6 py-3 bg-brand-orange text-white font-semibold text-center rounded-full btn-ripple btn-enhanced shadow-medium hover:shadow-glow-orange-strong transition-all duration-300">
-                            Get Started
+                    <div style="display: flex; gap: 12px; align-items: center; justify-content: center;">
+                        <a href="https://apps.apple.com/us/app/healthy4u-ai-health-assistant/id6742141790" target="_blank" rel="noopener noreferrer" style="display: block;">
+                            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83&amp;releaseDate=1234567890" alt="Download on the App Store" style="height: 44px; width: auto;">
                         </a>
-                    </div>
-                </div>
-
-                <!-- Early Adopter -->
-                <div class="bg-white rounded-3xl p-10 shadow-medium hover:shadow-brutal transition-all duration-300 hover:-translate-y-2">
-                    <div class="text-center mb-8">
-                        <div class="inline-block bg-gray-100 text-brand-dark px-4 py-2 rounded-full text-fluid-sm font-semibold mb-6">EARLY ADOPTER</div>
-                        <div class="text-fluid-6xl font-bold mb-2 text-brand-dark">$199</div>
-                        <div class="text-brand-muted text-fluid-lg mb-4">/month per physician</div>
-                        <div class="text-brand-dark font-semibold mb-1">20% OFF Lifetime</div>
-                        <div class="text-brand-muted text-fluid-sm">Next 7 Clinics</div>
-                    </div>
-                    <ul class="space-y-3 mb-10 text-brand-muted text-sm">
-                        <li>✓ Up to 600 AI transcriptions/month</li>
-                        <li>✓ Unlimited AI clinical consultant</li>
-                        <li>✓ Unlimited patient data access</li>
-                        <li>✓ Unlimited analytics & reports</li>
-                        <li>✓ Priority Support</li>
-                    </ul>
-                    <div class="text-center text-sm text-brand-muted mb-6">Payback: Immediate</div>
-                    <div class="space-y-3">
-                        <a href="#" class="block px-6 py-3 bg-brand-orange text-white font-semibold text-center rounded-full btn-ripple btn-enhanced shadow-medium hover:shadow-glow-orange-strong transition-all duration-300">
-                            Get Started
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Professional -->
-                <div class="bg-white rounded-3xl p-10 shadow-medium hover:shadow-brutal transition-all duration-300 hover:-translate-y-2">
-                    <div class="text-center mb-8">
-                        <div class="inline-block bg-gray-100 text-brand-dark px-4 py-2 rounded-full text-fluid-sm font-semibold mb-6">PROFESSIONAL</div>
-                        <div class="text-fluid-6xl font-bold mb-2 text-brand-dark">$249</div>
-                        <div class="text-brand-muted text-fluid-lg mb-4">/month per physician</div>
-                        <div class="text-brand-dark font-semibold mb-1">Standard Pricing</div>
-                        <div class="text-brand-muted text-fluid-sm">All Features Included</div>
-                    </div>
-                    <ul class="space-y-3 mb-6 text-brand-muted text-sm">
-                        <li>✓ Up to 600 AI transcriptions/month</li>
-                        <li>✓ Unlimited AI clinical consultant</li>
-                        <li>✓ Unlimited patient data access</li>
-                        <li>✓ Unlimited analytics & reports</li>
-                        <li>✓ Standard Support</li>
-                    </ul>
-                    <div class="bg-brand-cream rounded-xl p-4 mb-6">
-                        <div class="text-xs font-semibold text-brand-dark mb-2">Overage:</div>
-                        <div class="text-xs text-brand-muted space-y-1">
-                            <div>601-800 visits: $0.15/visit</div>
-                            <div>801+ visits: Contact sales</div>
-                        </div>
-                    </div>
-                    <div class="text-center text-sm text-brand-muted mb-6">Payback: 1 month</div>
-                    <div class="space-y-3">
-                        <a href="#" class="block px-6 py-3 bg-brand-orange text-white font-semibold text-center rounded-full btn-ripple btn-enhanced shadow-medium hover:shadow-glow-orange-strong transition-all duration-300">
-                            Get Started
+                        <a href="https://play.google.com/store/apps/details?id=world.healthy4u.mobile&pli=1" target="_blank" rel="noopener noreferrer" style="display: block;">
+                            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height: 64px; width: auto;">
                         </a>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- 7. VOICE-FIRST (ONLY SECTION WITH IMAGES) -->
+    <section id="features" class="bg-sage">
+        <div class="container">
+            <div class="text-center mb-xl">
+                <p style="color: var(--color-primary); font-weight: 700; font-size: 1.125rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--spacing-md);">The only platform with full voice control</p>
+                <h2 class="section-title">Manage complete patient data by voice.</h2>
+                <p class="section-subtitle" style="max-width: 800px; margin: 0 auto;">No clicking through menus. No typing. Natural conversation in any language — English, Russian, Spanish, Hebrew, and more.</p>
+
+                <!-- Comparison Badge -->
+                <div style="display: inline-block; margin-top: var(--spacing-md); padding: var(--spacing-md) var(--spacing-lg); background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-md);">
+                    <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: var(--spacing-md); align-items: center; font-size: 0.95rem;">
+                        <div style="text-align: right; color: #636e72;">
+                            <div style="font-weight: 600;">Traditional EHR</div>
+                            <div style="font-size: 0.85rem; margin-top: 4px;">6 clicks, 2 minutes</div>
+                        </div>
+                        <div style="color: var(--color-primary); font-weight: 900; font-size: 1.5rem;">→</div>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700; color: var(--color-secondary);">Healthy4U</div>
+                            <div style="font-size: 0.85rem; margin-top: 4px; color: var(--color-positive);">Just speak, 5 seconds</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Patients Pricing -->
-            <div id="patients-pricing" class="pricing-content">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Free Tier -->
-                    <div class="bg-white rounded-3xl p-10 shadow-medium hover:shadow-brutal transition-all duration-300 hover:-translate-y-2">
-                        <div class="text-center mb-8">
-                            <div class="inline-block bg-green-100 text-green-700 px-4 py-2 rounded-full text-fluid-sm font-semibold mb-6">FREE</div>
-                            <div class="text-fluid-6xl font-bold mb-2 text-brand-dark">$0</div>
-                            <div class="text-brand-muted text-fluid-lg mb-4">/month</div>
-                            <div class="text-brand-dark font-semibold mb-1">Basic Health Assistant</div>
-                            <div class="text-brand-muted text-fluid-sm">For Everyone</div>
-                        </div>
-                        <ul class="space-y-3 mb-10 text-brand-muted">
-                            <li>✓ 50 AI messages/month</li>
-                            <li>✓ 10 food photo analyses</li>
-                            <li>✓ 5 lab result analyses</li>
-                            <li>✓ Basic symptom tracking</li>
-                            <li>✓ Medication reminders</li>
-                            <li>✓ Health data sync</li>
+            <div class="voice-grid">
+                <div class="voice-column">
+                    <img src="images/doctor.jpeg" alt="For Physicians" class="voice-image">
+                    <h3 class="card-title">For Physicians</h3>
+                    <p class="card-text mb-md">No typing. No clicking through menus. Just speak.</p>
+
+                    <ul class="command-list">
+                        <li class="command-item">"Show me Sarah's blood pressure trends for the last 3 months"</li>
+                        <li class="command-item">"Update John's medication dosage to 50mg twice daily"</li>
+                        <li class="command-item">"Generate a compliance report for diabetic patients this quarter"</li>
+                        <li class="command-item">"What are the risk factors for this patient?"</li>
+                    </ul>
+                </div>
+
+                <div class="voice-column">
+                    <img src="images/patient.jpg" alt="For Patients" class="voice-image">
+                    <h3 class="card-title">For Patients</h3>
+                    <p class="card-text mb-md">While cooking, driving, or exercising. Hands-free healthcare.</p>
+
+                    <ul class="command-list">
+                        <li class="command-item">"What's my heart rate today compared to last week?"</li>
+                        <li class="command-item">"Log my breakfast — scrambled eggs and avocado"</li>
+                        <li class="command-item">"When should I take my blood pressure medication?"</li>
+                        <li class="command-item">"Am I on track with my fitness goals?"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Key Benefits -->
+            <div class="mt-xl text-center">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg); max-width: 1000px; margin: 0 auto;">
+                    <div style="padding: var(--spacing-md); background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                        <div style="font-size: 1.125rem; font-weight: 700; color: var(--color-secondary); margin-bottom: var(--spacing-xs);">Natural conversation</div>
+                        <p style="color: #636e72; font-size: 0.95rem;">Not rigid commands — speak naturally, the way you think</p>
+                    </div>
+                    <div style="padding: var(--spacing-md); background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                        <div style="font-size: 1.125rem; font-weight: 700; color: var(--color-secondary); margin-bottom: var(--spacing-xs);">Zero learning curve</div>
+                        <p style="color: #636e72; font-size: 0.95rem;">No training required — just speak naturally from day one</p>
+                    </div>
+                    <div style="padding: var(--spacing-md); background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                        <div style="font-size: 1.125rem; font-weight: 700; color: var(--color-secondary); margin-bottom: var(--spacing-xs);">Complete data access</div>
+                        <p style="color: #636e72; font-size: 0.95rem;">Full EHR control — query, update, document, everything</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial -->
+            <div style="max-width: 800px; margin: var(--spacing-xl) auto 0;">
+                <div class="note">
+                    <p class="note-text">"I document entire patient visits while walking between exam rooms. Completely hands-free. No dictation system comes close to this level of control."</p>
+                    <p class="note-author">— Dr. Sarah Cohen, Family Medicine, Tel Aviv</p>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center mt-lg">
+                <a href="https://medical-b2b.healthy4u.world/auth/login" class="btn btn-primary btn-large">Experience Voice Control</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. DIFFERENTIATION + COMPARISON TABLE -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Complete care.<br>Not just documentation.</h2>
+
+            <div class="card-grid mb-xl">
+                <div class="card" style="background: var(--gradient-soft-yellow);">
+                    <h3 class="card-title" style="color: var(--color-primary);">Most AI tools solve one problem</h3>
+                    <p class="card-text">Scribe-only solutions automate documentation.</p>
+                    <p class="card-text">Patient apps track symptoms, but data never reaches the doctor.</p>
+                    <p class="card-text">Wearables monitor vitals, but take no clinical action.</p>
+                </div>
+
+                <div class="card" style="background: var(--gradient-soft-green);">
+                    <h3 class="card-title" style="color: var(--color-secondary);">Healthy4U delivers the complete care cycle</h3>
+                    <p class="card-text">AI Scribe + Clinical Consultant + Patient Data Access for physicians.</p>
+                    <p class="card-text">24/7 AI Assistant + Health Tracking + Care Guidance for patients.</p>
+                    <p class="card-text">Cross-modal intelligence that connects everything.</p>
+                    <p class="card-text">Voice-first design. Full conversational control. Any language.</p>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Scribe Tools</th>
+                            <th>Wearables</th>
+                            <th class="highlight-col">Healthy4U</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>AI Documentation</td>
+                            <td><span class="check"></span></td>
+                            <td><span class="cross"></span></td>
+                            <td class="highlight-col"><span class="check"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Patient Monitoring</td>
+                            <td><span class="cross"></span></td>
+                            <td><span class="check"></span></td>
+                            <td class="highlight-col"><span class="check"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Revenue Generation</td>
+                            <td><span class="cross"></span></td>
+                            <td><span class="cross"></span></td>
+                            <td class="highlight-col"><span class="check"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Voice Control</td>
+                            <td>Limited</td>
+                            <td><span class="cross"></span></td>
+                            <td class="highlight-col"><span class="check"></span></td>
+                        </tr>
+                        <tr>
+                            <td>Clinical Insights</td>
+                            <td><span class="cross"></span></td>
+                            <td><span class="cross"></span></td>
+                            <td class="highlight-col"><span class="check"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-xl">
+                <a href="calculator.html" class="btn btn-primary btn-large">Calculate Your Savings</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. TRANSFORM PRACTICE -->
+    <section class="bg-white-soft">
+        <div class="container">
+            <h2 class="section-title">Transform your practice.</h2>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3 class="card-title">Increase revenue</h3>
+                    <p class="card-subtitle">$50K+ per year.</p>
+
+                    <ul style="list-style: none; margin: var(--spacing-md) 0;">
+                        <li style="padding: 10px 0; color: #636e72; font-size: 1.125rem;">27.5% clinic revenue increase</li>
+                        <li style="padding: 10px 0; color: #636e72; font-size: 1.125rem;">20–35% better treatment acceptance</li>
+                        <li style="padding: 10px 0; color: #636e72; font-size: 1.125rem;">$700 recovered per patient</li>
+                        <li style="padding: 10px 0; color: #636e72; font-size: 1.125rem;">Passive income: $2.50/patient/month</li>
+                    </ul>
+
+                    <p class="card-text" style="margin-top: var(--spacing-md); font-style: italic;">When patients stay engaged between visits, they follow treatment plans, show up for appointments, and refer friends.</p>
+
+                    <!-- Testimonial -->
+                    <div class="note" style="margin-top: var(--spacing-md);">
+                        <p class="note-text" style="font-size: 1rem;">"We recovered $700 per patient on average. The ROI was immediate."</p>
+                        <p class="note-author" style="font-size: 0.875rem;">— Clinic Administrator</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">Save 240+ hours</h3>
+                    <p class="card-subtitle">per doctor, per year.</p>
+
+                    <ul style="list-style: none; margin: var(--spacing-md) 0;">
+                        <li style="padding: 10px 0; color: #636e72; font-size: 1.125rem;">97% less time on documentation</li>
+                        <li style="padding: 10px 0; color: #636e72; font-size: 1.125rem;">30% more patient capacity</li>
+                        <li style="padding: 10px 0; color: #636e72; font-size: 1.125rem;">Same staff, more output</li>
+                        <li style="padding: 10px 0; color: #636e72; font-size: 1.125rem;">Doctors become diagnosticians, not clerks</li>
+                    </ul>
+
+                    <p class="card-text" style="margin-top: var(--spacing-md); font-style: italic;">AI handles the administrative burden. Doctors get time to practice medicine.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. PRICING -->
+    <section id="pricing" class="bg-cream">
+        <div class="container">
+            <h2 class="section-title">Simple, transparent pricing.</h2>
+            <p class="section-subtitle">Complete platform vs single-feature tools. We deliver 3x the value.</p>
+
+            <div class="toggle-buttons">
+                <button class="toggle-btn active" onclick="togglePricing('patients')" id="btn-pricing-patients">For Patients</button>
+                <button class="toggle-btn" onclick="togglePricing('clinics')" id="btn-pricing-clinics">For Clinics</button>
+            </div>
+
+            <div class="toggle-content active" id="pricing-patients">
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-badge">FREE</div>
+                        <div class="pricing-price">$0</div>
+                        <div class="pricing-period">/month</div>
+                        <h3 class="card-title" style="font-size: 1.5rem;">Basic Health Assistant</h3>
+                        <p class="card-text mb-md">For Everyone</p>
+
+                        <ul class="pricing-features">
+                            <li>50 AI messages/month</li>
+                            <li>10 food photo analyses</li>
+                            <li>5 lab result analyses</li>
+                            <li>Basic symptom tracking</li>
+                            <li>Medication reminders</li>
+                            <li>Health data sync</li>
                         </ul>
-                        <div class="space-y-3">
-                            <a href="#" class="block px-6 py-3 bg-gray-100 text-brand-dark font-semibold text-center rounded-full shadow-soft hover:shadow-medium hover:bg-gray-200 transition-all duration-300">
-                                Get Started Free
-                            </a>
+
+                        <!-- Risk Reversal -->
+                        <div class="risk-reversal">
+                            <div class="risk-item">No credit card</div>
+                            <div class="risk-item">Cancel anytime</div>
                         </div>
+
+                        <button class="btn btn-outline" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Get Started Free</button>
                     </div>
 
-                    <!-- Premium Tier -->
-                    <div class="bg-white rounded-3xl p-10 shadow-hard hover:shadow-premium transition-all duration-300 hover:-translate-y-2 border-2 border-brand-orange hover:shadow-glow-orange">
-                        <div class="text-center mb-8">
-                            <div class="inline-block bg-brand-orange/10 text-brand-orange px-4 py-2 rounded-full text-fluid-sm font-semibold mb-6">PREMIUM</div>
-                            <div class="text-fluid-6xl font-bold mb-2 text-brand-dark">$9.99</div>
-                            <div class="text-brand-muted text-fluid-lg mb-4">/month</div>
-                            <div class="text-brand-dark font-semibold mb-1">Complete Health Platform</div>
-                            <div class="text-brand-muted text-fluid-sm">Most Popular</div>
-                        </div>
-                        <ul class="space-y-3 mb-10 text-brand-muted">
-                            <li>✓ 500 AI messages/month</li>
-                            <li>✓ 150 food photo analyses</li>
-                            <li>✓ 20 lab result analyses</li>
-                            <li>✓ Advanced symptom analysis</li>
-                            <li>✓ Medication reminders</li>
-                            <li>✓ Health data sync</li>
-                            <li>✓ Personalized insights</li>
-                            <li>✓ Priority support</li>
+                    <div class="pricing-card featured">
+                        <div class="pricing-badge">PREMIUM</div>
+                        <div class="pricing-price">$9.99</div>
+                        <div class="pricing-period">/month</div>
+                        <h3 class="card-title" style="font-size: 1.5rem;">Complete Health Platform</h3>
+                        <p class="card-text mb-md">Most Popular</p>
+
+                        <ul class="pricing-features">
+                            <li>500 AI messages/month</li>
+                            <li>150 food photo analyses</li>
+                            <li>20 lab result analyses</li>
+                            <li>Advanced symptom analysis</li>
+                            <li>Medication reminders</li>
+                            <li>Health data sync</li>
+                            <li>Personalized insights</li>
+                            <li>Priority support</li>
                         </ul>
-                        <div class="space-y-3">
-                            <a href="#" class="block px-6 py-3 bg-brand-orange text-white font-semibold text-center rounded-full btn-ripple btn-enhanced shadow-medium hover:shadow-glow-orange-strong transition-all duration-300">
-                                Start Premium
-                            </a>
+
+                        <!-- Risk Reversal -->
+                        <div class="risk-reversal">
+                            <div class="risk-item">14-day free trial</div>
+                            <div class="risk-item">Cancel anytime</div>
+                            <div class="risk-item">30-day money-back</div>
                         </div>
+
+                        <button class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Start Free Trial</button>
                     </div>
 
-                    <!-- Top-ups -->
-                    <div class="bg-white rounded-3xl p-10 shadow-medium hover:shadow-brutal transition-all duration-300 hover:-translate-y-2">
-                        <div class="text-center mb-8">
-                            <div class="inline-block bg-gray-100 text-brand-dark px-4 py-2 rounded-full text-fluid-sm font-semibold mb-6">TOP-UPS</div>
-                            <div class="text-fluid-6xl font-bold mb-2 text-brand-dark">+</div>
-                            <div class="text-brand-muted text-fluid-lg mb-4">Add as needed</div>
-                            <div class="text-brand-dark font-semibold mb-1">Flexible Options</div>
-                            <div class="text-brand-muted text-fluid-sm">For Free & Premium users</div>
-                        </div>
-                        <ul class="space-y-3 mb-10 text-brand-muted">
+                    <div class="pricing-card">
+                        <div class="pricing-badge">TOP-UPS</div>
+                        <div class="pricing-price" style="font-size: 4.5rem;">+</div>
+                        <div class="pricing-period">Add as needed</div>
+                        <h3 class="card-title" style="font-size: 1.5rem;">Flexible Options</h3>
+                        <p class="card-text mb-md">For Free & Premium users</p>
+
+                        <ul class="pricing-features">
                             <li>+100 AI messages — $1.99</li>
                             <li>+50 food photos — $2.49</li>
                             <li>+10 lab analyses — $2.99</li>
                         </ul>
-                        <div class="text-sm text-brand-muted italic mb-6">
-                            Top-ups never expire. Use anytime.
-                        </div>
-                        <div class="space-y-3">
-                            <a href="#" class="block px-6 py-3 bg-gray-100 text-brand-dark font-semibold text-center rounded-full shadow-soft hover:shadow-medium hover:bg-gray-200 transition-all duration-300">
-                                Buy Top-ups
-                            </a>
-                        </div>
+
+                        <p class="card-text" style="font-style: italic; margin-top: var(--spacing-md);">Top-ups never expire. Use anytime.</p>
+
+                        <button class="btn btn-secondary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Buy Top-ups</button>
                     </div>
                 </div>
             </div>
 
+            <div class="toggle-content" id="pricing-clinics">
+                <div class="pricing-grid">
+                    <div class="pricing-card featured">
+                        <div style="position: absolute; top: -12px; right: 20px;">
+                            <span class="badge badge-urgent">2 of 3 spots taken</span>
+                        </div>
+
+                        <div class="pricing-badge">FOUNDER'S CIRCLE</div>
+                        <div class="pricing-price">$174</div>
+                        <div class="pricing-period">/month per physician</div>
+                        <p style="color: var(--color-primary); font-weight: 700; margin-bottom: var(--spacing-xs);">30% OFF Lifetime</p>
+                        <p class="card-text mb-md">First 3 Clinics Only</p>
+
+                        <ul class="pricing-features">
+                            <li>Up to 600 AI transcriptions/month</li>
+                            <li>Unlimited AI clinical consultant</li>
+                            <li>Unlimited patient data access</li>
+                            <li>Unlimited analytics & reports</li>
+                            <li>Priority Support</li>
+                            <li>Hall of Fame</li>
+                        </ul>
+
+                        <p style="font-weight: 700; color: var(--color-positive); margin: var(--spacing-md) 0;">Payback: Immediate</p>
+
+                        <!-- Risk Reversal -->
+                        <div class="risk-reversal">
+                            <div class="risk-item">14-day free trial</div>
+                            <div class="risk-item">No credit card</div>
+                            <div class="risk-item">30-day money-back</div>
+                            <div class="risk-item">Cancel anytime</div>
+                        </div>
+
+                        <button class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Start Free Trial</button>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-badge">EARLY ADOPTER</div>
+                        <div class="pricing-price">$199</div>
+                        <div class="pricing-period">/month per physician</div>
+                        <p style="color: var(--color-primary); font-weight: 700; margin-bottom: var(--spacing-xs);">20% OFF Lifetime</p>
+                        <p class="card-text mb-md">Next 7 Clinics</p>
+
+                        <ul class="pricing-features">
+                            <li>Up to 600 AI transcriptions/month</li>
+                            <li>Unlimited AI clinical consultant</li>
+                            <li>Unlimited patient data access</li>
+                            <li>Unlimited analytics & reports</li>
+                            <li>Priority Support</li>
+                        </ul>
+
+                        <p style="font-weight: 700; color: var(--color-positive); margin: var(--spacing-md) 0;">Payback: Immediate</p>
+
+                        <!-- Risk Reversal -->
+                        <div class="risk-reversal">
+                            <div class="risk-item">14-day free trial</div>
+                            <div class="risk-item">Cancel anytime</div>
+                        </div>
+
+                        <button class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Start Free Trial</button>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-badge">PROFESSIONAL</div>
+                        <div class="pricing-price">$249</div>
+                        <div class="pricing-period">/month per physician</div>
+                        <p style="color: #636e72; font-weight: 600; margin-bottom: var(--spacing-xs);">Standard Pricing</p>
+                        <p class="card-text mb-md">All Features Included</p>
+
+                        <ul class="pricing-features">
+                            <li>Up to 600 AI transcriptions/month</li>
+                            <li>Unlimited AI clinical consultant</li>
+                            <li>Unlimited patient data access</li>
+                            <li>Unlimited analytics & reports</li>
+                            <li>Standard Support</li>
+                        </ul>
+
+                        <p class="card-text" style="margin-top: var(--spacing-md);"><strong>Overage:</strong></p>
+                        <p class="card-text">601-800 visits: $0.15/visit</p>
+                        <p class="card-text">801+ visits: Contact sales</p>
+
+                        <p style="font-weight: 700; color: var(--color-positive); margin: var(--spacing-md) 0;">Payback: 1 month</p>
+
+                        <!-- Risk Reversal -->
+                        <div class="risk-reversal">
+                            <div class="risk-item">14-day free trial</div>
+                            <div class="risk-item">Cancel anytime</div>
+                        </div>
+
+                        <button class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Start Free Trial</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Partner Program Section -->
-    <section class="py-32 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex items-start gap-6 mb-16 reveal">
-                <div class="w-28 h-28 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=200&h=200&fit=crop" alt="Partner program" class="w-full h-full object-cover">
+    <!-- 11. PARTNER PROGRAM -->
+    <section class="bg-sage">
+        <div class="container">
+            <div class="text-center mb-lg">
+                <h2 class="section-title" style="margin-bottom: var(--spacing-sm);">Become a partner.</h2>
+                <p style="font-size: 1.25rem; color: #636e72; font-weight: 500;">Join our growth. Share the value. Earn recurring revenue.</p>
+            </div>
+
+            <div class="card-grid mb-lg">
+                <div class="card" style="padding: 30px;">
+                    <h3 class="card-title">Connect clinics</h3>
+                    <p class="card-text">Introduce Healthy4U to medical practices in your network. Help them transform their operations.</p>
                 </div>
-                <div class="mt-4">
-                    <h2 class="text-6xl md:text-8xl font-bold mb-6 text-brand-dark max-w-3xl leading-tight">Become a partner.</h2>
-                    <p class="text-2xl text-brand-muted max-w-2xl">Join our growth. Share the value. Earn recurring revenue.</p>
+
+                <div class="card" style="padding: 30px;">
+                    <h3 class="card-title">Refer patients</h3>
+                    <p class="card-text">Share the platform with your community. Help patients take control of their health journey.</p>
+                </div>
+
+                <div class="card" style="padding: 30px;">
+                    <h3 class="card-title">Earn 10% revenue</h3>
+                    <p class="card-text">Receive 10% of monthly subscription revenue from every clinic and patient you bring.</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20 reveal">
-                <div>
-                    <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
-                        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=200&h=200&fit=crop" alt="Connect clinics" class="w-full h-full object-cover">
+            <div class="card" style="max-width: 900px; margin: 0 auto var(--spacing-lg); padding: 30px;">
+                <h3 class="card-title text-center mb-md">Partner rewards calculator</h3>
+
+                <div class="stats-grid mb-md">
+                    <div class="stat-card">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: var(--spacing-sm);">
+                            <input type="number" id="physiciansCount" value="5" min="0" style="width: 80px; padding: 12px; border: 2px solid var(--color-primary); border-radius: var(--radius-md); font-size: 1.125rem; font-weight: 700; text-align: center; font-family: var(--font-body);">
+                            <span class="card-text" style="white-space: nowrap;">physicians @ $249/mo</span>
+                        </div>
+                        <div class="stat-value" id="physiciansRevenue" style="font-size: 2.5rem;">$125/mo</div>
+                        <div class="stat-sublabel">recurring revenue</div>
                     </div>
-                    <h3 class="text-3xl font-semibold mb-4 text-brand-dark">Connect clinics</h3>
-                    <p class="text-xl text-brand-muted leading-relaxed">Introduce Healthy4U to medical practices in your network. Help them transform their operations.</p>
-                </div>
-                <div>
-                    <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
-                        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=200&h=200&fit=crop" alt="Refer patients" class="w-full h-full object-cover">
+
+                    <div class="stat-card">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: var(--spacing-sm);">
+                            <input type="number" id="patientsCount" value="50" min="0" style="width: 80px; padding: 12px; border: 2px solid var(--color-primary); border-radius: var(--radius-md); font-size: 1.125rem; font-weight: 700; text-align: center; font-family: var(--font-body);">
+                            <span class="card-text" style="white-space: nowrap;">patients @ $9.99/mo</span>
+                        </div>
+                        <div class="stat-value" id="patientsRevenue" style="font-size: 2.5rem;">$50/mo</div>
+                        <div class="stat-sublabel">recurring revenue</div>
                     </div>
-                    <h3 class="text-3xl font-semibold mb-4 text-brand-dark">Refer patients</h3>
-                    <p class="text-xl text-brand-muted leading-relaxed">Share the platform with your community. Help patients take control of their health journey.</p>
                 </div>
-                <div>
-                    <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
-                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=200&h=200&fit=crop" alt="Earn revenue" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-3xl font-semibold mb-4 text-brand-dark">Earn 10% revenue</h3>
-                    <p class="text-xl text-brand-muted leading-relaxed">Receive 10% of monthly subscription revenue from every clinic and patient you bring.</p>
+
+                <div class="text-center" style="background: var(--gradient-soft-green); padding: var(--spacing-lg); border-radius: var(--radius-md);">
+                    <p style="color: var(--color-secondary); font-size: 1.125rem; margin-bottom: var(--spacing-xs); font-weight: 700;">Total monthly income</p>
+                    <div id="totalMonthly" style="font-size: 3.5rem; font-weight: 900; color: var(--color-secondary); line-height: 1;">$175/mo</div>
+                    <p style="color: var(--color-secondary); font-size: 1.25rem; font-weight: 600;">= <span id="totalYearly">$2,100</span>/year</p>
                 </div>
+
+                <p class="card-text text-center mt-sm" style="font-style: italic; font-size: 1rem;">Lifetime recurring revenue. As long as your referrals stay active, you earn.</p>
             </div>
 
-            <div class="bg-brand-cream rounded-3xl p-12 mb-16 reveal">
-                <h3 class="text-3xl font-semibold mb-8 text-brand-dark">Partner rewards calculator</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                    <div>
-                        <div class="text-sm text-brand-muted mb-2">5 physicians @ $249/mo</div>
-                        <div class="text-4xl font-bold text-brand-dark">$125/mo</div>
-                        <div class="text-sm text-brand-muted">recurring revenue</div>
-                    </div>
-                    <div>
-                        <div class="text-sm text-brand-muted mb-2">50 patients @ $9.99/mo</div>
-                        <div class="text-4xl font-bold text-brand-dark">$50/mo</div>
-                        <div class="text-sm text-brand-muted">recurring revenue</div>
-                    </div>
-                    <div>
-                        <div class="text-sm text-brand-muted mb-2">Total monthly income</div>
-                        <div class="text-5xl font-bold text-brand-orange">$175/mo</div>
-                        <div class="text-sm text-brand-muted">= $2,100/year</div>
-                    </div>
-                </div>
-                <p class="text-lg text-brand-muted italic">Lifetime recurring revenue. As long as your referrals stay active, you earn.</p>
+            <div class="card" style="max-width: 900px; margin: 0 auto var(--spacing-lg); padding: 30px;">
+                <h3 class="card-title mb-md">Who can become a partner?</h3>
+                <ul class="partner-list">
+                    <li>Healthcare consultants & advisors</li>
+                    <li>Medical practice management firms</li>
+                    <li>Health tech influencers & content creators</li>
+                    <li>Wellness coaches & nutritionists</li>
+                    <li>Medical device distributors</li>
+                    <li>Anyone passionate about transforming healthcare</li>
+                </ul>
             </div>
 
-            <div class="space-y-8 text-xl text-brand-muted leading-relaxed mb-16 reveal">
-                <div>
-                    <h4 class="text-2xl font-semibold text-brand-dark mb-4">Who can become a partner?</h4>
-                    <ul class="space-y-3 pl-6">
-                        <li>✓ Healthcare consultants & advisors</li>
-                        <li>✓ Medical practice management firms</li>
-                        <li>✓ Health tech influencers & content creators</li>
-                        <li>✓ Wellness coaches & nutritionists</li>
-                        <li>✓ Medical device distributors</li>
-                        <li>✓ Anyone passionate about transforming healthcare</li>
+            <div class="text-center">
+                <button class="btn btn-primary btn-large">Apply for Partner Program</button>
+                <p class="card-text mt-sm" style="font-weight: 600; font-size: 1rem;">Join 50+ partners already growing with us</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. FINAL CTA -->
+    <section style="padding: var(--spacing-2xl) 0;">
+        <div class="container">
+            <div style="background: var(--gradient-secondary); padding: 50px 40px; border-radius: 16px; color: white;">
+                <p style="color: var(--color-primary); font-size: 0.9rem; font-weight: 700; margin-bottom: 15px;">Get Started</p>
+                <h2 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.2;">
+                    Ready to transform<br>your practice?
+                </h2>
+                <p style="line-height: 1.8; margin-bottom: 30px; opacity: 0.9;">
+                    Join the first 10 clinics. Save 30% for life. Transform your practice with the complete health operating system.
+                </p>
+                <button class="btn" style="background: var(--color-primary); color: white; padding: var(--spacing-sm) var(--spacing-lg); border-radius: 50px; border: none; font-weight: 600; cursor: pointer;">
+                    Calculate Your Savings
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <img src="h4ulogo.svg" alt="Healthy4U" style="height: 54px; margin-bottom: var(--spacing-md); filter: brightness(0) invert(1);">
+                    <p style="color: rgba(255,255,255,0.7); line-height: 1.7; font-size: 0.95rem;">Empowering personal wellness through innovative healthcare technology.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#platform">Telemedicine</a></li>
+                        <li><a href="#platform">Wearables</a></li>
+                        <li><a href="#platform">Health Portal</a></li>
                     </ul>
                 </div>
-            </div>
 
-            <div class="text-center reveal">
-                <a href="#" class="inline-block px-12 py-5 bg-brand-orange text-white font-bold text-fluid-xl rounded-full btn-ripple btn-enhanced shadow-medium hover:shadow-glow-orange-strong transition-all duration-300">
-                    Apply for Partner Program
-                </a>
-                <p class="text-brand-muted mt-6">Join 50+ partners already growing with us</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Continuous Care Loop -->
-    <section class="py-32 bg-brand-cream">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-6xl md:text-8xl font-bold mb-8 text-brand-dark max-w-3xl leading-tight">How it works.</h2>
-            <p class="text-2xl mb-32 text-brand-muted max-w-2xl">Care doesn't stop. It flows.</p>
-
-            <div class="space-y-20">
-                <div>
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=200&h=200&fit=crop" alt="Before visit" class="w-full h-full object-cover">
-                        </div>
-                        <div class="text-5xl font-bold text-brand-orange">Before</div>
-                    </div>
-                    <div class="space-y-4 text-xl text-brand-muted leading-relaxed pl-24">
-                        <p><span class="font-semibold text-brand-dark">Patient App collects:</span> Sleep, nutrition, symptoms, vitals</p>
-                        <p><span class="font-semibold text-brand-dark">AI analyzes:</span> Patterns, trends, anomalies</p>
-                        <p><span class="font-semibold text-brand-dark">Doctor receives:</span> Structured patient overview before appointment</p>
-                    </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
                 </div>
 
-                <div class="text-4xl text-brand-muted pl-24">↓</div>
-
-                <div>
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&h=200&fit=crop" alt="During visit" class="w-full h-full object-cover">
-                        </div>
-                        <div class="text-5xl font-bold text-brand-orange">During</div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
                     </div>
-                    <div class="space-y-4 text-xl text-brand-muted leading-relaxed pl-24">
-                        <p><span class="font-semibold text-brand-dark">AI generates:</span> Structured patient overview</p>
-                        <p><span class="font-semibold text-brand-dark">Doctor focuses:</span> On diagnosis, not typing. AI writes notes in 30 seconds.</p>
-                        <p><span class="font-semibold text-brand-dark">Clinical consultant:</span> Suggests diagnostics, risks, treatment options</p>
-                    </div>
-                </div>
-
-                <div class="text-4xl text-brand-muted pl-24">↓</div>
-
-                <div>
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=200&h=200&fit=crop" alt="After visit" class="w-full h-full object-cover">
-                        </div>
-                        <div class="text-5xl font-bold text-brand-orange">After</div>
-                    </div>
-                    <div class="space-y-4 text-xl text-brand-muted leading-relaxed pl-24">
-                        <p><span class="font-semibold text-brand-dark">AI monitors:</span> Treatment compliance, medication adherence, symptom progression</p>
-                        <p><span class="font-semibold text-brand-dark">Patient receives:</span> Reminders, care guidance, answers 24/7</p>
-                        <p><span class="font-semibold text-brand-dark">Early warnings:</span> AI detects concerning patterns and alerts clinic</p>
-                    </div>
-                </div>
-
-                <div class="text-2xl font-semibold text-brand-muted pl-24">↻</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Case Study -->
-    <section class="py-32 bg-white" id="case-study">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex items-start gap-4 mb-8">
-                <div class="w-28 h-28 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
-                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=200&h=200&fit=crop" alt="Medical clinic success" class="w-full h-full object-cover">
-                </div>
-                <div class="mt-4">
-                    <h2 class="text-6xl md:text-8xl font-bold mb-4 text-brand-dark">Real results.</h2>
-                    <p class="text-2xl text-brand-muted">Israeli Family Medicine Practice. 3 physicians.</p>
                 </div>
             </div>
 
-            <div class="mb-20 mt-24">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                    <div class="spring-hover">
-                        <div class="text-brand-muted text-sm mb-2 uppercase tracking-wider">Monthly Savings</div>
-                        <div class="text-5xl font-bold mb-2 text-brand-dark number-scale">$2,400</div>
-                        <div class="text-brand-muted">240 hours saved</div>
-                    </div>
-                    <div class="spring-hover">
-                        <div class="text-brand-muted text-sm mb-2 uppercase tracking-wider">Revenue Increase</div>
-                        <div class="text-5xl font-bold mb-2 text-brand-dark number-scale">$4,167</div>
-                        <div class="text-brand-muted">per month</div>
-                    </div>
-                    <div class="spring-hover">
-                        <div class="text-brand-muted text-sm mb-2 uppercase tracking-wider">Cost</div>
-                        <div class="text-5xl font-bold mb-2 text-brand-dark number-scale">$522</div>
-                        <div class="text-brand-muted">per month</div>
-                    </div>
-                </div>
-                <div class="bg-brand-cream rounded-3xl p-12 mb-12 shimmer pulse-breathe">
-                    <div class="text-brand-muted text-sm mb-3 uppercase tracking-wider">Net Benefit</div>
-                    <div class="text-7xl font-bold mb-4 text-brand-orange number-scale">$11K</div>
-                    <div class="text-2xl text-brand-dark">over 6 months</div>
-                </div>
-                <div class="max-w-4xl">
-                    <p class="text-2xl italic mb-6 text-brand-dark leading-relaxed">
-                        "The value was not the technology itself, but operational clarity. We reduced staff overload and improved profitability without expanding the team."
-                    </p>
-                    <div class="text-brand-muted">— Clinic Owner, Israeli Family Medicine Practice</div>
-                </div>
-            </div>
-
-            <div>
-                <h3 class="text-4xl font-semibold mb-16 text-brand-dark">Key outcomes</h3>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 reveal">
-                    <div class="spring-hover">
-                        <div class="text-4xl font-bold mb-3 text-brand-orange number-scale">97%</div>
-                        <div class="text-lg font-semibold mb-2 text-brand-dark">Less documentation time</div>
-                        <p class="text-brand-muted">From 2 hours/day to 5 minutes</p>
-                    </div>
-                    <div class="spring-hover">
-                        <div class="text-4xl font-bold mb-3 text-brand-orange number-scale">30%</div>
-                        <div class="text-lg font-semibold mb-2 text-brand-dark">More patient capacity</div>
-                        <p class="text-brand-muted">Same hours, no overtime</p>
-                    </div>
-                    <div class="spring-hover">
-                        <div class="text-4xl font-bold mb-3 text-brand-orange number-scale">27.5%</div>
-                        <div class="text-lg font-semibold mb-2 text-brand-dark">Clinic revenue increase</div>
-                        <p class="text-brand-muted">Measured over 6 months</p>
-                    </div>
-                    <div class="spring-hover">
-                        <div class="text-4xl font-bold mb-3 text-brand-orange number-scale">75%</div>
-                        <div class="text-lg font-semibold mb-2 text-brand-dark">Patient adoption</div>
-                        <p class="text-brand-muted">Active app usage</p>
-                    </div>
-                    <div class="spring-hover">
-                        <div class="text-4xl font-bold mb-3 text-brand-orange number-scale">0</div>
-                        <div class="text-lg font-semibold mb-2 text-brand-dark">Staff turnover</div>
-                        <p class="text-brand-muted">Same team, better outcomes</p>
-                    </div>
-                    <div class="spring-hover">
-                        <div class="text-4xl font-bold mb-3 text-brand-orange number-scale">4.8/5</div>
-                        <div class="text-lg font-semibold mb-2 text-brand-dark">Patient satisfaction</div>
-                        <p class="text-brand-muted">847 surveys</p>
-                    </div>
+            <div class="footer-bottom">
+                <p>©2026 Healthy4U | All Rights Reserved</p>
+                <div style="display: flex; gap: var(--spacing-md);">
+                    <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">Privacy</a>
+                    <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">Terms & Services</a>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="py-32 bg-[#FFF9F1]">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-6xl md:text-8xl font-bold mb-8 leading-tight text-brand-dark">Ready to transform<br/>your practice?</h2>
-            <p class="text-2xl mb-12 text-brand-muted max-w-2xl">Join the first 10 clinics. Save 30% for life.</p>
-            <div class="flex flex-col sm:flex-row gap-4">
-                <a href="calculator.html" class="px-10 py-4 bg-brand-orange text-white font-semibold text-fluid-lg rounded-full btn-ripple btn-enhanced shadow-medium hover:shadow-glow-orange-strong transition-all duration-300">
-                    Calculate Your Savings
-                </a>
-                <a href="#" class="px-10 py-4 bg-white text-brand-dark font-semibold text-fluid-lg rounded-full shadow-soft hover:shadow-medium hover:bg-gray-100 transition-all duration-300">
-                    Book a Demo
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer Container -->
-    <div id="footer-container"></div>
+    </footer>
 
     <script>
-        function showToggle(type) {
-            const clinicsBtn = document.getElementById('clinics-btn');
-            const patientsBtn = document.getElementById('patients-btn');
-            const clinicsContent = document.getElementById('clinics-content');
-            const patientsContent = document.getElementById('patients-content');
+        // Sticky CTA Bar
+        window.addEventListener('scroll', function() {
+            const caseStudy = document.getElementById('case-study');
+            const stickyCta = document.getElementById('stickyCta');
 
-            if (type === 'clinics') {
-                clinicsBtn.className = 'px-8 py-3 bg-brand-orange text-white font-semibold rounded-full text-fluid-lg shadow-medium hover:shadow-glow-orange transition-all duration-300';
-                patientsBtn.className = 'px-8 py-3 bg-gray-100 text-brand-dark font-semibold rounded-full text-fluid-lg shadow-soft hover:shadow-medium hover:bg-gray-200 transition-all duration-300';
-                clinicsContent.classList.remove('hidden');
-                patientsContent.classList.add('hidden');
-            } else {
-                patientsBtn.className = 'px-8 py-3 bg-brand-orange text-white font-semibold rounded-full text-fluid-lg shadow-medium hover:shadow-glow-orange transition-all duration-300';
-                clinicsBtn.className = 'px-8 py-3 bg-gray-100 text-brand-dark font-semibold rounded-full text-fluid-lg shadow-soft hover:shadow-medium hover:bg-gray-200 transition-all duration-300';
-                patientsContent.classList.remove('hidden');
-                clinicsContent.classList.add('hidden');
-            }
-        }
+            if (caseStudy && stickyCta) {
+                const caseStudyRect = caseStudy.getBoundingClientRect();
+                const caseStudyBottom = caseStudyRect.bottom;
 
-        function showPricingToggle(type) {
-            const clinicsBtn = document.getElementById('pricing-clinics-btn');
-            const patientsBtn = document.getElementById('pricing-patients-btn');
-            const clinicsPricing = document.getElementById('clinics-pricing');
-            const patientsPricing = document.getElementById('patients-pricing');
-
-            if (type === 'clinics') {
-                clinicsBtn.className = 'px-8 py-3 bg-brand-orange text-white font-semibold rounded-full text-fluid-lg shadow-medium hover:shadow-glow-orange transition-all duration-300';
-                patientsBtn.className = 'px-8 py-3 bg-gray-100 text-brand-dark font-semibold rounded-full text-fluid-lg shadow-soft hover:shadow-medium hover:bg-gray-200 transition-all duration-300';
-                clinicsPricing.classList.remove('hidden');
-                patientsPricing.classList.add('hidden');
-            } else {
-                patientsBtn.className = 'px-8 py-3 bg-brand-orange text-white font-semibold rounded-full text-fluid-lg shadow-medium hover:shadow-glow-orange transition-all duration-300';
-                clinicsBtn.className = 'px-8 py-3 bg-gray-100 text-brand-dark font-semibold rounded-full text-fluid-lg shadow-soft hover:shadow-medium hover:bg-gray-200 transition-all duration-300';
-                patientsPricing.classList.remove('hidden');
-                clinicsPricing.classList.add('hidden');
-            }
-        }
-
-        function revealOnScroll() {
-            const reveals = document.querySelectorAll('.reveal, .reveal-scale');
-
-            reveals.forEach(element => {
-                const windowHeight = window.innerHeight;
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-
-                if (elementTop < windowHeight - elementVisible) {
-                    element.classList.add('active');
-                }
-            });
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            revealOnScroll();
-        });
-
-        window.addEventListener('scroll', revealOnScroll);
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Scroll Progress Indicator
-        function updateScrollProgress() {
-            const scrollProgress = document.getElementById('scrollProgress');
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const progress = (scrollTop / scrollHeight) * 100;
-            scrollProgress.style.width = progress + '%';
-        }
-
-        window.addEventListener('scroll', updateScrollProgress);
-
-        // 3D Card Tilt Effect
-        function initCardTilt() {
-            const cards = document.querySelectorAll('.card-tilt');
-
-            cards.forEach(card => {
-                card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-
-                    const rotateX = (y - centerY) / 10;
-                    const rotateY = (centerX - x) / 10;
-
-                    card.style.setProperty('--rotate-x', `${rotateX}deg`);
-                    card.style.setProperty('--rotate-y', `${rotateY}deg`);
-                });
-
-                card.addEventListener('mouseleave', () => {
-                    card.style.setProperty('--rotate-x', '0deg');
-                    card.style.setProperty('--rotate-y', '0deg');
-                });
-            });
-        }
-
-        // Animated Number Counter
-        function animateCounter(element, target, duration = 2000) {
-            const start = 0;
-            const increment = target / (duration / 16);
-            let current = start;
-            const originalText = element.textContent;
-
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-
-                // Format based on original text content
-                if (originalText.includes('$')) {
-                    element.textContent = '$' + Math.round(current).toLocaleString();
-                } else if (originalText.includes('%')) {
-                    if (target < 10) {
-                        element.textContent = current.toFixed(1) + '%';
-                    } else {
-                        element.textContent = Math.round(current) + '%';
-                    }
-                } else if (originalText.includes('/')) {
-                    element.textContent = current.toFixed(1) + '/5';
+                if (caseStudyBottom < 0) {
+                    stickyCta.classList.add('visible');
                 } else {
-                    element.textContent = Math.round(current);
+                    stickyCta.classList.remove('visible');
                 }
-            }, 16);
-        }
-
-        // Initialize counters when they come into view
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px'
-        };
-
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-                    entry.target.classList.add('counted');
-                    const target = parseFloat(entry.target.getAttribute('data-target'));
-                    animateCounter(entry.target, target);
-                }
-            });
-        }, observerOptions);
-
-        // Staggered List Animation
-        function initStaggerAnimation() {
-            const staggerItems = document.querySelectorAll('.stagger-item');
-
-            const staggerObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            staggerItems.forEach(item => staggerObserver.observe(item));
-        }
-
-        // Parallax Effect
-        function initParallax() {
-            const parallaxElements = document.querySelectorAll('.parallax');
-
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-
-                parallaxElements.forEach(el => {
-                    const speed = el.getAttribute('data-speed') || 0.5;
-                    const yPos = -(scrolled * speed);
-                    el.style.transform = `translateY(${yPos}px)`;
-                });
-            });
-        }
-
-        // Initialize all effects on DOMContentLoaded
-        window.addEventListener('DOMContentLoaded', () => {
-            initCardTilt();
-            initStaggerAnimation();
-            initParallax();
-            initMagneticHover();
-            initCursorSpotlight();
-
-            // Initialize number counters
-            document.querySelectorAll('.counter').forEach(counter => {
-                counterObserver.observe(counter);
-            });
+            }
         });
 
-        // Magnetic Hover Effect
-        function initMagneticHover() {
-            const magneticElements = document.querySelectorAll('.magnetic-hover');
+        function togglePlatform(type) {
+            const patientsBtn = document.getElementById('btn-patients');
+            const clinicsBtn = document.getElementById('btn-clinics');
+            const patientsContent = document.getElementById('content-patients');
+            const clinicsContent = document.getElementById('content-clinics');
 
-            magneticElements.forEach(el => {
-                el.addEventListener('mousemove', (e) => {
-                    const rect = el.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-
-                    const moveX = x * 0.15;
-                    const moveY = y * 0.15;
-
-                    el.style.setProperty('--mouse-x', `${moveX}px`);
-                    el.style.setProperty('--mouse-y', `${moveY}px`);
-                });
-
-                el.addEventListener('mouseleave', () => {
-                    el.style.setProperty('--mouse-x', '0px');
-                    el.style.setProperty('--mouse-y', '0px');
-                });
-            });
+            if (type === 'patients') {
+                patientsBtn.classList.add('active');
+                clinicsBtn.classList.remove('active');
+                patientsContent.classList.add('active');
+                clinicsContent.classList.remove('active');
+            } else {
+                clinicsBtn.classList.add('active');
+                patientsBtn.classList.remove('active');
+                clinicsContent.classList.add('active');
+                patientsContent.classList.remove('active');
+            }
         }
 
-        // Cursor Spotlight Effect
-        function initCursorSpotlight() {
-            const spotlightElements = document.querySelectorAll('.cursor-spotlight');
+        function togglePricing(type) {
+            const patientsBtn = document.getElementById('btn-pricing-patients');
+            const clinicsBtn = document.getElementById('btn-pricing-clinics');
+            const patientsContent = document.getElementById('pricing-patients');
+            const clinicsContent = document.getElementById('pricing-clinics');
 
-            spotlightElements.forEach(el => {
-                el.addEventListener('mousemove', (e) => {
-                    const rect = el.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    const spotlight = el.querySelector('::after') || el;
-                    el.style.setProperty('--spotlight-x', `${x}px`);
-                    el.style.setProperty('--spotlight-y', `${y}px`);
-                });
-            });
+            if (type === 'patients') {
+                patientsBtn.classList.add('active');
+                clinicsBtn.classList.remove('active');
+                patientsContent.classList.add('active');
+                clinicsContent.classList.remove('active');
+            } else {
+                clinicsBtn.classList.add('active');
+                patientsBtn.classList.remove('active');
+                clinicsContent.classList.add('active');
+                patientsContent.classList.remove('active');
+            }
         }
+
+        // Partner Calculator
+        function calculatePartnerRevenue() {
+            const physiciansCount = parseInt(document.getElementById('physiciansCount').value) || 0;
+            const patientsCount = parseInt(document.getElementById('patientsCount').value) || 0;
+
+            // Calculate 10% commission
+            const physiciansRevenue = physiciansCount * 249 * 0.10;
+            const patientsRevenue = patientsCount * 9.99 * 0.10;
+            const totalMonthly = physiciansRevenue + patientsRevenue;
+            const totalYearly = totalMonthly * 12;
+
+            // Update display
+            document.getElementById('physiciansRevenue').textContent = '$' + Math.round(physiciansRevenue) + '/mo';
+            document.getElementById('patientsRevenue').textContent = '$' + Math.round(patientsRevenue) + '/mo';
+            document.getElementById('totalMonthly').textContent = '$' + Math.round(totalMonthly) + '/mo';
+            document.getElementById('totalYearly').textContent = '$' + Math.round(totalYearly).toLocaleString();
+        }
+
+        // Initialize calculator on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const physiciansInput = document.getElementById('physiciansCount');
+            const patientsInput = document.getElementById('patientsCount');
+
+            if (physiciansInput && patientsInput) {
+                physiciansInput.addEventListener('input', calculatePartnerRevenue);
+                patientsInput.addEventListener('input', calculatePartnerRevenue);
+
+                // Calculate initial values
+                calculatePartnerRevenue();
+            }
+        });
     </script>
 </body>
 </html>

@@ -5,388 +5,676 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Healthy4U</title>
     <link rel="icon" type="image/png" href="images/logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-orange': '#EF6113',
-                        'brand-cream': '#FFF9F2',
-                        'brand-dark': '#000000',
-                        'brand-muted': '#666666',
-                    },
-                    borderRadius: {
-                        'brand-xl': '20px',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-                    },
-                },
-            },
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
     <style>
-        /* Fade in animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        :root {
+            /* Colors */
+            --color-primary: #FF490E;
+            --color-primary-dark: #E6420D;
+            --color-secondary: #0C3C28;
+            --color-secondary-light: #155240;
+            --color-positive: #23C965;
+            --color-positive-dark: #1BA352;
+            --color-negative: #FF554A;
+
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #FF490E 0%, #E6420D 100%);
+            --gradient-secondary: linear-gradient(135deg, #0C3C28 0%, #155240 100%);
+            --gradient-soft-green: linear-gradient(135deg, #E8F5E9, #FFFFFF);
+            --gradient-soft-yellow: linear-gradient(135deg, #FFF9E6, #FFFFFF);
+
+            /* Spacing */
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-2xl: 64px;
+            --spacing-3xl: 80px;
+            --spacing-4xl: 120px;
+
+            /* Typography */
+            --font-display: 'Bricolage Grotesque', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-primary: 0 8px 24px rgba(255, 73, 14, 0.25);
+
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-full: 9999px;
+
+            /* Animation */
+            --duration-normal: 300ms;
+            --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
         }
 
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* Apply animations */
-        .animate-on-scroll {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
+        body {
+            font-family: var(--font-body);
+            color: var(--color-secondary);
+            line-height: 1.6;
         }
 
-        .animate-delay-100 {
-            animation-delay: 0.1s;
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid #f1f3f5;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95);
         }
 
-        .animate-delay-200 {
-            animation-delay: 0.2s;
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
         }
 
-        .animate-delay-300 {
-            animation-delay: 0.3s;
+        .logo {
+            height: 44px;
         }
 
-        /* Image hover effects */
-        .image-hover {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        .image-hover:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        .nav-links a {
+            color: #2d3436;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color var(--duration-normal);
+            cursor: pointer;
         }
 
-        /* Smooth scroll reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        .nav-links a:hover {
+            color: var(--color-primary);
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
         }
 
-        /* Button hover animation */
-        .btn-animate {
-            position: relative;
-            overflow: hidden;
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: var(--font-body);
+            white-space: nowrap;
         }
 
-        .btn-animate::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-large {
+            padding: 20px 48px;
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-soft-green);
+            padding: var(--spacing-4xl) 0 var(--spacing-3xl);
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: var(--color-secondary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-family: var(--font-display);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: #636e72;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        /* Section Styles */
+        section {
+            padding: var(--spacing-4xl) 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-secondary);
+            font-family: var(--font-display);
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #636e72;
+            margin-bottom: var(--spacing-xl);
+            line-height: 1.7;
+        }
+
+        /* Story Section */
+        .story-text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #2d3436;
+            margin-bottom: var(--spacing-md);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .story-image {
+            max-width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            margin: var(--spacing-xl) 0 var(--spacing-md);
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #636e72;
+            font-style: italic;
+        }
+
+        /* Mission Section */
+        .mission-text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #2d3436;
+            margin-bottom: var(--spacing-md);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mission-statement {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-align: center;
+            padding: var(--spacing-lg);
+            background: var(--gradient-soft-yellow);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-lg);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .team-card {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-photo {
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+            object-fit: cover;
+            margin: 0 auto var(--spacing-md);
+            border: 4px solid var(--color-primary);
         }
 
-        .btn-animate:hover::before {
-            width: 300px;
-            height: 300px;
+        .team-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .team-role {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .team-bio {
+            font-size: 0.95rem;
+            color: #636e72;
+            line-height: 1.6;
+        }
+
+        /* Values Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .value-card {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .value-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .value-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .value-description {
+            font-size: 0.95rem;
+            color: #636e72;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient-soft-green);
+            padding: var(--spacing-3xl) 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-md);
+            font-family: var(--font-display);
+        }
+
+        .cta-description {
+            font-size: 1.125rem;
+            color: #636e72;
+            margin-bottom: var(--spacing-xl);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-secondary);
+            color: white;
+            padding: var(--spacing-3xl) 0 var(--spacing-lg);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .footer-column h4 {
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.125rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color var(--duration-normal);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .bg-white-soft {
+            background: #FAFBFC;
         }
     </style>
-    <script src="components.js"></script>
 </head>
-<body class="font-sans bg-white text-black">
-    <!-- Header Container -->
-    <div id="header-container"></div>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html">
+                    <img src="h4ulogo.svg" alt="Healthy4U" class="logo">
+                </a>
+                <div class="nav-links">
+                    <a href="ecosystem.html">Ecosystem</a>
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#pricing">Pricing</a>
+                    <a href="index.html#case-study">Case Study</a>
+                    <a href="about.html">About</a>
+                    <a href="https://medical-b2b.healthy4u.world/auth/login" class="btn btn-outline" style="padding: 12px 28px; font-size: 0.95rem;">See Demo</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Hero Section -->
-    <section class="bg-brand-cream py-32">
-        <div class="max-w-6xl mx-auto px-6">
-            <h1 class="text-6xl md:text-8xl font-bold mb-12 leading-tight text-brand-dark max-w-4xl animate-on-scroll">
-                We're building healthcare that never stops caring.
-            </h1>
-            <p class="text-2xl md:text-3xl mb-12 text-brand-muted max-w-3xl leading-relaxed animate-on-scroll animate-delay-100">
+    <!-- 1. Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">We're building healthcare that never stops caring.</h1>
+            <p class="hero-description">
                 A small team with a big mission: transform healthcare from fragmented episodes into continuous, intelligent care.
             </p>
         </div>
     </section>
 
-    <!-- How It All Started -->
-    <section class="py-32 bg-white">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-bold mb-20 text-brand-dark max-w-3xl leading-tight">How it all started.</h2>
+    <!-- 2. How It All Started -->
+    <section class="bg-white-soft">
+        <div class="container">
+            <h2 class="section-title text-center">How it all started.</h2>
 
-            <div class="space-y-8 text-xl text-brand-muted leading-relaxed max-w-4xl mb-20">
-                <p>
-                    It all started with a simple but profound desire—to create something that truly helps people and to leave a legacy that isn't measured just in money. Two years ago, while on a business trip in Cannes, sitting with colleagues over coffee, I jokingly showed them a prototype: I took a photo of my cup and demonstrated how the system could instantly recognize its composition and calories. We laughed, but in that moment, a question took root: what if we built something like this on the scale of a person's entire life? Six months later, we launched our first version on the App Store, featuring a chat, food logging, and a memory function, eventually integrating heart rate and wearable data.
-                </p>
-                <p>
-                    The true realization of our mission came after I moved to Europe and faced the reality of waiting weeks for a doctor's appointment. When I tried to find answers using ChatGPT, I hit the same wall every time: the AI remembered nothing from our previous conversations. I had to explain my symptoms and history all over again. It became obvious—the world needs an assistant with long-term memory that knows everything about you. We spent months experimenting with memory architecture, but the result was worth it: the more you interact with the system, the more deeply it understands you.
-                </p>
-                <p>
-                    The turning point came when we spontaneously presented our work to doctors at the GavCure clinic in Israel. I never expected them to get "hooked" on the product so quickly. One doctor confessed to me that, thanks to the system, he was able to simply listen to a patient for the first time in five years, without being distracted by forms or typing. It gave me goosebumps. From that moment, growth exploded: we added FHIR medical standards for data transfer between clinics, implemented voice recording for appointments, and created pre-checkup systems that patients fill out while still on their way to the clinic. Looking back, we realized we had evolved from a simple tracker into a complete ecosystem of analytics and AI consultations. Now, when a patient enters the office, the doctor already knows everything about them, as if they've been acquainted for years. This is Healthy4U—and I feel like we're just getting warmed up.
-                </p>
+            <p class="story-text">
+                It all started with a simple but profound desire—to create something that truly helps people and to leave a legacy that isn't measured just in money. Two years ago, while on a business trip in Cannes, sitting with colleagues over coffee, I jokingly showed them a prototype: I took a photo of my cup and demonstrated how the system could instantly recognize its composition and calories. We laughed, but in that moment, a question took root: what if we built something like this on the scale of a person's entire life? Six months later, we launched our first version on the App Store, featuring a chat, food logging, and a memory function, eventually integrating heart rate and wearable data.
+            </p>
+
+            <p class="story-text">
+                The true realization of our mission came after I moved to Europe and faced the reality of waiting weeks for a doctor's appointment. When I tried to find answers using ChatGPT, I hit the same wall every time: the AI remembered nothing from our previous conversations. I had to explain my symptoms and history all over again. It became obvious—the world needs an assistant with long-term memory that knows everything about you. We spent months experimenting with memory architecture, but the result was worth it: the more you interact with the system, the more deeply it understands you.
+            </p>
+
+            <p class="story-text">
+                The turning point came when we spontaneously presented our work to doctors at the GavCure clinic in Israel. I never expected them to get "hooked" on the product so quickly. One doctor confessed to me that, thanks to the system, he was able to simply listen to a patient for the first time in five years, without being distracted by forms or typing. It gave me goosebumps. From that moment, growth exploded: we added FHIR medical standards for data transfer between clinics, implemented voice recording for appointments, and created pre-checkup systems that patients fill out while still on their way to the clinic. Looking back, we realized we had evolved from a simple tracker into a complete ecosystem of analytics and AI consultations. Now, when a patient enters the office, the doctor already knows everything about them, as if they've been acquainted for years. This is Healthy4U—and I feel like we're just getting warmed up.
+            </p>
+
+            <img src="images/team_group_v2.jpg" alt="Healthy4U Co-founders" class="story-image">
+            <p class="image-caption">Gennady, Sergey and Konstantin — the founding team</p>
+        </div>
+    </section>
+
+    <!-- 3. Our Mission -->
+    <section>
+        <div class="container">
+            <h2 class="section-title text-center">Why we exist.</h2>
+
+            <p class="mission-text">
+                <strong>Healthcare today is reactive.</strong> You get sick, visit a doctor, receive treatment, and disconnect until the next problem. This episodic model was designed for acute care — broken bones, infections, emergencies.
+            </p>
+
+            <p class="mission-text">
+                But <strong>80% of healthcare costs come from chronic conditions</strong> that require continuous monitoring, not episodic intervention. Diabetes doesn't care if you have an appointment next month. Heart disease doesn't pause between visits.
+            </p>
+
+            <p class="mission-text">
+                We believe healthcare should flow like conversation — continuous, adaptive, always listening. Patients shouldn't have to remember every symptom. Doctors shouldn't waste half their time typing. AI should connect the dots humans can't see.
+            </p>
+
+            <div class="mission-statement">
+                Our mission: Make continuous care the default, not the exception.
             </div>
+        </div>
+    </section>
 
-            <!-- Founders Group Photo -->
-            <div class="mb-24 reveal">
-                <div class="max-w-xl mx-auto">
-                    <div class="rounded-2xl overflow-hidden shadow-lg image-hover">
-                        <img src="images/team_group_v2.jpg" alt="Healthy4U Co-founders" class="w-full h-auto object-cover">
-                    </div>
-                    <p class="text-center text-brand-muted mt-6 text-lg italic">Gennady, Sergey and Konstantin — the founding team</p>
+    <!-- 4. The Team -->
+    <section class="bg-white-soft">
+        <div class="container">
+            <h2 class="section-title text-center">The team.</h2>
+            <p class="section-subtitle text-center">
+                We're a small, mission-driven team building the future of healthcare.
+            </p>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="images/gen.png" alt="Gennady Ochman" class="team-photo">
+                    <h3 class="team-name">Gennady Ochman</h3>
+                    <p class="team-role">CEO, Co-Founder</p>
+                    <p class="team-bio">Clinic owner and healthcare innovator. Built and runs GavCure Clinic while pioneering AI-first patient care.</p>
+                </div>
+
+                <div class="team-card">
+                    <img src="images/serg.png" alt="Sergey Nemesh" class="team-photo">
+                    <h3 class="team-name">Sergey Nemesh</h3>
+                    <p class="team-role">CTO, Co-Founder</p>
+                    <p class="team-bio">Technical architect and full-stack engineer. Built the AI infrastructure powering Healthy4U's platform.</p>
+                </div>
+
+                <div class="team-card">
+                    <img src="images/konst.png" alt="Konstantin Moroshin" class="team-photo">
+                    <h3 class="team-name">Konstantin Moroshin</h3>
+                    <p class="team-role">Chief Strategy Officer</p>
+                    <p class="team-bio">Product strategist and business development expert. Drives market expansion and strategic partnerships.</p>
+                </div>
+
+                <div class="team-card">
+                    <img src="images/irina.jpg" alt="Irina Marchenko" class="team-photo">
+                    <h3 class="team-name">Irina Marchenko</h3>
+                    <p class="team-role">Project Manager</p>
+                    <p class="team-bio">Ensures seamless coordination across teams and drives product delivery with precision.</p>
+                </div>
+
+                <div class="team-card">
+                    <img src="images/pavel.jpg" alt="Pavel Vlasenko" class="team-photo">
+                    <h3 class="team-name">Pavel Vlasenko</h3>
+                    <p class="team-role">Backend Developer</p>
+                    <p class="team-bio">Builds robust server infrastructure and APIs that power the platform's core functionality.</p>
+                </div>
+
+                <div class="team-card">
+                    <img src="images/yaroslav.jpg" alt="Yaroslav Savchenko" class="team-photo">
+                    <h3 class="team-name">Yaroslav Savchenko</h3>
+                    <p class="team-role">QA Engineer</p>
+                    <p class="team-bio">Ensures product quality through rigorous testing and validation across all platform features.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Our Mission -->
-    <section class="py-32 bg-brand-cream">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-bold mb-20 text-brand-dark max-w-3xl leading-tight">Why we exist.</h2>
+    <!-- 5. What We Believe -->
+    <section>
+        <div class="container">
+            <h2 class="section-title text-center">What we believe.</h2>
 
-            <div class="space-y-8 text-xl text-brand-muted leading-relaxed max-w-4xl">
-                <p>
-                    <span class="font-semibold text-brand-dark">Healthcare today is reactive.</span> You get sick, visit a doctor, receive treatment, and disconnect until the next problem. This episodic model was designed for acute care — broken bones, infections, emergencies.
-                </p>
-                <p>
-                    But <span class="font-semibold text-brand-dark">80% of healthcare costs come from chronic conditions</span> that require continuous monitoring, not episodic intervention. Diabetes doesn't care if you have an appointment next month. Heart disease doesn't pause between visits.
-                </p>
-                <p>
-                    We believe healthcare should flow like conversation — continuous, adaptive, always listening. Patients shouldn't have to remember every symptom. Doctors shouldn't waste half their time typing. AI should connect the dots humans can't see.
-                </p>
-                <p class="text-2xl font-semibold text-brand-dark">
-                    Our mission: Make continuous care the default, not the exception.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Team -->
-    <section class="py-32 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-bold mb-8 text-brand-dark max-w-3xl leading-tight">The team.</h2>
-            <p class="text-xl mb-24 text-brand-muted max-w-2xl">We're a small, mission-driven team building the future of healthcare.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 reveal">
-                <!-- Team Member 1 -->
-                <div>
-                    <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
-                        <img src="images/gen.png" alt="Gennady Ochman" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-2xl font-semibold text-brand-dark mb-2">Gennady Ochman</h3>
-                    <p class="text-lg text-brand-muted mb-3">CEO, Co-Founder</p>
-                    <p class="text-base text-brand-muted leading-relaxed">Clinic owner and healthcare innovator. Built and runs GavCure Clinic while pioneering AI-first patient care.</p>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3 class="value-title">Patient-first, always</h3>
+                    <p class="value-description">Every feature decision starts with: 'Does this make a patient's life better?' If the answer isn't a clear yes, we don't build it.</p>
                 </div>
 
-                <!-- Team Member 2 -->
-                <div>
-                    <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
-                        <img src="images/serg.png" alt="Sergey Nemesh" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-2xl font-semibold text-brand-dark mb-2">Sergey Nemesh</h3>
-                    <p class="text-lg text-brand-muted mb-3">CTO, Co-Founder</p>
-                    <p class="text-base text-brand-muted leading-relaxed">Technical architect and full-stack engineer. Built the AI infrastructure powering Healthy4U's platform.</p>
+                <div class="value-card">
+                    <h3 class="value-title">Privacy is non-negotiable</h3>
+                    <p class="value-description">Your data is yours. We built federated architecture so clinics own their data. We provide intelligence, not surveillance.</p>
                 </div>
 
-                <!-- Team Member 3 -->
-                <div>
-                    <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
-                        <img src="images/konst.png" alt="Konstantin Moroshin" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-2xl font-semibold text-brand-dark mb-2">Konstantin Moroshin</h3>
-                    <p class="text-lg text-brand-muted mb-3">Chief Strategy Officer</p>
-                    <p class="text-base text-brand-muted leading-relaxed">Product strategist and business development expert. Drives market expansion and strategic partnerships.</p>
+                <div class="value-card">
+                    <h3 class="value-title">AI augments, never replaces</h3>
+                    <p class="value-description">Doctors make decisions. AI handles the grunt work — documentation, pattern detection, reminders. Humans diagnose. AI supports.</p>
                 </div>
 
-                <!-- Team Member 4 -->
-                <div>
-                    <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
-                        <img src="images/irina.jpg" alt="Irina Marchenko" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-2xl font-semibold text-brand-dark mb-2">Irina Marchenko</h3>
-                    <p class="text-lg text-brand-muted mb-3">Project Manager</p>
-                    <p class="text-base text-brand-muted leading-relaxed">Ensures seamless coordination across teams and drives product delivery with precision.</p>
+                <div class="value-card">
+                    <h3 class="value-title">Built for everyone, everywhere</h3>
+                    <p class="value-description">Healthcare doesn't speak just English. Our platform works in any language, serves any practice size, deploys anywhere.</p>
                 </div>
 
-                <!-- Team Member 5 -->
-                <div>
-                    <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
-                        <img src="images/pavel.jpg" alt="Pavel Vlasenko" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-2xl font-semibold text-brand-dark mb-2">Pavel Vlasenko</h3>
-                    <p class="text-lg text-brand-muted mb-3">Backend Developer</p>
-                    <p class="text-base text-brand-muted leading-relaxed">Builds robust server infrastructure and APIs that power the platform's core functionality.</p>
-                </div>
-
-                <!-- Team Member 6 -->
-                <div>
-                    <div class="w-24 h-24 rounded-2xl overflow-hidden shadow-md mb-6 image-hover">
-                        <img src="images/yaroslav.jpg" alt="Yaroslav Savchenko" class="w-full h-full object-cover">
-                    </div>
-                    <h3 class="text-2xl font-semibold text-brand-dark mb-2">Yaroslav Savchenko</h3>
-                    <p class="text-lg text-brand-muted mb-3">QA Engineer</p>
-                    <p class="text-base text-brand-muted leading-relaxed">Ensures product quality through rigorous testing and validation across all platform features.</p>
+                <div class="value-card">
+                    <h3 class="value-title">Move fast, stay careful</h3>
+                    <p class="value-description">Healthcare demands speed and caution. We ship quickly, but we validate rigorously. No compromise on safety.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Our Values -->
-    <section class="py-32 bg-brand-cream">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-bold mb-24 text-brand-dark max-w-3xl leading-tight">What we believe.</h2>
-
-            <div class="space-y-16">
-                <div class="reveal">
-                    <div class="flex items-start gap-4 mb-6">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 bg-brand-orange flex items-center justify-center">
-                            <span class="text-4xl">🎯</span>
-                        </div>
-                        <h3 class="text-3xl font-semibold text-brand-dark mt-4">Patient-first, always</h3>
-                    </div>
-                    <p class="text-xl text-brand-muted leading-relaxed pl-24 max-w-3xl">
-                        Every feature decision starts with: "Does this make a patient's life better?" If the answer isn't a clear yes, we don't build it.
-                    </p>
-                </div>
-
-                <div class="reveal">
-                    <div class="flex items-start gap-4 mb-6">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 bg-brand-orange flex items-center justify-center">
-                            <span class="text-4xl">🔒</span>
-                        </div>
-                        <h3 class="text-3xl font-semibold text-brand-dark mt-4">Privacy is non-negotiable</h3>
-                    </div>
-                    <p class="text-xl text-brand-muted leading-relaxed pl-24 max-w-3xl">
-                        Your data is yours. We built federated architecture so clinics own their data. We provide intelligence, not surveillance.
-                    </p>
-                </div>
-
-                <div class="reveal">
-                    <div class="flex items-start gap-4 mb-6">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 bg-brand-orange flex items-center justify-center">
-                            <span class="text-4xl">🤝</span>
-                        </div>
-                        <h3 class="text-3xl font-semibold text-brand-dark mt-4">AI augments, never replaces</h3>
-                    </div>
-                    <p class="text-xl text-brand-muted leading-relaxed pl-24 max-w-3xl">
-                        Doctors make decisions. AI handles the grunt work — documentation, pattern detection, reminders. Humans diagnose. AI supports.
-                    </p>
-                </div>
-
-                <div class="reveal">
-                    <div class="flex items-start gap-4 mb-6">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 bg-brand-orange flex items-center justify-center">
-                            <span class="text-4xl">🌍</span>
-                        </div>
-                        <h3 class="text-3xl font-semibold text-brand-dark mt-4">Built for everyone, everywhere</h3>
-                    </div>
-                    <p class="text-xl text-brand-muted leading-relaxed pl-24 max-w-3xl">
-                        Healthcare doesn't speak just English. Our platform works in any language, serves any practice size, deploys anywhere.
-                    </p>
-                </div>
-
-                <div class="reveal">
-                    <div class="flex items-start gap-4 mb-6">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 bg-brand-orange flex items-center justify-center">
-                            <span class="text-4xl">⚡</span>
-                        </div>
-                        <h3 class="text-3xl font-semibold text-brand-dark mt-4">Move fast, stay careful</h3>
-                    </div>
-                    <p class="text-xl text-brand-muted leading-relaxed pl-24 max-w-3xl">
-                        Healthcare demands speed and caution. We ship quickly, but we validate rigorously. No compromise on safety.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Join Us Section -->
-    <section class="py-32 bg-white" id="join-us">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-bold mb-12 text-brand-dark max-w-3xl leading-tight">Want to join us?</h2>
-            <p class="text-2xl mb-12 text-brand-muted max-w-3xl leading-relaxed">
+    <!-- 6. Join Us Section -->
+    <section id="join-us" class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Want to join us?</h2>
+            <p class="cta-description">
                 We're hiring engineers, designers, clinicians, and operators who believe healthcare should never stop caring.
             </p>
-            <div class="flex flex-col sm:flex-row gap-6">
-                <a href="#" class="px-10 py-4 bg-brand-orange text-white font-semibold text-lg rounded-full hover:opacity-90 transition-opacity btn-animate">
-                    View Open Roles
-                </a>
-                <a href="mailto:careers@healthy4u.com" class="px-10 py-4 bg-white border border-gray-200 text-brand-dark font-semibold text-lg rounded-full hover:bg-gray-50 transition-colors btn-animate">
-                    careers@healthy4u.com
-                </a>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary btn-large">View Open Roles</a>
+                <a href="mailto:careers@healthy4u.com" class="btn btn-outline btn-large">careers@healthy4u.com</a>
             </div>
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="py-32 bg-[#FFF9F1]">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-5xl md:text-8xl font-bold mb-8 leading-tight text-brand-dark">Ready to transform your practice?</h2>
-            <p class="text-2xl mb-12 text-brand-muted max-w-2xl">Join the first 10 clinics. Save 30% for life.</p>
-            <div class="flex flex-col sm:flex-row gap-6">
-                <a href="calculator.html" class="px-10 py-5 bg-brand-orange text-white font-bold text-lg rounded-full hover:opacity-90 transition-opacity btn-animate">
-                    Calculate Your Savings
-                </a>
-                <a href="index.html" class="px-10 py-5 bg-white text-brand-dark font-bold text-lg rounded-full hover:bg-gray-100 transition-colors btn-animate">
-                    Book a Demo
-                </a>
+    <!-- 7. Final CTA -->
+    <section class="bg-white-soft">
+        <div class="container text-center">
+            <h2 class="section-title" style="margin-bottom: var(--spacing-md);">Ready to transform your practice?</h2>
+            <p class="section-subtitle" style="font-size: 1.25rem;">Join the first 10 clinics. Save 30% for life.</p>
+            <div class="cta-buttons" style="margin-top: var(--spacing-lg);">
+                <a href="calculator.html" class="btn btn-primary btn-large">Calculate Your Savings</a>
+                <a href="index.html" class="btn btn-outline btn-large">Book a Demo</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer Container -->
-    <div id="footer-container"></div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <img src="h4ulogo.svg" alt="Healthy4U" style="height: 54px; margin-bottom: var(--spacing-md); filter: brightness(0) invert(1);">
+                    <p style="color: rgba(255,255,255,0.7); line-height: 1.7; font-size: 0.95rem;">Empowering personal wellness through innovative healthcare technology.</p>
+                </div>
 
-    <script>
-        // Scroll reveal animations
-        document.addEventListener('DOMContentLoaded', function() {
-            const revealElements = document.querySelectorAll('.reveal');
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#platform">Telemedicine</a></li>
+                        <li><a href="index.html#platform">Wearables</a></li>
+                        <li><a href="index.html#platform">AI Coaching</a></li>
+                    </ul>
+                </div>
 
-            const revealOnScroll = () => {
-                const windowHeight = window.innerHeight;
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#case-study">Case Studies</a></li>
+                        <li><a href="calculator.html">Calculator</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
 
-                revealElements.forEach(element => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    const revealPoint = 100;
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
 
-                    if (elementTop < windowHeight - revealPoint) {
-                        element.classList.add('active');
-                    }
-                });
-            };
-
-            // Initial check
-            revealOnScroll();
-
-            // Check on scroll
-            window.addEventListener('scroll', revealOnScroll);
-        });
-    </script>
+            <div class="footer-bottom">
+                <p>©2026 Healthy4U | All Rights Reserved</p>
+                <div style="display: flex; gap: var(--spacing-md);">
+                    <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">Privacy</a>
+                    <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">Terms & Services</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

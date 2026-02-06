@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ecosystem - Healthy4U</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Colors */
+            --color-primary: #FF490E;
+            --color-primary-dark: #E6420D;
+            --color-secondary: #0C3C28;
+            --color-secondary-light: #155240;
+            --color-positive: #23C965;
+            --color-positive-dark: #1BA352;
+            --color-negative: #FF554A;
+            --color-accent-orange: #FF9800;
+
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #FF490E 0%, #E6420D 100%);
+            --gradient-secondary: linear-gradient(135deg, #0C3C28 0%, #155240 100%);
+            --gradient-positive: linear-gradient(135deg, #23C965 0%, #1BA352 100%);
+            --gradient-soft-green: linear-gradient(135deg, #E8F5E9, #FFFFFF);
+            --gradient-soft-yellow: linear-gradient(135deg, #FFF9E6, #FFFFFF);
+            --gradient-soft-orange: linear-gradient(135deg, #FFF3E0, #FFFFFF);
+
+            /* Spacing */
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-2xl: 64px;
+            --spacing-3xl: 80px;
+            --spacing-4xl: 120px;
+
+            /* Typography */
+            --font-display: 'Bricolage Grotesque', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-primary: 0 8px 24px rgba(255, 73, 14, 0.25);
+
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-full: 9999px;
+
+            /* Animation */
+            --duration-fast: 150ms;
+            --duration-normal: 300ms;
+            --duration-slow: 500ms;
+            --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.7;
+            color: #2d3436;
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            line-height: 1.15;
+            font-weight: 800;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid #f1f3f5;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95);
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            height: 44px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #2d3436;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color var(--duration-normal);
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: var(--font-body);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: white !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-soft-green);
+            padding: var(--spacing-4xl) 0;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--color-secondary);
+            font-weight: 600;
+            max-width: 900px;
+            margin: 0 auto var(--spacing-md);
+            line-height: 1.4;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: #636e72;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+            .hero-description {
+                font-size: 1rem;
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: var(--spacing-4xl) 0;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: var(--spacing-3xl) 0;
+            }
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            line-height: 1.15;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: #636e72;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--spacing-xl);
+            line-height: 1.7;
+        }
+
+        /* Layer Badge */
+        .layer-badge {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* Feature Block */
+        .feature-block {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .feature-image {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .feature-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            color: #2d3436;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .feature-comment {
+            background: var(--gradient-soft-yellow);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-style: italic;
+            color: var(--color-secondary);
+            font-weight: 500;
+        }
+
+        /* Philosophy */
+        .philosophy-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto var(--spacing-lg);
+            color: #2d3436;
+        }
+
+        /* Mission */
+        .mission-block {
+            background: var(--gradient-secondary);
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            color: white;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .mission-title {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-xl);
+            color: white;
+        }
+
+        .mission-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .mission-statement {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            margin-top: var(--spacing-xl);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient-soft-orange);
+            text-align: center;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-xl);
+        }
+
+        /* Backgrounds */
+        .bg-sage {
+            background: var(--gradient-soft-green);
+        }
+
+        .bg-cream {
+            background: var(--gradient-soft-yellow);
+        }
+
+        .bg-white-soft {
+            background: #FAFBFC;
+        }
+
+        /* Example Box */
+        .example-box {
+            background: linear-gradient(135deg, #FFF3E0, #FFFFFF);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .example-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .example-text {
+            color: #2d3436;
+            line-height: 1.7;
+        }
+
+        /* Diagram */
+        .diagram-container {
+            text-align: center;
+            padding: var(--spacing-2xl);
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .diagram-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .diagram-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .diagram-description {
+            font-size: 1.125rem;
+            color: #636e72;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html">
+                    <img src="h4ulogo.svg" alt="Healthy4U" class="logo">
+                </a>
+                <div class="nav-links">
+                    <a href="ecosystem.html">Ecosystem</a>
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#pricing">Pricing</a>
+                    <a href="index.html#case-study">Case Study</a>
+                    <a href="about.html">About</a>
+                    <a href="https://medical-b2b.healthy4u.world/auth/login" class="btn btn-outline" style="padding: 12px 28px; font-size: 0.95rem;">See Demo</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">The ecosystem.</h1>
+            <p class="hero-subtitle">Transform healthcare from fragmented episodes into continuous, intelligent care.</p>
+            <p class="hero-description">Doctor sees only 1% of your health picture. We deliver 100% — automatically collected, cross-analyzed, always up to date.</p>
+        </div>
+    </section>
+
+    <!-- 2. Philosophy Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Our philosophy</h2>
+            <p class="philosophy-text">Traditional healthcare is <strong>episodic</strong>: you visit the doctor when sick, they type notes, you leave, connection lost.</p>
+            <p class="philosophy-text"><strong>We believe healthcare should be continuous</strong>: data flows before, during, and after every interaction. AI connects the dots. Care never stops.</p>
+            <p class="philosophy-text">This is not "telemedicine" or "remote monitoring." This is a complete <strong>health operating system</strong> designed to keep clinics and patients in sync 24/7.</p>
+        </div>
+    </section>
+
+    <!-- 3. Ecosystem Overview Diagram -->
+    <section class="bg-white-soft">
+        <div class="container">
+            <div class="diagram-container">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80" alt="Ecosystem architecture" class="diagram-image">
+                <h3 class="diagram-title">Three-Layer Architecture</h3>
+                <p class="diagram-description">Patient Experience → Physician Intelligence → AI Orchestration</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Layer 1: Patient Experience -->
+    <section class="bg-sage">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: var(--spacing-2xl);">
+                <span class="layer-badge">Layer 1</span>
+                <h2 class="section-title" style="margin-top: var(--spacing-md);">Patient Experience</h2>
+                <p class="section-subtitle">Empower patients to actively participate in their own care</p>
+            </div>
+
+            <!-- 4.1 Pre-visit Data Collection -->
+            <div class="feature-block">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80" alt="Pre-visit data collection" class="feature-image">
+                <h3 class="feature-title">Pre-visit data collection</h3>
+                <ul class="feature-list">
+                    <li><strong>Wearables integration:</strong> Fitbit, Apple Health, Garmin, Oura. Sleep, heart rate, steps, glucose.</li>
+                    <li><strong>Voice symptom logging:</strong> 'I have a headache and nausea' → AI structures: onset, severity, triggers.</li>
+                    <li><strong>Document upload:</strong> Lab results, imaging, prescriptions from other providers.</li>
+                    <li><strong>Pre-visit questionnaire:</strong> AI asks clarifying questions based on chief complaint.</li>
+                </ul>
+                <div class="feature-comment">
+                    Patients arrive prepared. Doctor sees structured context before the visit, not reactive Q&A.
+                </div>
+            </div>
+
+            <!-- 4.2 24/7 AI Health Assistant -->
+            <div class="feature-block">
+                <img src="https://images.unsplash.com/photo-1589254065878-42c9da997008?w=1200&q=80" alt="AI Health Assistant" class="feature-image">
+                <h3 class="feature-title">24/7 AI Health Assistant</h3>
+                <ul class="feature-list">
+                    <li><strong>Hands-free interaction:</strong> Voice commands in any language (English, Russian, Spanish, Hebrew, etc.)</li>
+                    <li><strong>Symptom guidance:</strong> 'I have chest pain' → AI: 'Is it sharp or dull? Does it radiate?' → Triage urgency.</li>
+                    <li><strong>Medication reminders:</strong> 'It's 8am. Time to take your blood pressure medication.'</li>
+                    <li><strong>Health tracking:</strong> 'Log my weight: 180 lbs' → AI: 'Down 2 lbs since last week. Great progress!'</li>
+                </ul>
+                <div class="feature-comment">
+                    Healthcare should be accessible without opening an app. Voice = zero friction = higher engagement.
+                </div>
+            </div>
+
+            <!-- 4.3 Post-visit Continuous Monitoring -->
+            <div class="feature-block">
+                <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&q=80" alt="Post-visit monitoring" class="feature-image">
+                <h3 class="feature-title">Post-visit continuous monitoring</h3>
+                <ul class="feature-list">
+                    <li><strong>Treatment compliance tracking:</strong> Did patient take medication? Attend follow-up?</li>
+                    <li><strong>Symptom progression:</strong> AI monitors: 'Patient reported still dizzy 3 days post-medication change' → Alert doctor.</li>
+                    <li><strong>Proactive guidance:</strong> 'Your blood pressure is trending up. Consider reducing salt intake.'</li>
+                </ul>
+                <div class="feature-comment">
+                    Most treatment failures happen after the visit. We close that gap.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Layer 2: Physician Intelligence Layer -->
+    <section>
+        <div class="container">
+            <div style="text-align: center; margin-bottom: var(--spacing-2xl);">
+                <span class="layer-badge">Layer 2</span>
+                <h2 class="section-title" style="margin-top: var(--spacing-md);">Physician Intelligence Layer</h2>
+                <p class="section-subtitle">Transform doctors from clerks into diagnosticians</p>
+            </div>
+
+            <!-- 5.1 AI Medical Scribe -->
+            <div class="feature-block">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80" alt="AI Medical Scribe" class="feature-image">
+                <h3 class="feature-title">AI Medical Scribe (Voice-Driven)</h3>
+                <ul class="feature-list">
+                    <li><strong>Real-time transcription:</strong> Doctor speaks naturally, AI writes structured SOAP notes</li>
+                    <li><strong>Any language:</strong> Consultation in Russian, notes generated in English (or vice versa)</li>
+                    <li><strong>30-second generation:</strong> Complete note ready before patient leaves the room</li>
+                    <li><strong>ICD-10/billing codes:</strong> Automatically suggested based on conversation</li>
+                </ul>
+                <div class="feature-comment">
+                    Doctor makes eye contact with patient, not keyboard. -97% documentation time.
+                </div>
+            </div>
+
+            <!-- 5.2 AI Clinical Consultant -->
+            <div class="feature-block">
+                <img src="https://images.unsplash.com/photo-1576671081837-49000212a370?w=1200&q=80" alt="AI Clinical Consultant" class="feature-image">
+                <h3 class="feature-title">AI Clinical Consultant (Decision Support)</h3>
+                <ul class="feature-list">
+                    <li><strong>Diagnostic suggestions:</strong> Based on symptoms + patient history + vitals</li>
+                    <li><strong>Risk alerts:</strong> 'Patient on ACE inhibitor + new hyperkalemia reading → review medication'</li>
+                    <li><strong>Treatment options:</strong> Evidence-based protocols for this phenotype</li>
+                    <li><strong>Conversational interface:</strong> 'What are differential diagnoses for fatigue + weight loss in a 45yo diabetic?'</li>
+                </ul>
+                <div class="feature-comment">
+                    AI doesn't replace clinical judgment. It augments it — like having a specialist on call 24/7.
+                </div>
+            </div>
+
+            <!-- 5.3 Patient Data Dashboard -->
+            <div class="feature-block">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80" alt="Patient Data Dashboard" class="feature-image">
+                <h3 class="feature-title">Patient Data Dashboard (Voice-Accessible)</h3>
+                <ul class="feature-list">
+                    <li><strong>Unified timeline:</strong> Visits, labs, medications, wearable data, patient-reported symptoms — all in one view</li>
+                    <li><strong>Voice commands:</strong> 'Show me Sarah's blood pressure trends for the last 3 months' → Chart appears</li>
+                    <li><strong>Pre-visit summary:</strong> AI generates: 'Key concerns: recurring headaches, new sleep apnea symptoms'</li>
+                </ul>
+                <div class="feature-comment">
+                    Doctor sees 100% of health picture, not just what patient remembers to mention.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Layer 3: Intelligence & Orchestration Layer -->
+    <section class="bg-cream">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: var(--spacing-2xl);">
+                <span class="layer-badge">Layer 3</span>
+                <h2 class="section-title" style="margin-top: var(--spacing-md);">Intelligence & Orchestration Layer</h2>
+                <p class="section-subtitle">Connect all data sources and detect what humans can't see</p>
+            </div>
+
+            <!-- 6.1 Cross-Modal AI Engine -->
+            <div class="feature-block">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80" alt="Cross-Modal AI" class="feature-image">
+                <h3 class="feature-title">Cross-Modal AI Engine</h3>
+                <ul class="feature-list">
+                    <li><strong>Multimodal fusion:</strong> Combines voice, wearables, labs, imaging, EMR text</li>
+                    <li><strong>Pattern detection:</strong> Identifies correlations humans miss (e.g., sleep quality → glucose spikes)</li>
+                    <li><strong>Predictive alerts:</strong> 'Based on vitals + symptoms, 73% probability of UTI → suggest urinalysis'</li>
+                </ul>
+
+                <div class="example-box">
+                    <p class="example-title">Real-World Example:</p>
+                    <p class="example-text">AI notices: Diabetic patient → sleep quality dropped last 3 days (Fitbit) + missing insulin doses (compliance tracker) + complaining of fatigue (voice log) → <strong>AI generates alert to doctor</strong> → doctor calls patient → prevents hyperglycemic crisis.</p>
+                </div>
+            </div>
+
+            <!-- 6.2 Flexible Deployment & LLM Agnostic -->
+            <div class="feature-block">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80" alt="Flexible deployment" class="feature-image">
+                <h3 class="feature-title">Flexible Deployment & LLM Agnostic</h3>
+                <ul class="feature-list">
+                    <li><strong>Any LLM:</strong> Works with OpenAI, Anthropic, open-source models (Llama, Mistral, etc.)</li>
+                    <li><strong>Full on-premise option:</strong> Deploy entirely within clinic infrastructure — no cloud, no data leaves your network</li>
+                    <li><strong>Hybrid deployment:</strong> Or choose cloud, on-premise, or hybrid based on your security requirements</li>
+                    <li><strong>No vendor lock-in:</strong> Switch LLM providers or deployment model anytime without data migration</li>
+                </ul>
+                <div class="feature-comment">
+                    Healthcare needs choice, not dependency. You control where your data lives, which AI models you trust, and how you scale.
+                </div>
+            </div>
+
+            <!-- 6.3 Continuous Learning -->
+            <div class="feature-block">
+                <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&q=80" alt="Continuous learning" class="feature-image">
+                <h3 class="feature-title">Continuous Learning</h3>
+                <ul class="feature-list">
+                    <li><strong>AI learns from outcomes:</strong> Which treatment plans work for specific phenotypes</li>
+                    <li><strong>Personalized medicine:</strong> Recommendations adapt to individual patient response</li>
+                    <li><strong>Population health insights:</strong> Aggregate trends (anonymized) help improve protocols</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Mission Statement -->
+    <section>
+        <div class="container">
+            <div class="mission-block">
+                <h2 class="mission-title">Mission Statement</h2>
+                <p class="mission-text">We don't build "AI platforms". We don't make "healthcare software".</p>
+                <p class="mission-text"><strong>We are building the Health Operating System</strong> — the infrastructure layer that transforms fragmented episodes of care into continuous, intelligent relationships.</p>
+                <p class="mission-text">Healthcare should flow like conversation, adapt like intelligence, and never stop caring.</p>
+                <p class="mission-statement">We are the Health Operating System.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="section-title">Ready to Join the Ecosystem?</h2>
+            <p class="section-subtitle">See how the complete platform works for your practice</p>
+            <div class="cta-buttons">
+                <a href="calculator.html" class="btn btn-primary">Calculate Your Savings</a>
+                <a href="index.html" class="btn btn-outline">Book a Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--color-secondary); color: white; margin-top: 0;">
+        <div class="container" style="padding: var(--spacing-3xl) var(--spacing-md) var(--spacing-xl);">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--spacing-xl); margin-bottom: var(--spacing-xl);">
+                <div>
+                    <img src="h4ulogo.svg" alt="Healthy4U" style="height: 54px; margin-bottom: var(--spacing-md); filter: brightness(0) invert(1);">
+                    <p style="color: rgba(255,255,255,0.7); line-height: 1.7; font-size: 0.95rem;">Empowering personal wellness through innovative healthcare technology.</p>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--color-primary); margin-bottom: var(--spacing-md); font-size: 1.125rem; font-weight: 700;">Services</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;"><a href="ecosystem.html" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s; font-size: 0.95rem;">Ecosystem</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#features" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s; font-size: 0.95rem;">Features</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#pricing" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s; font-size: 0.95rem;">Pricing</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--color-primary); margin-bottom: var(--spacing-md); font-size: 1.125rem; font-weight: 700;">Company</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 12px;"><a href="about.html" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s; font-size: 0.95rem;">About</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s; font-size: 0.95rem;">Careers</a></li>
+                        <li style="margin-bottom: 12px;"><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.3s; font-size: 0.95rem;">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 style="color: var(--color-primary); margin-bottom: var(--spacing-md); font-size: 1.125rem; font-weight: 700;">Follow Us</h4>
+                    <div style="display: flex; gap: 12px;">
+                        <a href="#" style="width: 44px; height: 44px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" style="width: 44px; height: 44px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" style="width: 44px; height: 44px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: var(--spacing-lg); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem;">©2026 Healthy4U | All Rights Reserved</p>
+                <div style="display: flex; gap: var(--spacing-md);">
+                    <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">Privacy</a>
+                    <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">Terms & Services</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

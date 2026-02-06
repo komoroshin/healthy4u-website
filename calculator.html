@@ -5,273 +5,581 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ROI Calculator - Healthy4U</title>
     <link rel="icon" type="image/png" href="images/logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-orange': '#EF6113',
-                        'brand-cream': '#FFF9F2',
-                        'brand-dark': '#000000',
-                        'brand-muted': '#666666',
-                    },
-                    borderRadius: {
-                        'brand-xl': '20px',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-                    },
-                },
-            },
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
     <style>
-        /* Fade in animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        :root {
+            /* Colors */
+            --color-primary: #FF490E;
+            --color-primary-dark: #E6420D;
+            --color-secondary: #0C3C28;
+            --color-secondary-light: #155240;
+            --color-positive: #23C965;
+            --color-positive-dark: #1BA352;
+            --color-negative: #FF554A;
+
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #FF490E 0%, #E6420D 100%);
+            --gradient-secondary: linear-gradient(135deg, #0C3C28 0%, #155240 100%);
+            --gradient-soft-green: linear-gradient(135deg, #E8F5E9, #FFFFFF);
+            --gradient-soft-yellow: linear-gradient(135deg, #FFF9E6, #FFFFFF);
+
+            /* Spacing */
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-2xl: 64px;
+            --spacing-3xl: 80px;
+            --spacing-4xl: 120px;
+
+            /* Typography */
+            --font-display: 'Bricolage Grotesque', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-primary: 0 8px 24px rgba(255, 73, 14, 0.25);
+
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-full: 9999px;
+
+            /* Animation */
+            --duration-normal: 300ms;
+            --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
         }
 
-        .animate-on-scroll {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .animate-delay-100 {
-            animation-delay: 0.1s;
+        body {
+            font-family: var(--font-body);
+            color: var(--color-secondary);
+            line-height: 1.6;
         }
 
-        .animate-delay-200 {
-            animation-delay: 0.2s;
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid #f1f3f5;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95);
         }
 
-        .animate-delay-300 {
-            animation-delay: 0.3s;
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
         }
 
-        /* Image hover effects */
-        .image-hover {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+        .logo {
+            height: 44px;
         }
 
-        .image-hover:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        /* Smooth scroll reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        .nav-links a {
+            color: #2d3436;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color var(--duration-normal);
+            cursor: pointer;
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        .nav-links a:hover {
+            color: var(--color-primary);
         }
 
-        /* Button hover animation */
-        .btn-animate {
-            position: relative;
-            overflow: hidden;
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: var(--font-body);
+            white-space: nowrap;
         }
 
-        .btn-animate::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
         }
 
-        .btn-animate:hover::before {
-            width: 300px;
-            height: 300px;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-primary);
         }
 
-        /* Custom input styles */
-        input[type="number"],
-        select {
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
+        .btn-outline {
+            background: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
         }
 
-        input[type="number"]:focus,
-        select:focus {
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-large {
+            padding: 20px 48px;
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-soft-green);
+            padding: var(--spacing-4xl) 0 var(--spacing-3xl);
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: var(--color-secondary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-family: var(--font-display);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: #636e72;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        /* Section Styles */
+        section {
+            padding: var(--spacing-4xl) 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-secondary);
+            font-family: var(--font-display);
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #636e72;
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.7;
+        }
+
+        /* Calculator Grid */
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Input Styles */
+        .input-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .input-label {
+            display: block;
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .input-field, .input-select {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid #dfe6e9;
+            border-radius: var(--radius-md);
+            font-size: 1.125rem;
+            font-weight: 600;
+            font-family: var(--font-body);
+            color: var(--color-secondary);
+            transition: all var(--duration-normal);
+        }
+
+        .input-field:focus, .input-select:focus {
             outline: none;
-            border-color: #EF6113;
-            box-shadow: 0 0 0 3px rgba(239, 97, 19, 0.1);
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(255, 73, 14, 0.1);
         }
 
-        /* Number input arrows */
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            opacity: 1;
+        .input-hint {
+            font-size: 0.875rem;
+            color: #636e72;
+            margin-top: var(--spacing-xs);
+        }
+
+        /* Result Cards */
+        .result-card {
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .result-card-primary {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .result-card-secondary {
+            background: var(--gradient-secondary);
+            color: white;
+        }
+
+        .result-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.9;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 600;
+        }
+
+        .result-value {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: var(--spacing-xs);
+            line-height: 1;
+        }
+
+        .result-sublabel {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        /* Table Styles */
+        .comparison-table {
+            width: 100%;
+            background: white;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            margin-top: var(--spacing-xl);
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: var(--spacing-md);
+            text-align: left;
+            border-bottom: 1px solid #f1f3f5;
+        }
+
+        .comparison-table th {
+            background: var(--color-secondary);
+            color: white;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .highlight-row {
+            background: var(--gradient-soft-green);
+        }
+
+        .text-positive {
+            color: var(--color-positive);
+            font-weight: 700;
+        }
+
+        .text-negative {
+            color: var(--color-negative);
+            font-weight: 700;
+        }
+
+        .text-muted {
+            color: #636e72;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-secondary);
+            color: white;
+            padding: var(--spacing-3xl) 0 var(--spacing-lg);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .footer-column h4 {
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.125rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color var(--duration-normal);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .bg-soft-green {
+            background: var(--gradient-soft-green);
+        }
+
+        .bg-soft-yellow {
+            background: var(--gradient-soft-yellow);
+        }
+
+        .bg-white-soft {
+            background: #FAFBFC;
         }
     </style>
-    <script src="components.js"></script>
 </head>
-<body class="font-sans bg-white text-black">
-    <!-- Header Container -->
-    <div id="header-container"></div>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html">
+                    <img src="h4ulogo.svg" alt="Healthy4U" class="logo">
+                </a>
+                <div class="nav-links">
+                    <a href="ecosystem.html">Ecosystem</a>
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#pricing">Pricing</a>
+                    <a href="index.html#case-study">Case Study</a>
+                    <a href="about.html">About</a>
+                    <a href="https://medical-b2b.healthy4u.world/auth/login" class="btn btn-outline" style="padding: 12px 28px; font-size: 0.95rem;">See Demo</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="bg-brand-cream py-32">
-        <div class="max-w-6xl mx-auto px-6">
-            <h1 class="text-6xl md:text-8xl font-bold mb-12 leading-tight text-brand-dark max-w-4xl animate-on-scroll">
-                Calculate your savings.
-            </h1>
-            <p class="text-2xl md:text-3xl mb-12 text-brand-muted max-w-3xl leading-relaxed animate-on-scroll animate-delay-100">
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Calculate your savings.</h1>
+            <p class="hero-description">
                 See the financial impact of implementing Healthy4U in your practice.
             </p>
         </div>
     </section>
 
     <!-- Calculator Section -->
-    <section class="py-32 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <section class="bg-white-soft">
+        <div class="container">
+            <div class="calculator-grid">
                 <!-- Input Card -->
-                <div class="space-y-8">
-                    <div>
-                        <h2 class="text-4xl md:text-5xl font-bold mb-8 text-brand-dark">Your practice</h2>
+                <div class="card">
+                    <h2 class="section-title">Your practice</h2>
 
-                        <div class="space-y-6">
-                            <div>
-                                <label for="physicians" class="block text-lg font-semibold text-brand-dark mb-3">
-                                    Number of Physicians
-                                </label>
-                                <input
-                                    type="number"
-                                    id="physicians"
-                                    value="3"
-                                    min="1"
-                                    max="100"
-                                    oninput="calculateROI()"
-                                    class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg font-medium text-brand-dark focus:border-brand-orange transition-colors"
-                                >
-                                <p class="text-sm text-brand-muted mt-2">Full-time equivalent physicians in your practice</p>
-                            </div>
+                    <div class="input-group">
+                        <label for="physicians" class="input-label">Number of Physicians</label>
+                        <input
+                            type="number"
+                            id="physicians"
+                            value="3"
+                            min="1"
+                            max="100"
+                            oninput="calculateROI()"
+                            class="input-field"
+                        >
+                        <p class="input-hint">Full-time equivalent physicians in your practice</p>
+                    </div>
 
-                            <div>
-                                <label for="hourlyRate" class="block text-lg font-semibold text-brand-dark mb-3">
-                                    Physician Hourly Rate ($)
-                                </label>
-                                <input
-                                    type="number"
-                                    id="hourlyRate"
-                                    value="50"
-                                    min="10"
-                                    max="500"
-                                    oninput="calculateROI()"
-                                    class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg font-medium text-brand-dark focus:border-brand-orange transition-colors"
-                                >
-                                <p class="text-sm text-brand-muted mt-2">Average hourly compensation (salary ÷ 2080 hours/year)</p>
-                            </div>
+                    <div class="input-group">
+                        <label for="hourlyRate" class="input-label">Physician Hourly Rate ($)</label>
+                        <input
+                            type="number"
+                            id="hourlyRate"
+                            value="50"
+                            min="10"
+                            max="500"
+                            oninput="calculateROI()"
+                            class="input-field"
+                        >
+                        <p class="input-hint">Average hourly compensation (salary ÷ 2080 hours/year)</p>
+                    </div>
 
-                            <div>
-                                <label for="hoursSaved" class="block text-lg font-semibold text-brand-dark mb-3">
-                                    Hours Saved per Week
-                                </label>
-                                <input
-                                    type="number"
-                                    id="hoursSaved"
-                                    value="4"
-                                    min="0"
-                                    max="20"
-                                    step="0.5"
-                                    oninput="calculateROI()"
-                                    class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg font-medium text-brand-dark focus:border-brand-orange transition-colors"
-                                >
-                                <p class="text-sm text-brand-muted mt-2">Expected time savings per physician (typically 4-6 hours)</p>
-                            </div>
+                    <div class="input-group">
+                        <label for="hoursSaved" class="input-label">Hours Saved per Week</label>
+                        <input
+                            type="number"
+                            id="hoursSaved"
+                            value="4"
+                            min="0"
+                            max="20"
+                            step="0.5"
+                            oninput="calculateROI()"
+                            class="input-field"
+                        >
+                        <p class="input-hint">Expected time savings per physician (typically 4-6 hours)</p>
+                    </div>
 
-                            <div>
-                                <label for="pricingTier" class="block text-lg font-semibold text-brand-dark mb-3">
-                                    Pricing Tier
-                                </label>
-                                <select
-                                    id="pricingTier"
-                                    onchange="calculateROI()"
-                                    class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg font-medium text-brand-dark focus:border-brand-orange transition-colors"
-                                >
-                                    <option value="174">Founder's Circle - $174/month (30% off)</option>
-                                    <option value="199">Early Adopter - $199/month (20% off)</option>
-                                    <option value="224">Launch Partner - $224/month (10% off)</option>
-                                    <option value="249">Standard - $249/month</option>
-                                </select>
-                                <p class="text-sm text-brand-muted mt-2">Limited-time early adopter pricing available</p>
-                            </div>
+                    <div class="input-group">
+                        <label for="pricingTier" class="input-label">Pricing Tier</label>
+                        <select
+                            id="pricingTier"
+                            onchange="calculateROI()"
+                            class="input-select"
+                        >
+                            <option value="174">Founder's Circle - $174/month (30% off)</option>
+                            <option value="199">Early Adopter - $199/month (20% off)</option>
+                            <option value="224">Launch Partner - $224/month (10% off)</option>
+                            <option value="249">Standard - $249/month</option>
+                        </select>
+                        <p class="input-hint">Limited-time early adopter pricing available</p>
+                    </div>
 
-                            <div>
-                                <label for="currentCosts" class="block text-lg font-semibold text-brand-dark mb-3">
-                                    Current Monthly Costs ($)
-                                </label>
-                                <input
-                                    type="number"
-                                    id="currentCosts"
-                                    value="0"
-                                    min="0"
-                                    max="10000"
-                                    oninput="calculateROI()"
-                                    class="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg font-medium text-brand-dark focus:border-brand-orange transition-colors"
-                                >
-                                <p class="text-sm text-brand-muted mt-2">Existing costs you'll eliminate (old scribe service, etc.)</p>
-                            </div>
-                        </div>
+                    <div class="input-group">
+                        <label for="currentCosts" class="input-label">Current Monthly Costs ($)</label>
+                        <input
+                            type="number"
+                            id="currentCosts"
+                            value="0"
+                            min="0"
+                            max="10000"
+                            oninput="calculateROI()"
+                            class="input-field"
+                        >
+                        <p class="input-hint">Existing costs you'll eliminate (old scribe service, etc.)</p>
                     </div>
                 </div>
 
                 <!-- Results Card -->
-                <div class="space-y-6">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-8 text-brand-dark">Your results</h2>
+                <div>
+                    <h2 class="section-title">Your results</h2>
 
-                    <div class="bg-gradient-to-br from-brand-orange to-orange-600 text-white rounded-2xl p-8">
-                        <div class="text-sm uppercase tracking-wider opacity-90 mb-2">Monthly Time Savings</div>
-                        <div class="text-5xl font-bold mb-2" id="monthlySavings">$0</div>
-                        <div class="text-sm opacity-90">per month</div>
+                    <div class="result-card result-card-primary">
+                        <div class="result-label">Monthly Time Savings</div>
+                        <div class="result-value" id="monthlySavings">$0</div>
+                        <div class="result-sublabel">per month</div>
                     </div>
 
-                    <div class="bg-gradient-to-br from-gray-700 to-gray-800 text-white rounded-2xl p-8">
-                        <div class="text-sm uppercase tracking-wider opacity-90 mb-2">Healthy4U Monthly Cost</div>
-                        <div class="text-5xl font-bold mb-2" id="monthlyCost">$0</div>
-                        <div class="text-sm opacity-90">per month</div>
+                    <div class="result-card result-card-secondary">
+                        <div class="result-label">Healthy4U Monthly Cost</div>
+                        <div class="result-value" id="monthlyCost">$0</div>
+                        <div class="result-sublabel">per month</div>
                     </div>
 
-                    <div class="bg-gradient-to-br from-brand-orange to-orange-600 text-white rounded-2xl p-8">
-                        <div class="text-sm uppercase tracking-wider opacity-90 mb-2">Net Monthly Savings</div>
-                        <div class="text-5xl font-bold mb-2" id="netMonthlySavings">$0</div>
-                        <div class="text-sm opacity-90">per month</div>
+                    <div class="result-card result-card-primary">
+                        <div class="result-label">Net Monthly Savings</div>
+                        <div class="result-value" id="netMonthlySavings">$0</div>
+                        <div class="result-sublabel">per month</div>
                     </div>
 
-                    <div class="bg-gradient-to-br from-gray-700 to-gray-800 text-white rounded-2xl p-8">
-                        <div class="text-sm uppercase tracking-wider opacity-90 mb-2">Payback Period</div>
-                        <div class="text-5xl font-bold mb-2" id="paybackPeriod">0</div>
-                        <div class="text-sm opacity-90">months</div>
+                    <div class="result-card result-card-secondary">
+                        <div class="result-label">Payback Period</div>
+                        <div class="result-value" id="paybackPeriod">0</div>
+                        <div class="result-sublabel">months</div>
                     </div>
 
-                    <div class="bg-gradient-to-br from-brand-orange to-orange-600 text-white rounded-2xl p-8">
-                        <div class="text-sm uppercase tracking-wider opacity-90 mb-2">3-Year ROI</div>
-                        <div class="text-5xl font-bold mb-2" id="roi3Year">$0</div>
-                        <div class="text-sm opacity-90" id="roiPercent">(0% return)</div>
+                    <div class="result-card result-card-primary">
+                        <div class="result-label">3-Year ROI</div>
+                        <div class="result-value" id="roi3Year">$0</div>
+                        <div class="result-sublabel" id="roiPercent">(0% return)</div>
                     </div>
                 </div>
             </div>
@@ -279,20 +587,20 @@
     </section>
 
     <!-- Comparison Section -->
-    <section class="py-32 bg-brand-cream">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-bold mb-12 text-brand-dark">Compare platforms</h2>
-            <p class="text-xl text-brand-muted mb-16 max-w-3xl">See how Healthy4U stacks up against competitors</p>
+    <section class="bg-soft-yellow">
+        <div class="container">
+            <h2 class="section-title">Compare platforms</h2>
+            <p class="section-subtitle">See how Healthy4U stacks up against competitors</p>
 
-            <div class="overflow-x-auto">
-                <table class="w-full bg-white rounded-2xl overflow-hidden shadow-sm">
+            <div class="comparison-table">
+                <table>
                     <thead>
-                        <tr class="bg-gray-50 border-b-2 border-gray-200">
-                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Solution</th>
-                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Monthly/Physician</th>
-                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Features</th>
-                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Patient Side</th>
-                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Year 1 Total</th>
+                        <tr>
+                            <th>Solution</th>
+                            <th>Monthly/Physician</th>
+                            <th>Features</th>
+                            <th>Patient Side</th>
+                            <th>Year 1 Total</th>
                         </tr>
                     </thead>
                     <tbody id="comparisonBody">
@@ -304,20 +612,20 @@
     </section>
 
     <!-- Breakdown Section -->
-    <section class="py-32 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-bold mb-12 text-brand-dark">3-year breakdown</h2>
-            <p class="text-xl text-brand-muted mb-16 max-w-3xl">See your cumulative savings over time</p>
+    <section>
+        <div class="container">
+            <h2 class="section-title">3-year breakdown</h2>
+            <p class="section-subtitle">See your cumulative savings over time</p>
 
-            <div class="overflow-x-auto">
-                <table class="w-full bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200">
+            <div class="comparison-table">
+                <table>
                     <thead>
-                        <tr class="bg-gray-50 border-b-2 border-gray-200">
-                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Metric</th>
-                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Year 1</th>
-                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Year 2</th>
-                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Year 3</th>
-                            <th class="text-left py-4 px-6 font-semibold text-brand-dark">Total (3-Year)</th>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Year 1</th>
+                            <th>Year 2</th>
+                            <th>Year 3</th>
+                            <th>Total (3-Year)</th>
                         </tr>
                     </thead>
                     <tbody id="breakdownBody">
@@ -329,23 +637,61 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-32 bg-[#FFF9F1]">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-5xl md:text-8xl font-bold mb-8 leading-tight text-brand-dark">Ready to get started?</h2>
-            <p class="text-2xl mb-12 text-brand-muted max-w-2xl">Join the first 10 clinics and save 30% for life.</p>
-            <div class="flex flex-col sm:flex-row gap-6">
-                <a href="index.html" class="px-10 py-5 bg-brand-orange text-white font-bold text-lg rounded-full hover:opacity-90 transition-opacity btn-animate">
-                    Book a Demo
-                </a>
-                <a href="index.html#case-study" class="px-10 py-5 bg-white text-brand-dark font-bold text-lg rounded-full hover:bg-gray-100 transition-colors btn-animate">
-                    See Case Study
-                </a>
+    <section class="bg-soft-green">
+        <div class="container text-center">
+            <h2 class="section-title" style="font-size: 4rem; margin-bottom: var(--spacing-lg);">Ready to get started?</h2>
+            <p class="section-subtitle" style="font-size: 1.25rem; max-width: 600px; margin: 0 auto var(--spacing-xl);">Join the first 10 clinics and save 30% for life.</p>
+            <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+                <a href="index.html" class="btn btn-primary btn-large">Book a Demo</a>
+                <a href="index.html#case-study" class="btn btn-outline btn-large">See Case Study</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer Container -->
-    <div id="footer-container"></div>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <img src="h4ulogo.svg" alt="Healthy4U" style="height: 54px; margin-bottom: var(--spacing-md); filter: brightness(0) invert(1);">
+                    <p style="color: rgba(255,255,255,0.7); line-height: 1.7; font-size: 0.95rem;">Empowering personal wellness through innovative healthcare technology.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#platform">Telemedicine</a></li>
+                        <li><a href="index.html#platform">Wearables</a></li>
+                        <li><a href="index.html#platform">AI Coaching</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#case-study">Case Studies</a></li>
+                        <li><a href="calculator.html">Calculator</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>©2026 Healthy4U | All Rights Reserved</p>
+                <div style="display: flex; gap: var(--spacing-md);">
+                    <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">Privacy</a>
+                    <a href="#" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;">Terms & Services</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
         // Competitor data
@@ -401,27 +747,26 @@
 
             // Add Healthy4U row
             const healthy4uRow = tbody.insertRow();
-            healthy4uRow.className = 'bg-brand-cream border-b border-gray-100';
+            healthy4uRow.className = 'highlight-row';
             healthy4uRow.innerHTML = `
-                <td class="py-4 px-6 font-bold text-brand-dark">Healthy4U</td>
-                <td class="py-4 px-6 text-brand-dark">${formatCurrency(pricingTier)}</td>
-                <td class="py-4 px-6 text-brand-dark">Scribe + AI Consultant + Patient App</td>
-                <td class="py-4 px-6 text-brand-orange font-semibold">✓ Yes</td>
-                <td class="py-4 px-6 font-bold text-brand-dark">${formatCurrency(pricingTier * physicians * 12)}</td>
+                <td style="font-weight: 700; color: var(--color-secondary);">Healthy4U</td>
+                <td style="color: var(--color-secondary);">${formatCurrency(pricingTier)}</td>
+                <td style="color: var(--color-secondary);">Scribe + AI Consultant + Patient App</td>
+                <td class="text-positive">Yes</td>
+                <td style="font-weight: 700; color: var(--color-secondary);">${formatCurrency(pricingTier * physicians * 12)}</td>
             `;
 
             // Add competitor rows
             COMPETITORS.forEach(comp => {
                 const row = tbody.insertRow();
-                row.className = 'border-b border-gray-100';
                 const annualCost = comp.monthly * physicians * 12;
 
                 row.innerHTML = `
-                    <td class="py-4 px-6 text-brand-muted">${comp.name}</td>
-                    <td class="py-4 px-6 text-brand-muted">${formatCurrency(comp.monthly)}</td>
-                    <td class="py-4 px-6 text-brand-muted">${comp.features}</td>
-                    <td class="py-4 px-6 text-red-600 font-semibold">${comp.patientSide}</td>
-                    <td class="py-4 px-6 text-brand-muted">${formatCurrency(annualCost)}</td>
+                    <td class="text-muted">${comp.name}</td>
+                    <td class="text-muted">${formatCurrency(comp.monthly)}</td>
+                    <td class="text-muted">${comp.features}</td>
+                    <td class="text-negative">${comp.patientSide}</td>
+                    <td class="text-muted">${formatCurrency(annualCost)}</td>
                 `;
             });
         }
@@ -462,40 +807,23 @@
             rows.forEach((rowData, index) => {
                 const row = tbody.insertRow();
                 if (index === rows.length - 1) {
-                    row.className = 'bg-brand-cream font-bold border-t-2 border-brand-orange';
-                } else {
-                    row.className = 'border-b border-gray-100';
+                    row.className = 'highlight-row';
+                    row.style.fontWeight = '700';
                 }
                 rowData.forEach((cellData, cellIndex) => {
                     const cell = row.insertCell();
                     cell.textContent = cellData;
-                    cell.className = 'py-4 px-6 text-brand-dark';
                     if (cellIndex === 0) {
-                        cell.className += ' font-semibold';
+                        cell.style.fontWeight = '700';
+                        cell.style.color = 'var(--color-secondary)';
                     }
                 });
             });
         }
 
-        // Scroll reveal animations
+        // Calculate on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Calculate on page load
             calculateROI();
-
-            // Scroll reveal
-            const revealElements = document.querySelectorAll('.reveal');
-            const revealOnScroll = () => {
-                const windowHeight = window.innerHeight;
-                revealElements.forEach(element => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    const revealPoint = 100;
-                    if (elementTop < windowHeight - revealPoint) {
-                        element.classList.add('active');
-                    }
-                });
-            };
-            revealOnScroll();
-            window.addEventListener('scroll', revealOnScroll);
         });
     </script>
 </body>
