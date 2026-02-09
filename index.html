@@ -1773,7 +1773,7 @@
                             <div class="risk-item">Cancel anytime</div>
                         </div>
 
-                        <button class="btn btn-outline" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Get Started Free</button>
+                        <a href="https://medical-b2b.healthy4u.world/auth/login" class="btn btn-outline" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Get Started Free</a>
                     </div>
 
                     <div class="pricing-card featured">
@@ -1801,7 +1801,7 @@
                             <div class="risk-item">30-day money-back</div>
                         </div>
 
-                        <button class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Start Free Trial</button>
+                        <a href="https://medical-b2b.healthy4u.world/auth/login" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Start Free Trial</a>
                     </div>
 
                     <div class="pricing-card">
@@ -1819,7 +1819,7 @@
 
                         <p class="card-text" style="font-style: italic; margin-top: var(--spacing-md);">Top-ups never expire. Use anytime.</p>
 
-                        <button class="btn btn-secondary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Buy Top-ups</button>
+                        <a href="https://medical-b2b.healthy4u.world/auth/login" class="btn btn-secondary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Buy Top-ups</a>
                     </div>
                 </div>
             </div>
@@ -1856,7 +1856,7 @@
                             <div class="risk-item">Cancel anytime</div>
                         </div>
 
-                        <button class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Start Free Trial</button>
+                        <a href="https://medical-b2b.healthy4u.world/auth/login" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Start Free Trial</a>
                     </div>
 
                     <div class="pricing-card">
@@ -1882,7 +1882,7 @@
                             <div class="risk-item">Cancel anytime</div>
                         </div>
 
-                        <button class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Start Free Trial</button>
+                        <a href="https://medical-b2b.healthy4u.world/auth/login" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Start Free Trial</a>
                     </div>
 
                     <div class="pricing-card">
@@ -1912,7 +1912,7 @@
                             <div class="risk-item">Cancel anytime</div>
                         </div>
 
-                        <button class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Start Free Trial</button>
+                        <a href="https://medical-b2b.healthy4u.world/auth/login" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: var(--spacing-md);">Start Free Trial</a>
                     </div>
                 </div>
             </div>
@@ -1988,9 +1988,36 @@
                 </ul>
             </div>
 
-            <div class="text-center">
-                <button class="btn btn-primary btn-large">Apply for Partner Program</button>
-                <p class="card-text mt-sm" style="font-weight: 600; font-size: 1rem;">Join 50+ partners already growing with us</p>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <form id="partnerForm" style="background: white; padding: var(--spacing-xl); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);">
+                    <div style="display: grid; gap: var(--spacing-md);">
+                        <div>
+                            <input type="text" id="partnerName" name="name" placeholder="Your Name" required style="width: 100%; padding: 14px 20px; border: 2px solid #e0e0e0; border-radius: var(--radius-md); font-size: 1rem; font-family: var(--font-body); outline: none; transition: border-color 0.3s;">
+                        </div>
+                        <div>
+                            <input type="email" id="partnerEmail" name="email" placeholder="Email Address" required style="width: 100%; padding: 14px 20px; border: 2px solid #e0e0e0; border-radius: var(--radius-md); font-size: 1rem; font-family: var(--font-body); outline: none; transition: border-color 0.3s;">
+                        </div>
+                        <div>
+                            <input type="text" id="partnerCompany" name="company" placeholder="Company/Clinic Name" style="width: 100%; padding: 14px 20px; border: 2px solid #e0e0e0; border-radius: var(--radius-md); font-size: 1rem; font-family: var(--font-body); outline: none; transition: border-color 0.3s;">
+                        </div>
+                        <div>
+                            <select id="partnerRole" name="role" required style="width: 100%; padding: 14px 20px; border: 2px solid #e0e0e0; border-radius: var(--radius-md); font-size: 1rem; font-family: var(--font-body); outline: none; transition: border-color 0.3s; background: white;">
+                                <option value="">Select Your Role</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Clinic Owner">Clinic Owner</option>
+                                <option value="Healthcare Partner">Healthcare Partner</option>
+                                <option value="Technology Partner">Technology Partner</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <textarea id="partnerMessage" name="message" placeholder="Tell us about your interest in partnering (optional)" rows="4" style="width: 100%; padding: 14px 20px; border: 2px solid #e0e0e0; border-radius: var(--radius-md); font-size: 1rem; font-family: var(--font-body); outline: none; transition: border-color 0.3s; resize: vertical;"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large" style="width: 100%; justify-content: center;">Apply for Partner Program</button>
+                        <div id="partnerFormMessage" style="margin-top: 12px; font-size: 0.9rem; text-align: center; display: none;"></div>
+                    </div>
+                </form>
+                <p class="card-text mt-sm" style="font-weight: 600; font-size: 1rem; text-align: center; margin-top: var(--spacing-md);">Join 50+ partners already growing with us</p>
             </div>
         </div>
     </section>
@@ -2237,6 +2264,84 @@
 
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Book a Demo';
+                }
+            });
+        }
+
+        // Partner Application Form Handler
+        const partnerForm = document.getElementById('partnerForm');
+        if (partnerForm) {
+            partnerForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const nameInput = document.getElementById('partnerName');
+                const emailInput = document.getElementById('partnerEmail');
+                const companyInput = document.getElementById('partnerCompany');
+                const roleInput = document.getElementById('partnerRole');
+                const messageInput = document.getElementById('partnerMessage');
+                const submitBtn = partnerForm.querySelector('button[type="submit"]');
+
+                const name = nameInput.value.trim();
+                const email = emailInput.value.trim();
+                const company = companyInput.value.trim();
+                const role = roleInput.value;
+                const message = messageInput.value.trim();
+
+                // Create or get message div
+                let messageDiv = partnerForm.querySelector('.form-message');
+                if (!messageDiv) {
+                    messageDiv = document.createElement('div');
+                    messageDiv.className = 'form-message';
+                    messageDiv.style.marginTop = '15px';
+                    messageDiv.style.padding = '12px';
+                    messageDiv.style.borderRadius = '8px';
+                    messageDiv.style.fontSize = '0.9rem';
+                    messageDiv.style.display = 'none';
+                    partnerForm.appendChild(messageDiv);
+                }
+
+                // Disable button during submission
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+
+                try {
+                    // Submit to Google Sheets
+                    const formData = `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&company=${encodeURIComponent(company)}&role=${encodeURIComponent(role)}&message=${encodeURIComponent(message)}`;
+
+                    await fetch('https://script.google.com/macros/s/AKfycbwsp3NFaJlvKYU1ISq1Egi_r0crZpuwvtP6G1eslMRjSfbWKwAHwDPc8UsRSYVXIXqY/exec', {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: formData
+                    });
+
+                    // Show success message
+                    messageDiv.style.display = 'block';
+                    messageDiv.style.backgroundColor = 'rgba(0, 201, 81, 0.1)';
+                    messageDiv.style.color = 'var(--color-positive)';
+                    messageDiv.textContent = '✓ Application submitted successfully! We\'ll contact you soon.';
+
+                    // Reset form
+                    partnerForm.reset();
+
+                    // Reset button after delay
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Apply for Partner Program';
+                        messageDiv.style.display = 'none';
+                    }, 5000);
+
+                } catch (error) {
+                    // Show error message
+                    messageDiv.style.display = 'block';
+                    messageDiv.style.backgroundColor = 'rgba(239, 61, 71, 0.1)';
+                    messageDiv.style.color = 'var(--color-negative)';
+                    messageDiv.textContent = '✗ Something went wrong. Please try again.';
+
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Apply for Partner Program';
                 }
             });
         }
