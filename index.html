@@ -135,6 +135,38 @@
             color: var(--color-primary);
         }
 
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 101;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--color-secondary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         /* Sticky CTA Bar */
         .sticky-cta {
             position: fixed;
@@ -970,6 +1002,174 @@
         .bg-white-soft {
             background: #FAFBFC;
         }
+
+        /* ===== MOBILE RESPONSIVENESS ===== */
+
+        /* Tablet and below */
+        @media (max-width: 968px) {
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+
+            /* Mobile Navigation */
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 73px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: var(--spacing-lg);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                transform: translateY(-120%);
+                transition: transform 0.3s ease;
+                gap: var(--spacing-md);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+                padding: var(--spacing-sm) 0;
+            }
+
+            .nav-links .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Hero adjustments covered by existing media query */
+
+            /* Feature grids */
+            .features-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Stats grid */
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Toggle buttons */
+            .toggle-buttons {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .toggle-btn {
+                width: 100%;
+            }
+
+            /* Sticky CTA */
+            .sticky-cta-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .sticky-cta-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* Mobile phones */
+        @media (max-width: 640px) {
+            /* Typography */
+            .hero-title {
+                font-size: 2rem !important;
+            }
+
+            .section-title {
+                font-size: 2rem !important;
+            }
+
+            h3 {
+                font-size: 1.5rem !important;
+            }
+
+            /* Buttons */
+            .btn-large {
+                padding: var(--spacing-md) var(--spacing-lg);
+                font-size: 1rem;
+            }
+
+            /* Spacing */
+            section {
+                padding: var(--spacing-2xl) 0 !important;
+            }
+
+            .mb-xl {
+                margin-bottom: var(--spacing-lg) !important;
+            }
+
+            /* Voice features grid */
+            .voice-grid {
+                gap: var(--spacing-md) !important;
+            }
+
+            /* Pricing cards */
+            .pricing-cards {
+                grid-template-columns: 1fr !important;
+                gap: var(--spacing-lg) !important;
+            }
+
+            /* Footer */
+            footer .container > div {
+                grid-template-columns: 1fr !important;
+                gap: var(--spacing-lg) !important;
+            }
+
+            /* Form elements */
+            input[type="email"],
+            input[type="text"],
+            input[type="number"],
+            select {
+                font-size: 16px !important; /* Prevents zoom on iOS */
+            }
+
+            /* App store badges */
+            .app-badges {
+                flex-direction: column !important;
+                align-items: stretch !important;
+            }
+
+            .app-badges a {
+                width: 100% !important;
+                max-width: 200px !important;
+                margin: 0 auto !important;
+            }
+
+            .app-badges img {
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 375px) {
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+
+            .hero-title {
+                font-size: 1.75rem !important;
+            }
+
+            .section-title {
+                font-size: 1.75rem !important;
+            }
+
+            .btn {
+                font-size: 0.875rem;
+                padding: 12px 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -989,6 +1189,11 @@
                 <a href="index.html">
                     <img src="h4ulogo.svg" alt="Healthy4U" class="logo">
                 </a>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <div class="nav-links">
                     <a href="ecosystem.html">Ecosystem</a>
                     <a href="index.html#features">Features</a>
@@ -1836,6 +2041,36 @@
     </footer>
 
     <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
+
+                // Close menu when clicking on a link
+                const links = navLinks.querySelectorAll('a');
+                links.forEach(link => {
+                    link.addEventListener('click', function() {
+                        menuToggle.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
+                        menuToggle.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    }
+                });
+            }
+        });
+
         // Sticky CTA Bar
         window.addEventListener('scroll', function() {
             const caseStudy = document.getElementById('case-study');

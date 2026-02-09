@@ -418,6 +418,149 @@
             color: #636e72;
             font-weight: 600;
         }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 101;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--color-secondary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* ===== MOBILE RESPONSIVENESS ===== */
+
+        @media (max-width: 968px) {
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 73px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: var(--spacing-lg);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                transform: translateY(-120%);
+                transition: transform 0.3s ease;
+                gap: var(--spacing-md);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+                padding: var(--spacing-sm) 0;
+            }
+
+            .nav-links .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .philosophy-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2rem !important;
+            }
+
+            .section-title {
+                font-size: 2rem !important;
+            }
+
+            h3 {
+                font-size: 1.5rem !important;
+            }
+
+            section {
+                padding: var(--spacing-2xl) 0 !important;
+            }
+
+            .layer-badge {
+                font-size: 0.75rem !important;
+                padding: 6px 16px !important;
+            }
+
+            .feature-block {
+                padding: var(--spacing-lg) !important;
+            }
+
+            .feature-image {
+                height: 180px !important;
+            }
+
+            .cta-buttons {
+                flex-direction: column !important;
+                gap: var(--spacing-md) !important;
+            }
+
+            .cta-buttons .btn {
+                width: 100% !important;
+            }
+
+            footer .container > div {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+
+            .hero-title {
+                font-size: 1.75rem !important;
+            }
+
+            .section-title {
+                font-size: 1.75rem !important;
+            }
+
+            .feature-block {
+                padding: var(--spacing-md) !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -427,6 +570,11 @@
                 <a href="index.html">
                     <img src="h4ulogo.svg" alt="Healthy4U" class="logo">
                 </a>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
                 <div class="nav-links">
                     <a href="ecosystem.html">Ecosystem</a>
                     <a href="index.html#features">Features</a>
@@ -715,5 +863,37 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
+
+                // Close menu when clicking on a link
+                const links = navLinks.querySelectorAll('a');
+                links.forEach(link => {
+                    link.addEventListener('click', function() {
+                        menuToggle.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
+                        menuToggle.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
