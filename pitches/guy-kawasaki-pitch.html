@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy4U - Pitch Deck</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-orange': '#EF6113',
+                        'brand-cream': '#FFF9F2',
+                        'brand-dark': '#1a1a1a',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Guy Kawasaki 10/20/30 Rule: Large, impactful text */
+        .mega-text {
+            font-size: 6rem;
+            line-height: 1;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        .huge-text {
+            font-size: 4rem;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .big-text {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        body {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 2rem;
+            right: 3rem;
+            font-size: 1.25rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body class="bg-white text-brand-dark font-sans">
+
+<!-- SLIDE 1: TITLE -->
+<section class="slide bg-white">
+    <div class="slide-number">1/10</div>
+    <div class="text-center max-w-6xl">
+        <h1 class="mega-text text-brand-dark mb-8">Healthy4U</h1>
+        <p class="huge-text text-brand-orange mb-12">The Health Operating System</p>
+        <p class="big-text text-gray-600">One AI Platform Connecting Patients, Clinics & Continuous Care</p>
+    </div>
+</section>
+
+<!-- SLIDE 2: PROBLEM -->
+<section class="slide bg-brand-cream">
+    <div class="slide-number">2/10</div>
+    <div class="max-w-6xl">
+        <h2 class="mega-text text-brand-dark mb-16">The Problem</h2>
+        <div class="space-y-8">
+            <p class="huge-text text-gray-800">
+                🩺 Doctors spend <span class="text-brand-orange">50%</span> of time on paperwork
+            </p>
+            <p class="huge-text text-gray-800">
+                💔 Patient data is <span class="text-brand-orange">fragmented</span> everywhere
+            </p>
+            <p class="huge-text text-gray-800">
+                ⏸️ Care <span class="text-brand-orange">stops</span> after the visit
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 3: SOLUTION -->
+<section class="slide bg-white">
+    <div class="slide-number">3/10</div>
+    <div class="max-w-6xl">
+        <h2 class="mega-text text-brand-orange mb-16">The Solution</h2>
+        <div class="grid grid-cols-2 gap-12">
+            <div>
+                <p class="huge-text text-brand-dark mb-6">For Clinics 🏥</p>
+                <ul class="big-text text-gray-700 space-y-4">
+                    <li>✓ AI Medical Scribe</li>
+                    <li>✓ AI Clinical Consultant</li>
+                    <li>✓ Voice-first, any language</li>
+                </ul>
+            </div>
+            <div>
+                <p class="huge-text text-brand-dark mb-6">For Patients 👤</p>
+                <ul class="big-text text-gray-700 space-y-4">
+                    <li>✓ 24/7 AI Health Assistant</li>
+                    <li>✓ Wearables integration</li>
+                    <li>✓ Continuous monitoring</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 4: MAGIC -->
+<section class="slide bg-brand-orange text-white">
+    <div class="slide-number text-white/60">4/10</div>
+    <div class="max-w-6xl text-center">
+        <h2 class="mega-text mb-16">The Magic ✨</h2>
+        <p class="huge-text mb-20">We're the first <span class="font-black">closed-loop</span> care system</p>
+        <div class="grid grid-cols-3 gap-8">
+            <div>
+                <p class="big-text mb-4">📝 BEFORE</p>
+                <p class="text-2xl">AI collects patient data</p>
+            </div>
+            <div>
+                <p class="big-text mb-4">👨‍⚕️ DURING</p>
+                <p class="text-2xl">Doctor focuses, AI documents</p>
+            </div>
+            <div>
+                <p class="big-text mb-4">📱 AFTER</p>
+                <p class="text-2xl">24/7 monitoring & guidance</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 5: BUSINESS MODEL -->
+<section class="slide bg-white">
+    <div class="slide-number">5/10</div>
+    <div class="max-w-6xl text-center">
+        <h2 class="mega-text text-brand-dark mb-16">Business Model 💰</h2>
+        <div class="grid grid-cols-3 gap-8">
+            <div class="bg-gray-50 p-10 rounded-2xl">
+                <p class="big-text text-gray-600 mb-4">Starter</p>
+                <p class="text-8xl font-black text-brand-dark mb-4">$249</p>
+                <p class="text-2xl text-gray-600">/month/clinic</p>
+            </div>
+            <div class="bg-brand-orange text-white p-10 rounded-2xl transform scale-110 shadow-2xl">
+                <p class="big-text mb-4">Early Adopter</p>
+                <p class="text-8xl font-black mb-4">$199</p>
+                <p class="text-2xl">20% OFF Forever</p>
+            </div>
+            <div class="bg-gray-50 p-10 rounded-2xl">
+                <p class="big-text text-gray-600 mb-4">Premium</p>
+                <p class="text-8xl font-black text-brand-dark mb-4">$2.50</p>
+                <p class="text-2xl text-gray-600">/month/patient</p>
+            </div>
+        </div>
+        <p class="huge-text text-brand-orange mt-16">LTV:CAC = 17.9x</p>
+    </div>
+</section>
+
+<!-- SLIDE 6: TRACTION -->
+<section class="slide bg-brand-cream">
+    <div class="slide-number">6/10</div>
+    <div class="max-w-6xl">
+        <h2 class="mega-text text-brand-dark mb-16">Traction 📈</h2>
+        <div class="bg-white p-12 rounded-3xl shadow-2xl mb-12">
+            <p class="huge-text text-brand-orange mb-8">✅ Live at GavCure Clinic, Israel</p>
+            <p class="big-text text-gray-700">3 physicians • 6 months • Real revenue</p>
+        </div>
+        <div class="grid grid-cols-4 gap-6">
+            <div class="text-center">
+                <p class="text-7xl font-black text-brand-orange mb-2">97%</p>
+                <p class="text-2xl text-gray-700">Less intake time</p>
+            </div>
+            <div class="text-center">
+                <p class="text-7xl font-black text-brand-orange mb-2">30%</p>
+                <p class="text-2xl text-gray-700">More capacity</p>
+            </div>
+            <div class="text-center">
+                <p class="text-7xl font-black text-brand-orange mb-2">$11K</p>
+                <p class="text-2xl text-gray-700">Saved (6 mo)</p>
+            </div>
+            <div class="text-center">
+                <p class="text-7xl font-black text-brand-orange mb-2">75%</p>
+                <p class="text-2xl text-gray-700">Patient adoption</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 7: COMPETITION -->
+<section class="slide bg-white">
+    <div class="slide-number">7/10</div>
+    <div class="max-w-6xl">
+        <h2 class="mega-text text-brand-dark mb-16">Competition</h2>
+        <div class="space-y-8">
+            <div class="flex items-center gap-8">
+                <p class="huge-text text-gray-400 line-through flex-1">AI Scribes</p>
+                <p class="big-text text-red-600">Doctor-only ✗</p>
+            </div>
+            <div class="flex items-center gap-8">
+                <p class="huge-text text-gray-400 line-through flex-1">Patient Apps</p>
+                <p class="big-text text-red-600">No clinical flow ✗</p>
+            </div>
+            <div class="flex items-center gap-8 bg-brand-orange text-white p-8 rounded-2xl">
+                <p class="huge-text flex-1">Healthy4U</p>
+                <p class="big-text">Complete care ✓</p>
+            </div>
+        </div>
+        <p class="huge-text text-center mt-16 text-brand-orange">We don't compete. We complete.</p>
+    </div>
+</section>
+
+<!-- SLIDE 8: TEAM -->
+<section class="slide bg-brand-dark text-white">
+    <div class="slide-number text-white/60">8/10</div>
+    <div class="max-w-6xl text-center">
+        <h2 class="mega-text mb-16">The Team 👥</h2>
+        <div class="grid grid-cols-2 gap-12 mb-16">
+            <div>
+                <p class="huge-text mb-6">🏥</p>
+                <p class="big-text">Healthcare Expertise</p>
+            </div>
+            <div>
+                <p class="huge-text mb-6">🤖</p>
+                <p class="big-text">AI/ML Expertise</p>
+            </div>
+        </div>
+        <p class="huge-text text-brand-orange">We've built it. We've shipped it. It works.</p>
+    </div>
+</section>
+
+<!-- SLIDE 9: FINANCIALS -->
+<section class="slide bg-brand-cream">
+    <div class="slide-number">9/10</div>
+    <div class="max-w-6xl">
+        <h2 class="mega-text text-brand-dark mb-16">The Numbers 📊</h2>
+        <div class="grid grid-cols-2 gap-12">
+            <div class="bg-white p-12 rounded-3xl">
+                <p class="big-text text-gray-600 mb-8">Year 1 (2026)</p>
+                <p class="text-6xl font-black text-brand-orange mb-4">$600K</p>
+                <p class="text-3xl text-gray-700">ARR • 50 clinics</p>
+            </div>
+            <div class="bg-white p-12 rounded-3xl">
+                <p class="big-text text-gray-600 mb-8">Year 3 (2028)</p>
+                <p class="text-6xl font-black text-brand-orange mb-4">$6M</p>
+                <p class="text-3xl text-gray-700">ARR • 500 clinics</p>
+            </div>
+        </div>
+        <div class="bg-brand-orange text-white p-12 rounded-3xl mt-12 text-center">
+            <p class="huge-text font-black mb-4">Raising $1.5M Seed</p>
+            <p class="text-3xl">18 months runway • Product-market fit • Scale to 500 clinics</p>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 10: THE ASK -->
+<section class="slide bg-brand-orange text-white">
+    <div class="slide-number text-white/60">10/10</div>
+    <div class="max-w-6xl text-center">
+        <h2 class="mega-text mb-12">The Vision 🎯</h2>
+        <p class="huge-text mb-16">Healthcare should be <span class="font-black">continuous</span></p>
+        <div class="bg-white/20 backdrop-blur-sm p-12 rounded-3xl border-4 border-white/40 mb-12">
+            <p class="text-8xl font-black mb-6">$1.5M</p>
+            <p class="big-text mb-4">Seed Round</p>
+            <p class="text-2xl opacity-90">18 months • 500 clinics • Product-market fit</p>
+        </div>
+        <p class="text-3xl opacity-80">healthy4u.com • hello@healthy4u.com</p>
+    </div>
+</section>
+
+<!-- Navigation hints -->
+<div style="position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); color: white; padding: 0.75rem 1.5rem; border-radius: 2rem; font-size: 0.875rem; z-index: 1000; backdrop-filter: blur(10px);">
+    Use ↑↓ arrows or scroll to navigate
+</div>
+
+<script>
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+            e.preventDefault();
+            window.scrollBy({ top: -window.innerHeight, behavior: 'smooth' });
+        } else if (e.key === 'Home') {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (e.key === 'End') {
+            e.preventDefault();
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    });
+
+    // Add smooth scroll behavior
+    document.documentElement.style.scrollBehavior = 'smooth';
+</script>
+
+</body>
+</html>

@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy4U - Презентация для государственного сектора</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            background: #1F2937;
+            color: #1F2937;
+            overflow-x: hidden;
+        }
+
+        .container {
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+            height: 100vh;
+        }
+
+        .slide {
+            scroll-snap-align: start;
+            min-height: 100vh;
+            padding: 60px 80px;
+            background: #FEF7F3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide-header {
+            border-left: 6px solid #E86B3E;
+            padding-left: 24px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 52px;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 44px;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #1F2937;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .key-message {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin: 32px 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            border-left: 4px solid #E86B3E;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #E86B3E;
+            margin-bottom: 12px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #1F2937;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .stat-description {
+            font-size: 14px;
+            color: #1F2937;
+            line-height: 1.5;
+            margin-top: 8px;
+        }
+
+        .list {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        .list li {
+            font-size: 16px;
+            color: #1F2937;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #E86B3E;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .highlight-box {
+            background: white;
+            padding: 24px 32px;
+            border-radius: 12px;
+            border: 2px solid #E86B3E;
+            margin: 24px 0;
+        }
+
+        .highlight-box p {
+            font-size: 16px;
+            color: #1F2937;
+            line-height: 1.6;
+        }
+
+        .table-container {
+            background: white;
+            padding: 32px;
+            border-radius: 12px;
+            margin: 32px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #FEF7F3;
+            padding: 16px;
+            text-align: left;
+            font-size: 16px;
+            font-weight: 700;
+            color: #1F2937;
+            border: 1px solid #E5E7EB;
+        }
+
+        td {
+            padding: 14px 16px;
+            font-size: 14px;
+            color: #1F2937;
+            border: 1px solid #E5E7EB;
+            line-height: 1.5;
+        }
+
+        tr:nth-child(even) {
+            background: #FEF7F3;
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .icon-item {
+            text-align: center;
+            padding: 24px;
+            background: white;
+            border-radius: 12px;
+        }
+
+        .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .icon-label {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1F2937;
+            margin-bottom: 8px;
+        }
+
+        .icon-desc {
+            font-size: 14px;
+            color: #1F2937;
+            line-height: 1.5;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 32px 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: #E86B3E;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .timeline-content h4 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 8px;
+        }
+
+        .timeline-content p {
+            font-size: 15px;
+            color: #1F2937;
+            line-height: 1.6;
+            margin-bottom: 6px;
+        }
+
+        .footer-note {
+            background: white;
+            padding: 20px 32px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: center;
+            border-top: 3px solid #E86B3E;
+        }
+
+        .footer-note p {
+            font-size: 16px;
+            color: #1F2937;
+            font-weight: 500;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 80px;
+            font-size: 14px;
+            color: #1F2937;
+            opacity: 0.6;
+        }
+
+        .cover-slide {
+            background: linear-gradient(135deg, #E86B3E 0%, #D55A2F 100%);
+            color: white;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .cover-slide h1 {
+            color: white;
+            font-size: 64px;
+            margin-bottom: 24px;
+        }
+
+        .cover-slide .subtitle {
+            color: white;
+            font-size: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 72px;
+            margin-bottom: 32px;
+        }
+
+        strong {
+            font-weight: 700;
+        }
+
+        .metric-highlight {
+            color: #E86B3E;
+            font-weight: 700;
+        }
+
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: #E86B3E;
+            margin: 24px 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 32px 0;
+        }
+
+        .column {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+        }
+
+        .column h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1F2937;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #FEF7F3;
+        }
+
+        .column p {
+            font-size: 15px;
+            color: #1F2937;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .success-badge {
+            display: inline-block;
+            background: #10B981;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .contact-slide {
+            background: #1F2937;
+            color: white;
+            text-align: center;
+        }
+
+        .contact-slide h2 {
+            color: white;
+            margin-bottom: 32px;
+        }
+
+        .contact-slide p {
+            color: white;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #E86B3E;
+            color: white;
+            padding: 18px 48px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 32px;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #D55A2F;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Слайд 0: Обложка -->
+        <section class="slide cover-slide">
+            <div class="logo">🏥</div>
+            <h1>Healthy4U</h1>
+            <div class="subtitle">
+                Национальная инфраструктура цифрового здоровья<br>
+                <strong>Трансформация системы здравоохранения от реактивного лечения к проактивному управлению здоровьем нации с помощью Суверенного ИИ</strong>
+            </div>
+        </section>
+
+        <!-- Слайд 1: Видение и Миссия -->
+        <section class="slide">
+            <div class="slide-header">
+                <h2>Видение и Миссия</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="content">
+                <div class="key-message">
+                    Мы не заменяем врачей — мы масштабируем их возможности в условиях кадрового кризиса
+                </div>
+
+                <div class="icon-grid">
+                    <div class="icon-item">
+                        <div class="icon">🛡️</div>
+                        <div class="icon-label">Безопасность</div>
+                    </div>
+                    <div class="icon-item">
+                        <div class="icon">📈</div>
+                        <div class="icon-label">Эффективность</div>
+                    </div>
+                    <div class="icon-item">
+                        <div class="icon">🗺️</div>
+                        <div class="icon-label">Масштаб</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-number">1 / 8</div>
+        </section>
+
+        <!-- Слайд 2: Национальный вызов -->
+        <section class="slide">
+            <div class="slide-header">
+                <h2>Национальный вызов</h2>
+                <div class="section-divider"></div>
+                <p class="subtitle">Системный кризис здравоохранения требует новых решений</p>
+            </div>
+
+            <div class="content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">100,000</div>
+                        <div class="stat-label">Кадровый голод</div>
+                        <div class="stat-description">
+                            <p>Глобальный дефицит медиков достиг критической точки</p>
+                            <p>В США к 2028 году нехватка составит 100 000 специалистов</p>
+                            <p>Врач тратит 50% времени на ввод данных, а не на пациента</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$110 млрд</div>
+                        <div class="stat-label">Рост хронических заболеваний</div>
+                        <div class="stat-description">
+                            <p>Старение населения требует перехода к непрерывному мониторингу (удаленный мониторинг пациентов)</p>
+                            <p>Рынок удаленного мониторинга вырастет до $110 млрд к 2033 году</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">💸</div>
+                        <div class="stat-label">Неэффективность расходов</div>
+                        <div class="stat-description">
+                            <p>Бюджеты тратятся на лечение запущенных болезней, которые можно было предотвратить</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-number">2 / 8</div>
+        </section>
+
+        <!-- Слайд 3: Решение - Суверенный ИИ -->
+        <section class="slide">
+            <div class="slide-header">
+                <h2>Решение: Суверенный ИИ</h2>
+                <div class="section-divider"></div>
+                <p class="subtitle">Технологическая независимость + Безопасность данных</p>
+            </div>
+
+            <div class="content">
+                <div class="key-message">Ключевые преимущества:</div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4 style="font-size: 18px; margin-bottom: 12px;">🛡️ Суверенитет данных</h4>
+                        <p style="font-size: 14px; line-height: 1.6; margin-bottom: 8px;">Персональные данные граждан НИКОГДА не покидают контур клиники или государственный ЦОД</p>
+                        <p style="font-size: 14px; line-height: 1.6;">Мы поставляем "интеллект" (алгоритмы), а не забираем данные</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4 style="font-size: 18px; margin-bottom: 12px;">🔄 Импортоопережение</h4>
+                        <p style="font-size: 14px; line-height: 1.6; margin-bottom: 8px;">Смена базовых моделей (LLM) за 1 день</p>
+                        <p style="font-size: 14px; line-height: 1.6; margin-bottom: 8px;">Поддержка локальных национальных моделей ИИ</p>
+                        <p style="font-size: 14px; line-height: 1.6;">Исключение зависимости от зарубежных вендоров</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4 style="font-size: 18px; margin-bottom: 12px;">⚙️ Соответствие стандартам</h4>
+                        <p style="font-size: 14px; line-height: 1.6;">Полная поддержка FHIR для интеграции с государственными системами (ЕГИСЗ/МИС)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-number">3 / 8</div>
+        </section>
+
+        <!-- Слайд 4: Экономическая эффективность -->
+        <section class="slide">
+            <div class="slide-header">
+                <h2>Экономическая эффективность</h2>
+                <div class="section-divider"></div>
+                <p class="subtitle">Доказанная эффективность: Реальные цифры</p>
+            </div>
+
+            <div class="content">
+                <div class="key-message">
+                    <span class="success-badge">Кейс GavCure</span> Результаты пилотного внедрения
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">-97%</div>
+                        <div class="stat-label">Время на документацию</div>
+                        <div class="stat-description">
+                            <p>Автоматическое заполнение карт (Ambient Documentation)</p>
+                            <p>Освобождается 15-20 минут с каждого приема</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">+30%</div>
+                        <div class="stat-label">Пропускная способность</div>
+                        <div class="stat-description">
+                            <p>Клиники могут принять на 30% больше пациентов</p>
+                            <p>БЕЗ найма новых врачей и строительства новых зданий</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">📍</div>
+                        <div class="stat-label">Рост доступности</div>
+                        <div class="stat-description">
+                            <p>Компенсация дефицита кадров в удаленных регионах</p>
+                            <p>ИИ-ассистируемая телемедицина</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Экономический эффект для государства:</strong></p>
+                    <p>• Снижение нагрузки на фонд оплаты труда (врачи работают эффективнее)</p>
+                    <p>• Сокращение расходов на экстренные госпитализации за счет профилактики</p>
+                    <p>• Оптимизация использования существующей инфраструктуры</p>
+                </div>
+            </div>
+
+            <div class="slide-number">4 / 8</div>
+        </section>
+
+        <!-- Слайд 5: Технология - Замкнутый цикл -->
+        <section class="slide">
+            <div class="slide-header">
+                <h2>Технология: Замкнутый цикл заботы</h2>
+                <div class="section-divider"></div>
+                <p class="subtitle">Единая государственная экосистема здоровья</p>
+            </div>
+
+            <div class="content">
+                <div class="key-message">Три уровня интеграции:</div>
+
+                <div class="two-column">
+                    <div class="column">
+                        <h4>🏥 В клинике (B2G/B2B)</h4>
+                        <p>• ИИ-ассистент врача</p>
+                        <p>• Автоматизация рутины</p>
+                        <p>• Поддержка принятия решений</p>
+                    </div>
+                    <div class="column">
+                        <h4>🏠 Дома (B2C)</h4>
+                        <p>• Приложение для гражданина</p>
+                        <p>• Голосовой ввод</p>
+                        <p>• Интеграция носимых устройств (Apple/Android Watch)</p>
+                    </div>
+                </div>
+
+                <div class="column" style="max-width: 600px; margin: 32px auto;">
+                    <h4>📊 Аналитика</h4>
+                    <p>• Кросс-модальный ИИ</p>
+                    <p>• Анализ данных 24/7</p>
+                    <p>• Раннее выявление рисков</p>
+                </div>
+            </div>
+
+            <div class="slide-number">5 / 8</div>
+        </section>
+
+        <!-- Слайд 6: Социальный эффект -->
+        <section class="slide">
+            <div class="slide-header">
+                <h2>Социальный эффект и Профилактика</h2>
+                <div class="section-divider"></div>
+                <p class="subtitle">Здоровая нация — процветающая страна</p>
+            </div>
+
+            <div class="content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="icon" style="font-size: 40px; margin-bottom: 12px;">❤️</div>
+                        <div class="stat-label">Проактивная медицина</div>
+                        <div class="stat-description">
+                            <p>Переход от лечения "по факту" к предиктивной аналитике</p>
+                            <p><strong>Снижение смертности от ХНИЗ на 40-80%</strong> за счет раннего выявления</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon" style="font-size: 40px; margin-bottom: 12px;">🧠</div>
+                        <div class="stat-label">Ментальное здоровье</div>
+                        <div class="stat-description">
+                            <p>Встроенный мониторинг стресса</p>
+                            <p>Решение "тихой эпидемии"</p>
+                            <p>Доступен каждому гражданину через смартфон</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon" style="font-size: 40px; margin-bottom: 12px;">👴</div>
+                        <div class="stat-label">Забота о пожилых</div>
+                        <div class="stat-description">
+                            <p>Автоматический мониторинг (удаленный мониторинг пациентов)</p>
+                            <p>Снижение нагрузки на стационары</p>
+                            <p>Достойное старение дома</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Социальная стабильность:</strong></p>
+                    <p>• Доступная качественная медицина для всех — от городов до сел</p>
+                    <p>• Снижение уровня тревожности населения благодаря доступности медицинской помощи</p>
+                    <p>• Повышение продолжительности и качества жизни граждан</p>
+                    <p>• Укрепление доверия к системе здравоохранения</p>
+                </div>
+            </div>
+
+            <div class="slide-number">6 / 8</div>
+        </section>
+
+        <!-- Слайд 7: Дорожная карта -->
+        <section class="slide">
+            <div class="slide-header">
+                <h2>Дорожная карта</h2>
+                <div class="section-divider"></div>
+                <p class="subtitle">От пилота к региональному лидерству</p>
+            </div>
+
+            <div class="content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Q2<br>2026</div>
+                        <div class="timeline-content">
+                            <h4>Этап 1: Пилот</h4>
+                            <p>• Внедрение в 1-2 гос. клиниках</p>
+                            <p>• Обучение 20 врачей</p>
+                            <p>• Подтверждение метрик (-97% рутины)</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker">Q4<br>2026</div>
+                        <div class="timeline-content">
+                            <h4>Этап 2: Масштабирование</h4>
+                            <p>• Охват ключевых городов</p>
+                            <p>• Интеграция с национальными системами</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2027+</div>
+                        <div class="timeline-content">
+                            <h4>Этап 3: Экспорт технологий</h4>
+                            <p>• Создание регионального центра компетенций по ИИ в медицине</p>
+                            <p>• Экспорт в соседние страны (Центральная Азия/MENA)</p>
+                            <p>• Позиционирование как лидер в "Суверенных ИИ экосистемах"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-number">7 / 8</div>
+        </section>
+
+        <!-- Слайд 8: Финансовая модель -->
+        <section class="slide">
+            <div class="slide-header">
+                <h2>Финансовая модель Win-Win</h2>
+                <div class="section-divider"></div>
+                <p class="subtitle">Инвестиция, которая окупается</p>
+            </div>
+
+            <div class="content">
+                <div class="highlight-box" style="margin-bottom: 32px;">
+                    <p><strong>Бизнес-модель:</strong></p>
+                    <p>Лицензия на регион/страну + SaaS за рабочее место врача</p>
+                </div>
+
+                <div class="highlight-box" style="margin-bottom: 32px;">
+                    <p><strong>Окупаемость: 6-12 месяцев</strong></p>
+                    <p>За счет:</p>
+                    <p>• Снижения нагрузки на фонд оплаты труда (врачи работают эффективнее)</p>
+                    <p>• Сокращения экстренных госпитализаций (профилактика)</p>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>Виральный рост:</strong></p>
+                    <p>• Реферальная программа</p>
+                    <p>• Быстрое подключение населения без рекламных бюджетов</p>
+                    <p>• Граждане приглашают граждан</p>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Параметр</th>
+                                <th>Традиционный подход</th>
+                                <th>Healthy4U</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Время врача на документацию</strong></td>
+                                <td>50% рабочего времени</td>
+                                <td>1.5% рабочего времени (-97%)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Пропускная способность</strong></td>
+                                <td>Базовый уровень</td>
+                                <td>+30% пациентов БЕЗ новых кадров</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Профилактика</strong></td>
+                                <td>Реактивное лечение</td>
+                                <td>Проактивный мониторинг 24/7</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Окупаемость</strong></td>
+                                <td>Не применимо (расходы)</td>
+                                <td>6-12 месяцев</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="slide-number">8 / 8</div>
+        </section>
+
+        <!-- Контактный слайд -->
+        <section class="slide contact-slide">
+            <h2>Давайте вместе создадим образцовую систему здравоохранения нового поколения — безопасную, эффективную и доступную каждому гражданину</h2>
+
+            <div style="margin-top: 48px;">
+                <p><strong>Свяжитесь с нами для обсуждения пилотного внедрения:</strong></p>
+                <p>📧 Email: contact@healthy4u.com</p>
+                <p>📱 Телефон: +7 (XXX) XXX-XX-XX</p>
+                <p>🌐 Сайт: www.healthy4u.com</p>
+            </div>
+
+            <a href="#" class="cta-button">Запросить пилотное внедрение</a>
+
+            <div style="margin-top: 64px; opacity: 0.7; font-size: 14px;">
+                <p>Healthy4U © 2026 | Суверенный ИИ для здравоохранения</p>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // Навигация по слайдам с помощью клавиатуры
+        document.addEventListener('keydown', function(e) {
+            const container = document.querySelector('.container');
+            const slides = document.querySelectorAll('.slide');
+            const currentScroll = container.scrollTop;
+            const slideHeight = window.innerHeight;
+
+            if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+                e.preventDefault();
+                container.scrollBy({
+                    top: slideHeight,
+                    behavior: 'smooth'
+                });
+            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                e.preventDefault();
+                container.scrollBy({
+                    top: -slideHeight,
+                    behavior: 'smooth'
+                });
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                container.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                container.scrollTo({
+                    top: container.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
