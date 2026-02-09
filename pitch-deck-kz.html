@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy4U Kazakhstan — Founding Partners Deck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #FF490E;
+            --color-secondary: #FF554A;
+            --color-positive: #23C965;
+            --color-negative: #FF554A;
+            --gradient-primary: linear-gradient(135deg, #FF490E 0%, #E6420D 100%);
+            --gradient-secondary: linear-gradient(135deg, #FF554A 0%, #95322C 100%);
+            --gradient-soft-green: linear-gradient(135deg, #E8F5E9, #FFFFFF);
+            --gradient-soft-yellow: linear-gradient(135deg, #FFF9E6, #FFFFFF);
+            --font-display: 'Bricolage Grotesque', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        /* Slide Container */
+        .slides-container {
+            width: 100%;
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 40px;
+            scroll-snap-align: start;
+            position: relative;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 0.875rem;
+            color: #999;
+            font-weight: 600;
+        }
+
+        /* Slide Backgrounds */
+        .bg-white { background: white; }
+        .bg-dark { background: var(--gradient-secondary); color: white; }
+        .bg-primary { background: var(--gradient-primary); color: white; }
+        .bg-sage { background: var(--gradient-soft-green); }
+        .bg-cream { background: var(--gradient-soft-yellow); }
+
+        /* Typography */
+        .slide-title {
+            font-family: var(--font-display);
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            text-align: center;
+            max-width: 1200px;
+        }
+
+        .slide-subtitle {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+            text-align: center;
+            max-width: 900px;
+            line-height: 1.4;
+        }
+
+        .slide-text {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            max-width: 1000px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .slide-title { font-size: 2.5rem; }
+            .slide-subtitle { font-size: 1.25rem; }
+            .slide-text { font-size: 1rem; }
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 32px;
+        }
+
+        .content-card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .bg-dark .content-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--color-secondary);
+        }
+
+        .bg-dark .card-title,
+        .bg-primary .card-title {
+            color: white;
+        }
+
+        .card-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #636e72;
+            margin-bottom: 12px;
+        }
+
+        .bg-dark .card-text,
+        .bg-primary .card-text {
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 48px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 12px;
+            color: var(--color-primary);
+        }
+
+        .bg-dark .stat-value,
+        .bg-primary .stat-value {
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+        }
+
+        .bg-dark .stat-label,
+        .bg-primary .stat-label {
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 1000px;
+            margin-top: 32px;
+            box-shadow: 0 8px 30px rgba(255, 73, 14, 0.3);
+        }
+
+        .highlight-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .highlight-text {
+            font-size: 1.25rem;
+            line-height: 1.7;
+        }
+
+        /* Logo */
+        .logo {
+            height: 60px;
+            margin-bottom: 40px;
+        }
+
+        /* List */
+        .feature-list {
+            list-style: none;
+            text-align: left;
+            max-width: 800px;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            font-size: 1.125rem;
+            line-height: 1.7;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: var(--color-positive);
+            font-weight: 800;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            max-width: 1200px;
+            margin-top: 48px;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-positive) 0%, var(--color-primary) 100%);
+            z-index: 0;
+        }
+
+        .timeline-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-dot {
+            width: 40px;
+            height: 40px;
+            background: var(--color-positive);
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.125rem;
+            box-shadow: 0 4px 12px rgba(35, 201, 101, 0.3);
+        }
+
+        .timeline-label {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--color-secondary);
+        }
+
+        .timeline-text {
+            font-size: 1rem;
+            color: #636e72;
+            line-height: 1.6;
+        }
+
+        /* Table */
+        .comparison-table {
+            width: 100%;
+            max-width: 1000px;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-top: 32px;
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #f1f3f5;
+        }
+
+        .comparison-table th {
+            background: var(--color-secondary);
+            color: white;
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .comparison-table td {
+            font-size: 1.05rem;
+        }
+
+        .comparison-table .highlight-row {
+            background: #f0fdf4;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 20px 48px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            margin-top: 32px;
+            box-shadow: 0 8px 24px rgba(255, 73, 14, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Navigation Dots */
+        .nav-dots {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-dot.active {
+            background: var(--color-primary);
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 32px;
+        }
+
+        @media (max-width: 968px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            background: var(--color-negative);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            max-width: 600px;
+            height: 40px;
+            background: #f1f3f5;
+            border-radius: 100px;
+            overflow: hidden;
+            margin-top: 24px;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="slides-container">
+
+        <!-- Slide 1: COVER -->
+        <div class="slide bg-dark">
+            <img src="h4ulogo.svg" alt="Healthy4U" class="logo" style="filter: brightness(0) invert(1);">
+            <h1 class="slide-title">Казахстан — первая страна в СНГ<br>с полноценным AI Health OS</h1>
+            <p class="slide-subtitle">Founding Partners Program<br>Ограниченное предложение для 4 клиник</p>
+            <p class="slide-text" style="margin-top: 48px; opacity: 0.7;">Конфиденциально • Февраль 2026</p>
+        </div>
+
+        <!-- Slide 2: THE PROBLEM -->
+        <div class="slide bg-white">
+            <span class="slide-number">2</span>
+            <h2 class="slide-title" style="color: var(--color-secondary);">Проблема</h2>
+            <p class="slide-subtitle" style="color: #636e72;">Современное здравоохранение — фрагментированное, реактивное, неэффективное</p>
+
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-value">1%</div>
+                    <div class="stat-label">Врач видит только 1% картины здоровья пациента</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">50%</div>
+                    <div class="stat-label">Времени врача уходит на бумажную работу, не лечение</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">70%</div>
+                    <div class="stat-label">Пациентов не следуют назначениям после визита</div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 48px;">
+                <p class="highlight-text">Врачи тонут в документации. Пациенты забывают назначения. Связь обрывается после визита. Здравоохранение работает эпизодически, а должно быть непрерывным.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: THE SOLUTION -->
+        <div class="slide bg-sage">
+            <span class="slide-number">3</span>
+            <h2 class="slide-title" style="color: var(--color-secondary);">Решение</h2>
+            <p class="slide-subtitle" style="color: var(--color-secondary);">Health Operating System — непрерывная, интеллектуальная забота</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3 class="card-title">До визита</h3>
+                    <p class="card-text">AI собирает данные с носимых устройств, симптомы, историю. Врач получает структурированный обзор ДО встречи.</p>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">Во время визита</h3>
+                    <p class="card-text">AI пишет заметки за 30 секунд. Врач фокусируется на пациенте, не на клавиатуре. Голосовое управление на любом языке.</p>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">После визита</h3>
+                    <p class="card-text">AI мониторит соблюдение назначений 24/7. Напоминания, ранние тревоги, персональные рекомендации. Забота не прерывается.</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <p class="highlight-text" style="text-align: center;">Врач видит 100% картины здоровья. Автоматически собранной, проанализированной, всегда актуальной.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: PRODUCT OVERVIEW -->
+        <div class="slide bg-white">
+            <span class="slide-number">4</span>
+            <h2 class="slide-title" style="color: var(--color-secondary);">Платформа</h2>
+            <p class="slide-subtitle" style="color: #636e72;">Два приложения. Одна экосистема.</p>
+
+            <div class="two-column">
+                <div>
+                    <div class="content-card">
+                        <h3 class="card-title">Для Клиник</h3>
+                        <ul class="feature-list">
+                            <li>AI-Scribe — автодокументация визитов</li>
+                            <li>AI Clinical Consultant — поддержка решений</li>
+                            <li>Голосовой доступ к данным пациентов</li>
+                            <li>Умные intake формы</li>
+                            <li>Телемедицина встроена</li>
+                            <li>FHIR/HL7 стандарты</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="content-card">
+                        <h3 class="card-title">Для Пациентов</h3>
+                        <ul class="feature-list">
+                            <li>AI Health Assistant 24/7</li>
+                            <li>Интеграция носимых устройств</li>
+                            <li>Голосовое управление (hands-free)</li>
+                            <li>Трекинг симптомов и лекарств</li>
+                            <li>Напоминания и персональные советы</li>
+                            <li>Вся медицинская история в одном месте</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: VOICE-FIRST -->
+        <div class="slide bg-primary">
+            <span class="slide-number">5</span>
+            <h2 class="slide-title">Единственная платформа с полным голосовым управлением</h2>
+            <p class="slide-subtitle">Не кликай. Не печатай. Просто говори.</p>
+
+            <div class="content-grid" style="margin-top: 48px;">
+                <div class="content-card">
+                    <p class="card-text" style="font-style: italic; color: white;">"Покажи тренды давления Сарии за последние 3 месяца"</p>
+                </div>
+                <div class="content-card">
+                    <p class="card-text" style="font-style: italic; color: white;">"Обнови дозировку лекарства Жанар на 50мг дважды в день"</p>
+                </div>
+                <div class="content-card">
+                    <p class="card-text" style="font-style: italic; color: white;">"Когда мне принимать лекарство от давления?"</p>
+                </div>
+            </div>
+
+            <div class="stats-grid" style="margin-top: 64px;">
+                <div class="stat">
+                    <div class="stat-value">5 сек</div>
+                    <div class="stat-label">вместо 2 минут кликов</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">кривая обучения</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">∞</div>
+                    <div class="stat-label">языков (русский, казахский, английский...)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: PROVEN RESULTS -->
+        <div class="slide bg-cream">
+            <span class="slide-number">6</span>
+            <h2 class="slide-title" style="color: var(--color-secondary);">Доказанные результаты</h2>
+            <p class="slide-subtitle" style="color: #636e72;">Семейная клиника в Израиле • 3 врача • 6 месяцев</p>
+
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-value">+27.5%</div>
+                    <div class="stat-label">Рост выручки клиники</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">97%</div>
+                    <div class="stat-label">Экономия времени на документацию</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">+30%</div>
+                    <div class="stat-label">Больше пациентов без найма персонала</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">75%</div>
+                    <div class="stat-label">Активность пациентов в приложении</div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 48px;">
+                <p class="highlight-text" style="font-style: italic; text-align: center;">"Ценность была не в технологии, а в операционной ясности. Мы снизили перегрузку персонала и улучшили прибыльность без расширения команды."</p>
+                <p style="text-align: center; margin-top: 16px; font-weight: 600;">— Владелец клиники, Израиль</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: MARKET OPPORTUNITY -->
+        <div class="slide bg-white">
+            <span class="slide-number">7</span>
+            <h2 class="slide-title" style="color: var(--color-secondary);">Рынок Казахстана</h2>
+
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-value">20M</div>
+                    <div class="stat-label">Население</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">$4B</div>
+                    <div class="stat-label">Расходы на здравоохранение</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">5,000+</div>
+                    <div class="stat-label">Частных клиник</div>
+                </div>
+            </div>
+
+            <div class="content-grid" style="margin-top: 64px;">
+                <div class="content-card">
+                    <h3 class="card-title">Почему сейчас?</h3>
+                    <p class="card-text">• Digital Kazakhstan 2025 — государственная инициатива</p>
+                    <p class="card-text">• Рост среднего класса и спроса на качественную медицину</p>
+                    <p class="card-text">• Дефицит врачей — нужна автоматизация</p>
+                    <p class="card-text">• 85%+ smartphone penetration</p>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">Почему Казахстан первый?</h3>
+                    <p class="card-text">• Ворота в Центральную Азию (100M+ населения)</p>
+                    <p class="card-text">• Более зрелый рынок чем соседи</p>
+                    <p class="card-text">• Прямой доступ к лидерам рынка</p>
+                    <p class="card-text">• Плацдарм для России (140M)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: THE BIG VISION -->
+        <div class="slide bg-dark">
+            <span class="slide-number">8</span>
+            <span class="badge">VISION</span>
+            <h2 class="slide-title">Не просто SaaS.<br>Национальная инфраструктура.</h2>
+            <p class="slide-subtitle">Становимся слоем между всеми клиниками, пациентами, страховыми, государством</p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-label" style="color: white;">Year 1</div>
+                    <div class="timeline-text" style="color: rgba(255,255,255,0.8);">100 клиник<br>200K пациентов<br>$15M ARR</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-label" style="color: white;">Year 2</div>
+                    <div class="timeline-text" style="color: rgba(255,255,255,0.8);">500 клиник<br>1.5M пациентов<br>Страховые партнерства<br>$195M ARR</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-label" style="color: white;">Year 3</div>
+                    <div class="timeline-text" style="color: rgba(255,255,255,0.8);">Казахстан + регион<br>Госконтракты<br>$300M ARR<br>$2.4B valuation 🦄</div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 64px; background: rgba(255,255,255,0.1);">
+                <p class="highlight-text" style="text-align: center; font-size: 1.5rem;">Winner-takes-all market.<br>Сетевые эффекты. Первый = победитель.</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: FOUNDING PARTNERS PROGRAM -->
+        <div class="slide bg-primary">
+            <span class="slide-number">9</span>
+            <span class="badge" style="background: white; color: var(--color-primary);">ОГРАНИЧЕННОЕ ПРЕДЛОЖЕНИЕ</span>
+            <h2 class="slide-title">Founding Partners Program</h2>
+            <p class="slide-subtitle">Вы не клиент. Вы — совладелец будущего здравоохранения Казахстана.</p>
+
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 50%;">2 из 4 мест заняты</div>
+            </div>
+
+            <div class="comparison-table" style="margin-top: 48px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Параметр</th>
+                            <th>Обычный клиент</th>
+                            <th style="background: var(--color-positive);">Founding Partner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Цена</strong></td>
+                            <td>$249/врач/мес</td>
+                            <td class="highlight-row"><strong>$99/врач/мес</strong> (60% скидка навсегда)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Инвестиция</strong></td>
+                            <td>—</td>
+                            <td class="highlight-row"><strong>$100K-300K за 2-5% equity</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Партнерская программа</strong></td>
+                            <td>Через 12 месяцев</td>
+                            <td class="highlight-row"><strong>С первого дня</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Влияние</strong></td>
+                            <td>Feature requests</td>
+                            <td class="highlight-row"><strong>Место в Advisory Board</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Upside</strong></td>
+                            <td>Операционные улучшения</td>
+                            <td class="highlight-row"><strong>3% equity = $50-100M через 3 года</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 10: ECONOMICS FOR PARTNERS -->
+        <div class="slide bg-sage">
+            <span class="slide-number">10</span>
+            <h2 class="slide-title" style="color: var(--color-secondary);">Экономика для Founding Partner</h2>
+            <p class="slide-subtitle" style="color: var(--color-secondary);">Пример: Клиника Рахат (50 врачей, 260K пациентов)</p>
+
+            <div class="two-column">
+                <div class="content-card">
+                    <h3 class="card-title">Инвестиция</h3>
+                    <p class="card-text" style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary); margin: 24px 0;">$200,000</p>
+                    <p class="card-text">За 3% equity в Healthy4U Kazakhstan</p>
+                    <p class="card-text" style="margin-top: 24px;"><strong>Месячная подписка:</strong></p>
+                    <p class="card-text">50 врачей × $99 = $4,950/мес</p>
+                    <p class="card-text" style="color: #999;">вместо $12,450 (экономия 60%)</p>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">Возврат</h3>
+                    <p class="card-text" style="margin-top: 16px;"><strong>Операционная выгода (месяц):</strong></p>
+                    <p class="card-text">• Экономия времени: $12,000</p>
+                    <p class="card-text">• Дополнительная выручка: $20,000</p>
+                    <p class="card-text">• Партнерский доход: $3,000+</p>
+                    <p class="card-text" style="margin-top: 16px; font-size: 1.25rem; font-weight: 700; color: var(--color-positive);">NET: +$30,000/мес</p>
+
+                    <p class="card-text" style="margin-top: 32px;"><strong>Equity upside (3 года):</strong></p>
+                    <p class="card-text" style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary);">3% × $2.4B = $72M</p>
+                    <p class="card-text" style="color: var(--color-positive); font-weight: 700;">ROI: 360x</p>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 32px;">
+                <p class="highlight-text" style="text-align: center;">Окупаемость подписки: немедленно. Окупаемость equity: потенциально $72M через 3 года.</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: WHO ARE WE LOOKING FOR -->
+        <div class="slide bg-white">
+            <span class="slide-number">11</span>
+            <h2 class="slide-title" style="color: var(--color-secondary);">Кого мы ищем</h2>
+            <p class="slide-subtitle" style="color: #636e72;">4 клиники. Разные профили. Один стандарт — лидеры рынка.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3 class="card-title">Многопрофильный холдинг</h3>
+                    <p class="card-text"><strong>Пример:</strong> Клиника Рахат, AMD Group</p>
+                    <p class="card-text">5+ направлений, 50+ врачей, 100K+ пациентов</p>
+                    <p class="card-text" style="margin-top: 16px;"><strong>Роль:</strong> Показать кросс-селл между направлениями</p>
+                    <p class="card-text"><strong>Equity:</strong> 3-5%</p>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">Крупная стоматология</h3>
+                    <p class="card-text"><strong>Пример:</strong> Eurodent, Dobro Dent</p>
+                    <p class="card-text">4-6 филиалов, 15-20 врачей</p>
+                    <p class="card-text" style="margin-top: 16px;"><strong>Роль:</strong> Reference case для стоматологий</p>
+                    <p class="card-text"><strong>Equity:</strong> 2-3%</p>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">Премиум клиника</h3>
+                    <p class="card-text"><strong>Пример:</strong> ProSmile, premium сегмент</p>
+                    <p class="card-text">Высокий чек, технологичная аудитория</p>
+                    <p class="card-text" style="margin-top: 16px;"><strong>Роль:</strong> Premium positioning, early adopters</p>
+                    <p class="card-text"><strong>Equity:</strong> 1-2%</p>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">Региональный лидер</h3>
+                    <p class="card-text">Вне Алматы (Астана, Шымкент, Караганда)</p>
+                    <p class="card-text">10+ врачей, локальное влияние</p>
+                    <p class="card-text" style="margin-top: 16px;"><strong>Роль:</strong> Regional expansion proof</p>
+                    <p class="card-text"><strong>Equity:</strong> 1-2%</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: WHAT PARTNERS GET -->
+        <div class="slide bg-dark">
+            <span class="slide-number">12</span>
+            <h2 class="slide-title">Что получают партнеры</h2>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3 class="card-title">💰 Финансовое</h3>
+                    <p class="card-text">• 60% скидка на подписку навсегда</p>
+                    <p class="card-text">• 2-5% equity в Healthy4U KZ</p>
+                    <p class="card-text">• 10% партнерский доход с первого дня</p>
+                    <p class="card-text">• Экономия $2,400+/мес на врача</p>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🎯 Стратегическое</h3>
+                    <p class="card-text">• Место в Advisory Board</p>
+                    <p class="card-text">• Влияние на roadmap продукта</p>
+                    <p class="card-text">• Приоритет в новых фичах</p>
+                    <p class="card-text">• Exclusive территории (опция)</p>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">📣 Маркетинговое</h3>
+                    <p class="card-text">• Hall of Fame на сайте</p>
+                    <p class="card-text">• Case studies и PR</p>
+                    <p class="card-text">• Первые в Казахстане с AI Health OS</p>
+                    <p class="card-text">• Конкурентное преимущество</p>
+                </div>
+                <div class="content-card">
+                    <h3 class="card-title">🛠 Операционное</h3>
+                    <p class="card-text">• Dedicated support на русском</p>
+                    <p class="card-text">• Кастомизация под ваши процессы</p>
+                    <p class="card-text">• Интеграция с текущей EMR</p>
+                    <p class="card-text">• Обучение персонала included</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: TIMELINE TO PARTNERSHIP -->
+        <div class="slide bg-cream">
+            <span class="slide-number">13</span>
+            <h2 class="slide-title" style="color: var(--color-secondary);">Путь к партнерству</h2>
+
+            <div class="timeline" style="flex-direction: column; align-items: flex-start; max-width: 800px;">
+                <div class="timeline-item" style="display: flex; gap: 24px; align-items: flex-start; margin-bottom: 32px;">
+                    <div class="timeline-dot">1</div>
+                    <div style="text-align: left;">
+                        <div class="timeline-label" style="font-size: 1.5rem;">Неделя 1: Встреча и Demo</div>
+                        <p class="timeline-text" style="font-size: 1.125rem;">• Live демо платформы (30 мин)<br>• ROI калькулятор для вашей клиники<br>• Обсуждение equity terms</p>
+                    </div>
+                </div>
+                <div class="timeline-item" style="display: flex; gap: 24px; align-items: flex-start; margin-bottom: 32px;">
+                    <div class="timeline-dot">2</div>
+                    <div style="text-align: left;">
+                        <div class="timeline-label" style="font-size: 1.5rem;">Неделя 2: Due Diligence</div>
+                        <p class="timeline-text" style="font-size: 1.125rem;">• Ваша команда тестирует платформу<br>• Юридическая проверка документов<br>• Финальные вопросы</p>
+                    </div>
+                </div>
+                <div class="timeline-item" style="display: flex; gap: 24px; align-items: flex-start; margin-bottom: 32px;">
+                    <div class="timeline-dot">3</div>
+                    <div style="text-align: left;">
+                        <div class="timeline-label" style="font-size: 1.5rem;">Неделя 3: Подписание</div>
+                        <p class="timeline-text" style="font-size: 1.125rem;">• Partnership Agreement + Equity docs<br>• Инвестиция $100K-300K<br>• Добро пожаловать в Advisory Board</p>
+                    </div>
+                </div>
+                <div class="timeline-item" style="display: flex; gap: 24px; align-items: flex-start;">
+                    <div class="timeline-dot">4</div>
+                    <div style="text-align: left;">
+                        <div class="timeline-label" style="font-size: 1.5rem;">Неделя 4-6: Launch</div>
+                        <p class="timeline-text" style="font-size: 1.125rem;">• Интеграция и обучение<br>• Первые результаты через 30 дней<br>• Joint press release</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: WHY NOW -->
+        <div class="slide bg-primary">
+            <span class="slide-number">14</span>
+            <h2 class="slide-title">Почему решать сегодня</h2>
+
+            <div class="stats-grid" style="margin-top: 48px;">
+                <div class="stat">
+                    <div class="stat-value" style="font-size: 4rem;">4</div>
+                    <div class="stat-label">Всего мест</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" style="font-size: 4rem;">2</div>
+                    <div class="stat-label">Уже в финальной стадии</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" style="font-size: 4rem;">60</div>
+                    <div class="stat-label">Дней до закрытия программы</div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 64px; background: rgba(255,255,255,0.1);">
+                <p class="highlight-text" style="font-size: 1.75rem; margin-bottom: 24px;">Через 2 месяца Founding Partners программа закрывается навсегда.</p>
+                <p class="highlight-text">Следующие клиники платят полную цену без equity.<br>Первые 4 = совладельцы. Остальные = клиенты.</p>
+            </div>
+
+            <div style="margin-top: 48px; text-align: center;">
+                <p class="slide-text" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 16px;">Что вы выбираете?</p>
+                <p class="slide-text">Быть клиентом или быть владельцем?</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: THE ASK -->
+        <div class="slide bg-dark">
+            <span class="slide-number">15</span>
+            <h2 class="slide-title">Что мы предлагаем</h2>
+
+            <div class="highlight-box" style="background: rgba(255,255,255,0.1); max-width: 900px;">
+                <p class="highlight-text" style="font-size: 2rem; margin-bottom: 32px;">Инвестиция: $100K-300K</p>
+                <p class="highlight-text" style="font-size: 1.5rem; margin-bottom: 16px;">За это вы получаете:</p>
+                <ul class="feature-list" style="max-width: 100%; color: white; margin-top: 24px;">
+                    <li>2-5% equity в Healthy4U Kazakhstan</li>
+                    <li>60% скидка на подписку навсегда ($99 vs $249)</li>
+                    <li>Партнерская программа с первого дня</li>
+                    <li>Место в Advisory Board</li>
+                    <li>Потенциальный возврат: $50-100M через 3 года</li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 64px; text-align: center;">
+                <p class="slide-text" style="font-size: 1.5rem; font-weight: 700; margin-bottom: 24px;">Следующий шаг:</p>
+                <a href="mailto:partners@healthy4u.world" class="cta-button">Забронировать встречу</a>
+                <p class="slide-text" style="margin-top: 24px; opacity: 0.8;">Или позвоните: +7 (XXX) XXX-XX-XX</p>
+            </div>
+        </div>
+
+        <!-- Slide 16: CLOSING -->
+        <div class="slide bg-sage">
+            <span class="slide-number">16</span>
+            <img src="h4ulogo.svg" alt="Healthy4U" class="logo">
+            <h2 class="slide-title" style="color: var(--color-secondary); font-size: 3.5rem;">Трансформируем здравоохранение<br>Казахстана. Вместе.</h2>
+
+            <div class="stats-grid" style="margin-top: 64px;">
+                <div class="stat">
+                    <div class="stat-value">20M</div>
+                    <div class="stat-label">жизней в Казахстане</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">100M+</div>
+                    <div class="stat-label">в Центральной Азии</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">$2.4B</div>
+                    <div class="stat-label">Potential valuation</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 64px; text-align: center;">
+                <p class="slide-text" style="font-size: 1.75rem; font-weight: 700; color: var(--color-secondary); margin-bottom: 24px;">Станьте частью истории.</p>
+                <a href="mailto:partners@healthy4u.world" class="cta-button">partners@healthy4u.world</a>
+            </div>
+
+            <p style="margin-top: 48px; color: #999; font-size: 0.875rem; text-align: center;">Конфиденциально • Только для Founding Partners candidates • Февраль 2026</p>
+        </div>
+
+    </div>
+
+    <!-- Navigation Dots -->
+    <div class="nav-dots" id="navDots"></div>
+
+    <script>
+        // Create navigation dots
+        const slides = document.querySelectorAll('.slide');
+        const navDots = document.getElementById('navDots');
+
+        slides.forEach((slide, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'nav-dot';
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+                slide.scrollIntoView({ behavior: 'smooth' });
+            });
+            navDots.appendChild(dot);
+        });
+
+        // Update active dot on scroll
+        const container = document.querySelector('.slides-container');
+        container.addEventListener('scroll', () => {
+            const scrollPosition = container.scrollTop;
+            const windowHeight = window.innerHeight;
+
+            slides.forEach((slide, index) => {
+                const slideTop = slide.offsetTop;
+                const slideBottom = slideTop + slide.offsetHeight;
+
+                if (scrollPosition >= slideTop - windowHeight/2 && scrollPosition < slideBottom - windowHeight/2) {
+                    document.querySelectorAll('.nav-dot').forEach(dot => dot.classList.remove('active'));
+                    navDots.children[index].classList.add('active');
+                }
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const container = document.querySelector('.slides-container');
+            const currentScroll = container.scrollTop;
+            const windowHeight = window.innerHeight;
+
+            if (e.key === 'ArrowDown' || e.key === ' ') {
+                e.preventDefault();
+                container.scrollBy({ top: windowHeight, behavior: 'smooth' });
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                container.scrollBy({ top: -windowHeight, behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>
