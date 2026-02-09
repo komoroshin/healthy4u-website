@@ -56,7 +56,7 @@
 **Пример:**
 ```html
 <!-- ❌ ПЛОХО -->
-<div style="padding: 25px; background: #f8f9fa; border-left: 4px solid #FF490E;">
+<div style="padding: 25px; background: #f8f9fa; border-left: 4px solid #F84506;">
   Content
 </div>
 
