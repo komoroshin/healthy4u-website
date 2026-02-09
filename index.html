@@ -314,6 +314,11 @@
             .hero .hero-description {
                 text-align: center !important;
             }
+
+            /* Hide hero image on tablets and below */
+            .hero .container > div > div:last-child {
+                display: none !important;
+            }
         }
 
         .hero-subtitle {
@@ -1131,6 +1136,29 @@
             input[type="number"],
             select {
                 font-size: 16px !important; /* Prevents zoom on iOS */
+            }
+
+            /* Hero email form */
+            .hero div[style*="display: flex"] {
+                flex-direction: column !important;
+                gap: var(--spacing-sm) !important;
+            }
+
+            .hero div[style*="display: flex"] input[type="email"] {
+                width: 100% !important;
+            }
+
+            .hero div[style*="display: flex"] .btn {
+                width: 100% !important;
+            }
+
+            /* Hero stats grid */
+            .hero div[style*="grid-template-columns: repeat(2, 1fr)"] {
+                gap: var(--spacing-md) !important;
+            }
+
+            .hero div[style*="grid-template-columns: repeat(2, 1fr)"] > div > div:first-child {
+                font-size: 2.5rem !important;
             }
 
             /* App store badges */
