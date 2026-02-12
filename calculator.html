@@ -427,6 +427,31 @@
 
         .footer-bottom p {
             color: #636e72;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d3436;
+            text-decoration: none;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .social-link:hover {
+            background: var(--color-primary);
+            color: white;
+            transform: translateY(-2px);
         }
 
         /* Utility Classes */
