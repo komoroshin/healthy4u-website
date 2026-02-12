@@ -3,378 +3,742 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study: GavCure Clinic | Healthy4U</title>
+    <title>GavCure Case Study - Healthy4U</title>
     <link rel="icon" type="image/png" href="images/logo.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-orange': '#EF6113',
-                        'brand-cream': '#FFF9F2',
-                        'brand-dark': '#000000',
-                        'brand-muted': '#666666',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-                    },
-                },
-            },
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
     <style>
-        /* Image hover effects */
-        .image-hover {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+        :root {
+            /* Colors */
+            --color-primary: #F84506;
+            --color-primary-dark: #E6420D;
+            --color-secondary: #F8F9FA;
+            --color-secondary-light: #6279A9;
+            --color-positive: #00C951;
+            --color-positive-dark: #1BA352;
+            --color-negative: #F8F9FA;
+
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #F84506 0%, #E6420D 100%);
+            --gradient-secondary: linear-gradient(135deg, #F8F9FA 0%, #D0F4B1 100%);
+            --gradient-positive: linear-gradient(135deg, #00C951 0%, #1BA352 100%);
+            --gradient-01: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
+            --gradient-02: linear-gradient(135deg, #F8D970 0%, #FFFFFF 100%);
+            --gradient-soft-blue: linear-gradient(135deg, #D8E3FB, #FFFFFF);
+            --gradient-soft-yellow: linear-gradient(135deg, #FFF5F3, #FFFFFF);
+            --gradient-soft-orange: linear-gradient(135deg, #FFF3E0, #FFFFFF);
+
+            /* Spacing */
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-2xl: 64px;
+            --spacing-3xl: 80px;
+            --spacing-4xl: 120px;
+
+            /* Typography */
+            --font-display: 'Bricolage Grotesque', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-primary: 0 8px 24px rgba(255, 73, 14, 0.25);
+
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-full: 9999px;
+
+            /* Animation */
+            --duration-normal: 300ms;
+            --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
         }
 
-        .image-hover:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* Smooth scroll reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        body {
+            font-family: var(--font-body);
+            color: #2d3436;
+            line-height: 1.6;
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid #f1f3f5;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95);
         }
 
-        /* Button hover animation */
-        .btn-animate {
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            height: 44px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #2d3436;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color var(--duration-normal);
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: var(--font-body);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-primary);
+        }
+
+        .btn-outline {
+            background: white;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--color-secondary);
+            padding: var(--spacing-4xl) 0 var(--spacing-3xl);
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #2d3436;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+            font-family: var(--font-display);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #636e72;
+            max-width: 900px;
+            margin: 0 auto var(--spacing-xl);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .meta-tags {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-xl);
+        }
+
+        .meta-tag {
+            background: white;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            color: #636e72;
+        }
+
+        .meta-tag strong {
+            color: #2d3436;
+        }
+
+        /* Section Styles */
+        section {
+            padding: var(--spacing-4xl) 0;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            color: #2d3436;
+            font-family: var(--font-display);
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: #636e72;
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .stat-card {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            font-family: var(--font-display);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #636e72;
+            line-height: 1.5;
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            color: #2d3436;
+            font-family: var(--font-display);
+        }
+
+        .content-section p {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #2d3436;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding: 0;
+            margin: var(--spacing-lg) 0;
+        }
+
+        .content-section li {
+            padding: var(--spacing-sm) 0;
+            padding-left: var(--spacing-lg);
             position: relative;
-            overflow: hidden;
+            font-size: 1.125rem;
+            line-height: 1.7;
+        }
+
+        .content-section li:before {
+            content: "•";
+            color: var(--color-primary);
+            font-weight: bold;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Solution Cards */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .solution-card {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .solution-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .solution-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #636e72;
+        }
+
+        /* Testimonial */
+        .testimonial-box {
+            background: var(--gradient-soft-yellow);
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            max-width: 900px;
+            margin: var(--spacing-2xl) auto;
+        }
+
+        .testimonial-text {
+            font-size: 1.375rem;
+            line-height: 1.8;
+            color: #2d3436;
+            font-style: italic;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .testimonial-author {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #2d3436;
+        }
+
+        .testimonial-role {
+            font-size: 1rem;
+            color: #636e72;
+            margin-top: var(--spacing-xs);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #F84506, #E6420D);
+            padding: var(--spacing-4xl) 0;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            font-family: var(--font-display);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-xl);
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--color-primary);
+            padding: var(--spacing-md) var(--spacing-xl);
+            font-size: 1.125rem;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Footer */
+        footer {
+            background: #F8F9FA;
+            color: #2d3436;
+            padding: var(--spacing-3xl) 0 var(--spacing-lg);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer-column h4 {
+            color: var(--color-primary);
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.125rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-links a {
+            color: #636e72;
+            text-decoration: none;
+            transition: color var(--duration-normal);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #636e72;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .content-section h2 {
+                font-size: 1.75rem;
+            }
+
+            .testimonial-text {
+                font-size: 1.125rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 101;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #2d3436;
+            border-radius: 2px;
             transition: all 0.3s ease;
         }
 
-        .btn-animate::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
 
-        .btn-animate:hover::before {
-            width: 300px;
-            height: 300px;
+            .nav-links {
+                position: fixed;
+                top: 73px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: var(--spacing-md);
+                box-shadow: var(--shadow-lg);
+                transform: translateY(-100%);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
         }
     </style>
-    <script src="components.js"></script>
 </head>
-<body class="font-sans bg-white text-black">
-    <!-- Header Container -->
-    <div id="header-container"></div>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html">
+                    <img src="h4ulogo.svg" alt="Healthy4U" class="logo">
+                </a>
+
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="nav-links">
+                    <a href="about.html">About</a>
+                    <a href="ecosystem.html">Ecosystem</a>
+                    <a href="casestudy.html">Case Study</a>
+                    <a href="calculator.html">Calculator</a>
+                    <a href="https://medical-b2b.healthy4u.world/auth/login" class="btn btn-outline" style="padding: 12px 28px; font-size: 0.95rem; line-height: 1.2;">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="bg-brand-cream py-32">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex items-center gap-3 mb-8">
-                <div class="inline-flex items-center gap-2 bg-white/50 border border-green-100 px-4 py-2 rounded-full">
-                    <span class="text-green-600 text-sm">✓</span>
-                    <span class="text-gray-600 text-xs font-medium uppercase tracking-wider">Live in Production</span>
-                </div>
-            </div>
-
-            <div class="mb-12">
-                <h1 class="text-6xl md:text-8xl font-bold mb-6 leading-tight text-brand-dark max-w-4xl">
-                    Case Study: GavCure Clinic
-                </h1>
-                <p class="text-2xl md:text-3xl text-brand-muted max-w-3xl leading-relaxed">
-                    How a private Israeli healthcare facility transformed patient care delivery with Healthy4U's AI platform
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Overview Section -->
-    <section class="py-32 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-bold mb-12 text-brand-dark">Overview</h2>
-            <p class="text-2xl text-brand-muted leading-relaxed max-w-4xl">
-                GavCure Clinic, a private Israeli healthcare facility, implemented Healthy4U's AI platform to streamline patient care delivery and administrative workflows.
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">How GavCure Clinic Transformed Patient Care with AI</h1>
+            <p class="hero-subtitle">
+                A private clinic in Israel reduced physician admin time by 97% and increased patient capacity by 30% — without adding staff.
             </p>
+            <div class="meta-tags">
+                <div class="meta-tag"><strong>Industry:</strong> Healthcare / Private Clinic</div>
+                <div class="meta-tag"><strong>Location:</strong> Israel</div>
+                <div class="meta-tag"><strong>Solution:</strong> Healthy4U Platform</div>
+            </div>
         </div>
     </section>
 
-    <!-- Key Metrics Section -->
-    <section class="py-32 bg-brand-cream">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-bold mb-20 text-brand-dark">Key Metrics</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
-                <div class="reveal">
-                    <div class="text-8xl font-bold mb-4 text-brand-orange">97%</div>
-                    <div class="text-2xl font-semibold mb-3 text-brand-dark">Reduction in intake time</div>
-                    <div class="text-lg text-brand-muted">From 15+ minutes to under 30 seconds per patient</div>
+    <!-- Measurable Impact Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Measurable Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">-97%</div>
+                    <div class="stat-label">Physician admin time<br>(15+ minutes reduced to under 30 seconds per patient)</div>
                 </div>
-                <div class="reveal">
-                    <div class="text-8xl font-bold mb-4 text-brand-orange">30%</div>
-                    <div class="text-2xl font-semibold mb-3 text-brand-dark">Increase in patient capacity</div>
-                    <div class="text-lg text-brand-muted">Without additional staffing or extended hours</div>
+                <div class="stat-card">
+                    <div class="stat-number">+30%</div>
+                    <div class="stat-label">Patient capacity<br>more patients daily</div>
                 </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="reveal">
-                    <div class="text-8xl font-bold mb-4 text-brand-orange">20-35%</div>
-                    <div class="text-2xl font-semibold mb-3 text-brand-dark">Better treatment acceptance</div>
-                    <div class="text-lg text-brand-muted">Patients more likely to follow care plans</div>
+                <div class="stat-card">
+                    <div class="stat-number">+20-35%</div>
+                    <div class="stat-label">Treatment plan acceptance increase</div>
                 </div>
-                <div class="reveal">
-                    <div class="text-8xl font-bold mb-4 text-brand-orange">100%</div>
-                    <div class="text-2xl font-semibold mb-3 text-brand-dark">Structured patient overviews</div>
-                    <div class="text-lg text-brand-muted">Every appointment features complete context</div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Structured appointments<br>of visits</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- The Challenge Section -->
-    <section class="py-32 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-bold mb-20 text-brand-dark">The Challenge</h2>
+    <section style="background: var(--color-secondary);">
+        <div class="container">
+            <div class="content-section">
+                <h2>A Growing Clinic Struggling with Paperwork</h2>
+                <p>GavCure Clinic was experiencing rapid growth, but their success came with mounting operational challenges:</p>
+                <ul>
+                    <li>Unstructured intake using paper forms causing inconsistent records</li>
+                    <li>Physicians spending 15+ minutes per appointment on history gathering</li>
+                    <li>Patient dissatisfaction and drop-off after initial visits</li>
+                    <li>Growth limitations without additional staff</li>
+                </ul>
+                <p>The clinic needed a solution that could standardize care delivery while reducing administrative burden on physicians.</p>
+            </div>
+        </div>
+    </section>
 
-            <div class="space-y-8 max-w-4xl">
-                <div class="flex items-start gap-6 reveal">
-                    <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                        <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=200&h=200&fit=crop" alt="Unstructured intake" class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-3 text-brand-dark">Unstructured intake processes</h3>
-                        <p class="text-xl text-brand-muted leading-relaxed">Paper-based intake creating inconsistent records and missing critical patient information</p>
-                    </div>
+    <!-- The Solution Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title" style="text-align: center;">Implementing Healthy4U</h2>
+            <p class="section-subtitle" style="text-align: center;">A comprehensive platform that transformed how GavCure delivers care</p>
+
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <h3>AI-Powered Intake</h3>
+                    <p>Patients complete structured questionnaires via mobile app; AI organizes responses into medical overview</p>
                 </div>
-
-                <div class="flex items-start gap-6 reveal">
-                    <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                        <img src="https://images.unsplash.com/photo-1501139083538-0139583c060f?w=200&h=200&fit=crop" alt="Documentation time" class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-3 text-brand-dark">Excessive documentation time</h3>
-                        <p class="text-xl text-brand-muted leading-relaxed">Physicians spending 15+ minutes per appointment on documentation instead of patient care</p>
-                    </div>
+                <div class="solution-card">
+                    <h3>Ambient Documentation</h3>
+                    <p>AI-Scribe transcribes consultations and generates clinical notes for physician review</p>
                 </div>
-
-                <div class="flex items-start gap-6 reveal">
-                    <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=200&h=200&fit=crop" alt="Patient attrition" class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-3 text-brand-dark">Patient attrition</h3>
-                        <p class="text-xl text-brand-muted leading-relaxed">High drop-off rates after initial visits due to poor experience and lack of follow-up</p>
-                    </div>
+                <div class="solution-card">
+                    <h3>Unified Patient Records</h3>
+                    <p>Consolidated health data (history, vitals, previous visits, lab results)</p>
                 </div>
-
-                <div class="flex items-start gap-6 reveal">
-                    <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=200&h=200&fit=crop" alt="Growth limitations" class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-3 text-brand-dark">Growth limitations</h3>
-                        <p class="text-xl text-brand-muted leading-relaxed">Unable to scale without hiring additional staff or extending hours</p>
-                    </div>
+                <div class="solution-card">
+                    <h3>Continuous Monitoring</h3>
+                    <p>Between-visit symptom and vital tracking with physician alerts</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Solution Section -->
-    <section class="py-32 bg-brand-cream">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-bold mb-20 text-brand-dark">Solution Components</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="reveal">
-                    <div class="flex items-start gap-4 mb-6">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=200&h=200&fit=crop" alt="AI-Powered Intake" class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-3xl font-semibold text-brand-dark mt-4">AI-Powered Intake</h3>
-                    </div>
-                    <p class="text-xl text-brand-muted leading-relaxed pl-24">
-                        Automated pre-visit questionnaires via mobile app with organized medical summaries
-                    </p>
-                </div>
-
-                <div class="reveal">
-                    <div class="flex items-start gap-4 mb-6">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=200&h=200&fit=crop" alt="Ambient Documentation" class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-3xl font-semibold text-brand-dark mt-4">Ambient Documentation</h3>
-                    </div>
-                    <p class="text-xl text-brand-muted leading-relaxed pl-24">
-                        AI-Scribe technology transcribing consultations into clinical notes in real-time
-                    </p>
-                </div>
-
-                <div class="reveal">
-                    <div class="flex items-start gap-4 mb-6">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200&h=200&fit=crop" alt="Unified Records" class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-3xl font-semibold text-brand-dark mt-4">Unified Patient Records</h3>
-                    </div>
-                    <p class="text-xl text-brand-muted leading-relaxed pl-24">
-                        Consolidated health data across history, vitals, and lab results in one view
-                    </p>
-                </div>
-
-                <div class="reveal">
-                    <div class="flex items-start gap-4 mb-6">
-                        <div class="w-20 h-20 rounded-2xl overflow-hidden shadow-md flex-shrink-0 image-hover">
-                            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=200&h=200&fit=crop" alt="Continuous Monitoring" class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-3xl font-semibold text-brand-dark mt-4">Continuous Monitoring</h3>
-                    </div>
-                    <p class="text-xl text-brand-muted leading-relaxed pl-24">
-                        Between-visit symptom and vital tracking with physician alerts
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Clinical Outcomes Section -->
-    <section class="py-32 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-bold mb-20 text-brand-dark">Clinical Outcomes</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-5xl">
-                <div class="reveal">
-                    <div class="text-4xl font-bold mb-4 text-brand-orange">✓</div>
-                    <h3 class="text-2xl font-semibold mb-3 text-brand-dark">Standardized diagnostic processes</h3>
-                    <p class="text-xl text-brand-muted leading-relaxed">Every patient receives consistent, thorough evaluation</p>
-                </div>
-
-                <div class="reveal">
-                    <div class="text-4xl font-bold mb-4 text-brand-orange">✓</div>
-                    <h3 class="text-2xl font-semibold mb-3 text-brand-dark">Reduced patient drop-off rates</h3>
-                    <p class="text-xl text-brand-muted leading-relaxed">Improved patient experience leads to better retention</p>
-                </div>
-
-                <div class="reveal">
-                    <div class="text-4xl font-bold mb-4 text-brand-orange">✓</div>
-                    <h3 class="text-2xl font-semibold mb-3 text-brand-dark">Predictable care experiences</h3>
-                    <p class="text-xl text-brand-muted leading-relaxed">Patients know what to expect at every visit</p>
-                </div>
-
-                <div class="reveal">
-                    <div class="text-4xl font-bold mb-4 text-brand-orange">✓</div>
-                    <h3 class="text-2xl font-semibold mb-3 text-brand-dark">Better clinical decision-making</h3>
-                    <p class="text-xl text-brand-muted leading-relaxed">Complete patient context enables informed treatment choices</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Financial Impact Section -->
-    <section class="py-32 bg-brand-cream">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-5xl md:text-7xl font-bold mb-20 text-brand-dark">Financial Impact</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <div class="reveal">
-                    <div class="text-sm text-brand-muted mb-2 uppercase tracking-wider">Monthly Savings</div>
-                    <div class="text-5xl font-bold mb-2 text-brand-dark">$2,400</div>
-                    <div class="text-brand-muted">240 hours saved</div>
-                </div>
-                <div class="reveal">
-                    <div class="text-sm text-brand-muted mb-2 uppercase tracking-wider">Revenue Increase</div>
-                    <div class="text-5xl font-bold mb-2 text-brand-dark">$4,167</div>
-                    <div class="text-brand-muted">per month</div>
-                </div>
-                <div class="reveal">
-                    <div class="text-sm text-brand-muted mb-2 uppercase tracking-wider">Cost</div>
-                    <div class="text-5xl font-bold mb-2 text-brand-dark">$522</div>
-                    <div class="text-brand-muted">per month (3 physicians)</div>
-                </div>
+    <!-- Impact Section -->
+    <section style="background: var(--color-secondary);">
+        <div class="container">
+            <div class="content-section">
+                <h2>Transformed Operations, Better Care</h2>
+                <p>The implementation of Healthy4U delivered measurable improvements across all aspects of clinic operations:</p>
+                <ul>
+                    <li>Standardized diagnostic workflows ensuring consistent care quality</li>
+                    <li>Reduced patient drop-off post-visit</li>
+                    <li>Predictable patient experience without repetitive questioning</li>
+                    <li>Enhanced decision-making with complete patient context</li>
+                </ul>
             </div>
 
-            <div class="bg-white rounded-3xl p-12 mb-12 reveal">
-                <div class="text-brand-muted text-sm mb-3 uppercase tracking-wider">Net Benefit</div>
-                <div class="text-7xl font-bold mb-4 text-brand-orange">$11K</div>
-                <div class="text-2xl text-brand-dark mb-6">over 6 months</div>
-                <div class="text-xl text-brand-muted">ROI: 16:1 ($249/mo investment = $4,000/mo value)</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonial Section -->
-    <section class="py-32 bg-white">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="bg-brand-cream rounded-3xl p-16 reveal">
-                <div class="text-6xl mb-8 text-brand-orange">"</div>
-                <p class="text-3xl md:text-4xl italic mb-12 text-brand-dark leading-relaxed">
-                    Healthy4U changed how we practice medicine. Doctors enter appointments fully prepared, and patients feel heard. The value was not the technology itself, but operational clarity.
+            <div class="testimonial-box">
+                <p class="testimonial-text">
+                    "Healthy4U didn't just save us time — it changed how we practice medicine. Our doctors now walk into every appointment fully prepared. Patients feel heard because we already know their story. That trust translates directly into better outcomes and higher treatment acceptance."
                 </p>
-                <div class="flex items-center gap-4">
-                    <div class="w-16 h-16 rounded-full overflow-hidden shadow-md">
-                        <img src="images/gen.png" alt="Gennady Ochman" class="w-full h-full object-cover">
-                    </div>
-                    <div>
-                        <div class="text-xl font-semibold text-brand-dark">Gennady Ochman</div>
-                        <div class="text-brand-muted">GavCure Clinic, Israel</div>
-                    </div>
-                </div>
+                <div class="testimonial-author">Dr. Victoria Gale</div>
+                <div class="testimonial-role">Internal Medicine Physician, GavCure Clinic</div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-32 bg-[#FFF9F1]">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-5xl md:text-8xl font-bold mb-8 leading-tight text-brand-dark">Ready to transform<br/>your practice?</h2>
-            <p class="text-2xl mb-12 text-brand-muted max-w-2xl">See how Healthy4U can deliver similar results for your clinic.</p>
-            <div class="flex flex-col sm:flex-row gap-6">
-                <a href="calculator.html" class="px-10 py-5 bg-brand-orange text-white font-bold text-lg rounded-full hover:opacity-90 transition-opacity btn-animate">
-                    Calculate Your Savings
-                </a>
-                <a href="index.html" class="px-10 py-5 bg-white text-brand-dark font-bold text-lg rounded-full hover:bg-gray-100 transition-colors btn-animate">
-                    Book a Demo
-                </a>
+    <section class="cta-section">
+        <div class="container">
+            <h2>Start Your Transformation Today</h2>
+            <p style="font-size: 1.25rem; margin-bottom: var(--spacing-xl);">
+                See how Healthy4U can transform your clinic's operations
+            </p>
+            <div class="cta-buttons">
+                <a href="calculator.html" class="btn btn-white">Calculate Your Savings</a>
+                <a href="ecosystem.html" class="btn btn-white">Explore the Platform</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer Container -->
-    <div id="footer-container"></div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <img src="h4ulogo.svg" alt="Healthy4U" style="height: 54px; margin-bottom: var(--spacing-md);">
+                    <p style="color: #636e72; line-height: 1.7; font-size: 0.95rem;">
+                        AI-native healthcare platform connecting patients, clinics, and continuous care into one intelligent system.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="ecosystem.html">Ecosystem</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="casestudy.html">Case Studies</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>©2026 Healthy4U | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // Scroll reveal animations
+        // Mobile Menu Toggle
         document.addEventListener('DOMContentLoaded', function() {
-            const revealElements = document.querySelectorAll('.reveal');
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
 
-            const revealOnScroll = () => {
-                const windowHeight = window.innerHeight;
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                });
 
-                revealElements.forEach(element => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    const revealPoint = 100;
+                // Close menu when clicking on a link
+                const links = navLinks.querySelectorAll('a');
+                links.forEach(link => {
+                    link.addEventListener('click', function() {
+                        menuToggle.classList.remove('active');
+                        navLinks.classList.remove('active');
+                    });
+                });
 
-                    if (elementTop < windowHeight - revealPoint) {
-                        element.classList.add('active');
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
+                        menuToggle.classList.remove('active');
+                        navLinks.classList.remove('active');
                     }
                 });
-            };
-
-            // Initial check
-            revealOnScroll();
-
-            // Check on scroll
-            window.addEventListener('scroll', revealOnScroll);
+            }
         });
     </script>
 </body>
