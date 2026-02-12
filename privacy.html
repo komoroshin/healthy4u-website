@@ -5,186 +5,601 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - Healthy4U</title>
     <link rel="icon" type="image/png" href="images/logo.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-orange': '#EF6113',
-                        'brand-cream': '#FFF9F2',
-                        'brand-dark': '#000000',
-                        'brand-muted': '#666666',
-                    },
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-                    },
-                },
-            },
-        }
-    </script>
-    <script src="components.js"></script>
-</head>
-<body class="font-sans bg-white text-black">
-    <!-- Header Container -->
-    <div id="header-container"></div>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Colors */
+            --color-primary: #F84506;
+            --color-primary-dark: #E6420D;
+            --color-secondary: #F8F9FA;
+            --color-secondary-light: #6279A9;
+            --color-positive: #00C951;
+            --color-positive-dark: #1BA352;
+            --color-negative: #F8F9FA;
+            --color-accent-orange: #FF9800;
 
-    <!-- Hero Section -->
-    <section class="bg-brand-cream py-20">
-        <div class="max-w-4xl mx-auto px-6">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight text-brand-dark">
-                Privacy Policy
-            </h1>
-            <p class="text-xl text-brand-muted">
-                Last Updated: January 2026
-            </p>
+            /* Spacing */
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-2xl: 64px;
+            --spacing-3xl: 80px;
+            --spacing-4xl: 120px;
+
+            /* Typography */
+            --font-display: 'Bricolage Grotesque', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-full: 9999px;
+
+            /* Animation */
+            --duration-fast: 150ms;
+            --duration-normal: 300ms;
+            --duration-slow: 500ms;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.7;
+            color: #2d3436;
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            line-height: 1.15;
+            font-weight: 800;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid #f1f3f5;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95);
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            height: 44px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #2d3436;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color var(--duration-normal);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #2d3436;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all var(--duration-normal);
+            cursor: pointer;
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, #F84506, #E6420D);
+            color: white;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            background: var(--color-secondary);
+            padding: var(--spacing-4xl) 0 var(--spacing-3xl);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: var(--spacing-md);
+            color: #2d3436;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #636e72;
+            margin-bottom: 0;
+        }
+
+        /* Content */
+        .content-section {
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            margin: var(--spacing-2xl) 0 var(--spacing-md);
+            color: #2d3436;
+        }
+
+        .content-section h3 {
+            font-size: 1.5rem;
+            margin: var(--spacing-lg) 0 var(--spacing-sm);
+            color: #2d3436;
+        }
+
+        .content-section p {
+            color: #636e72;
+            font-size: 1.05rem;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.8;
+        }
+
+        .content-section ul {
+            margin: var(--spacing-md) 0;
+            padding-left: var(--spacing-lg);
+        }
+
+        .content-section li {
+            color: #636e72;
+            font-size: 1.05rem;
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.8;
+        }
+
+        .content-section li strong {
+            color: #2d3436;
+        }
+
+        .content-section a {
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .content-section a:hover {
+            opacity: 0.8;
+        }
+
+        .info-card {
+            background: var(--color-secondary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-md) 0;
+        }
+
+        .info-card h3 {
+            margin-top: 0;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .info-card p {
+            margin: 0;
+        }
+
+        .highlight-box {
+            background: var(--color-secondary);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .highlight-box p {
+            color: #2d3436;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, #FFF5F3, #FFFFFF);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-2xl) 0;
+        }
+
+        .contact-box h3 {
+            margin-top: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-secondary);
+            padding: var(--spacing-3xl) 0 var(--spacing-lg);
+            color: #2d3436;
+        }
+
+        .footer-content {
+            padding: 0 var(--spacing-md);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer-column h4 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #636e72;
+            text-decoration: none;
+            transition: color var(--duration-normal);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #e0e0e0;
+            padding-top: var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom p {
+            color: #636e72;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: rgba(45, 52, 54, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d3436;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: var(--color-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html">
+                    <img src="h4ulogo.svg" alt="Healthy4U" class="logo">
+                </a>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="nav-links">
+                    <a href="ecosystem.html">Ecosystem</a>
+                    <a href="index.html#features">Features</a>
+                    <a href="index.html#pricing">Pricing</a>
+                    <a href="casestudy.html">Case Study</a>
+                    <a href="about.html">About</a>
+                    <a href="https://medical-b2b.healthy4u.world/auth/login" class="btn btn-outline" style="padding: 12px 28px; font-size: 0.95rem; line-height: 1.2;">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Privacy Policy</h1>
+            <p class="hero-subtitle">Last Updated: January 2026</p>
         </div>
     </section>
 
-    <!-- Content Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="prose prose-lg max-w-none">
-                <p class="text-lg text-brand-muted leading-relaxed mb-12">
-                    Healthy4U processes personal data in accordance with applicable data protection laws, including GDPR where applicable.
-                </p>
+    <section class="content-section">
+        <div class="container content-wrapper">
+            <p>
+                Healthy4U processes personal data in accordance with applicable data protection laws, including GDPR where applicable.
+            </p>
 
-                <!-- Data Collection -->
-                <h2 class="text-3xl font-bold text-brand-dark mt-12 mb-6">1. Data We Collect</h2>
-                <p class="text-brand-muted leading-relaxed mb-4">
-                    We collect three types of information:
-                </p>
-                <div class="space-y-4 mb-8">
-                    <div class="bg-brand-cream p-6 rounded-xl">
-                        <h3 class="text-xl font-semibold text-brand-dark mb-2">Account Information</h3>
-                        <p class="text-brand-muted">Name, email address, phone number, and organization details provided during registration.</p>
-                    </div>
-                    <div class="bg-brand-cream p-6 rounded-xl">
-                        <h3 class="text-xl font-semibold text-brand-dark mb-2">Health Data</h3>
-                        <p class="text-brand-muted">Medical records, symptoms, test results, and other health-related information uploaded by users or integrated from connected services.</p>
-                    </div>
-                    <div class="bg-brand-cream p-6 rounded-xl">
-                        <h3 class="text-xl font-semibold text-brand-dark mb-2">Usage and Technical Data</h3>
-                        <p class="text-brand-muted">Device information, IP addresses, browser type, and interaction patterns with the Service.</p>
-                    </div>
-                </div>
+            <h2>1. Data We Collect</h2>
+            <p>We collect three types of information:</p>
 
-                <!-- Processing Purposes -->
-                <h2 class="text-3xl font-bold text-brand-dark mt-12 mb-6">2. How We Use Your Data</h2>
-                <p class="text-brand-muted leading-relaxed mb-4">
-                    We process your data for the following purposes:
-                </p>
-                <ul class="list-disc pl-6 space-y-2 text-brand-muted mb-8">
-                    <li>Providing and securing the Service</li>
-                    <li>Supporting clinics and patients with technical assistance</li>
-                    <li>Improving service functionality and user experience</li>
-                    <li>Meeting legal and compliance obligations</li>
-                    <li>Communicating important service updates</li>
-                </ul>
+            <div class="info-card">
+                <h3>Account Information</h3>
+                <p>Name, email address, phone number, and organization details provided during registration.</p>
+            </div>
 
-                <!-- Data Sharing -->
-                <h2 class="text-3xl font-bold text-brand-dark mt-12 mb-6">3. Data Sharing Practices</h2>
-                <p class="text-brand-muted leading-relaxed mb-4">
-                    Information may be shared with:
-                </p>
-                <ul class="list-disc pl-6 space-y-2 text-brand-muted mb-4">
-                    <li><strong>Authorized Clinics and Clinicians:</strong> Healthcare providers you grant access to</li>
-                    <li><strong>Infrastructure Providers:</strong> Hosting and cloud service providers</li>
-                    <li><strong>Payment Processors:</strong> For subscription billing and payment processing</li>
-                    <li><strong>Legal Requirements:</strong> When required by law or to protect rights and safety</li>
-                </ul>
-                <div class="bg-brand-cream p-6 rounded-xl mb-8">
-                    <p class="text-brand-dark font-semibold">
-                        We do not sell personal data.
-                    </p>
-                </div>
+            <div class="info-card">
+                <h3>Health Data</h3>
+                <p>Medical records, symptoms, test results, and other health-related information uploaded by users or integrated from connected services.</p>
+            </div>
 
-                <!-- User Rights -->
-                <h2 class="text-3xl font-bold text-brand-dark mt-12 mb-6">4. Your Rights</h2>
-                <p class="text-brand-muted leading-relaxed mb-4">
-                    Users may request:
-                </p>
-                <ul class="list-disc pl-6 space-y-2 text-brand-muted mb-4">
-                    <li><strong>Access:</strong> View what personal data we hold about you</li>
-                    <li><strong>Correction:</strong> Update or correct inaccurate information</li>
-                    <li><strong>Deletion:</strong> Request removal of your personal data</li>
-                    <li><strong>Portability:</strong> Receive your data in a structured format</li>
-                    <li><strong>Objection:</strong> Object to certain data processing activities</li>
-                </ul>
-                <p class="text-brand-muted leading-relaxed mb-8">
-                    To exercise these rights, contact us at <a href="mailto:privacy@healthy4u.world" class="text-brand-orange hover:underline">privacy@healthy4u.world</a>.
-                </p>
+            <div class="info-card">
+                <h3>Usage and Technical Data</h3>
+                <p>Device information, IP addresses, browser type, and interaction patterns with the Service.</p>
+            </div>
 
-                <!-- Data Security -->
-                <h2 class="text-3xl font-bold text-brand-dark mt-12 mb-6">5. Data Security</h2>
-                <p class="text-brand-muted leading-relaxed mb-8">
-                    We implement industry-standard security measures to protect your data, including encryption at rest and in transit, access controls, and regular security audits. However, no method of transmission over the internet is 100% secure.
-                </p>
+            <h2>2. How We Use Your Data</h2>
+            <p>We process your data for the following purposes:</p>
+            <ul>
+                <li>Providing and securing the Service</li>
+                <li>Supporting clinics and patients with technical assistance</li>
+                <li>Improving service functionality and user experience</li>
+                <li>Meeting legal and compliance obligations</li>
+                <li>Communicating important service updates</li>
+            </ul>
 
-                <!-- Data Retention -->
-                <h2 class="text-3xl font-bold text-brand-dark mt-12 mb-6">6. Data Retention</h2>
-                <p class="text-brand-muted leading-relaxed mb-8">
-                    We retain personal data only as long as necessary to fulfill the purposes outlined in this policy or as required by law. Health data is retained according to clinic policies and applicable healthcare regulations.
-                </p>
+            <h2>3. Data Sharing Practices</h2>
+            <p>Information may be shared with:</p>
+            <ul>
+                <li><strong>Authorized Clinics and Clinicians:</strong> Healthcare providers you grant access to</li>
+                <li><strong>Infrastructure Providers:</strong> Hosting and cloud service providers</li>
+                <li><strong>Payment Processors:</strong> For subscription billing and payment processing</li>
+                <li><strong>Legal Requirements:</strong> When required by law or to protect rights and safety</li>
+            </ul>
 
-                <!-- DPA Summary -->
-                <h2 class="text-3xl font-bold text-brand-dark mt-12 mb-6">7. Data Processing Agreement</h2>
-                <p class="text-brand-muted leading-relaxed mb-4">
-                    When clinics upload patient data, Healthy4U functions as a data processor while the clinic acts as the data controller. We commit to:
-                </p>
-                <ul class="list-disc pl-6 space-y-2 text-brand-muted mb-4">
-                    <li>Processing data only per clinic instructions</li>
-                    <li>Implementing appropriate security measures</li>
-                    <li>Assisting with data subject rights requests</li>
-                    <li>Notifying of data breaches promptly</li>
-                    <li>Deleting or returning data upon contract termination</li>
-                </ul>
-                <p class="text-brand-muted leading-relaxed mb-8">
-                    A complete Data Processing Agreement (DPA) is available upon request via <a href="mailto:privacy@healthy4u.world" class="text-brand-orange hover:underline">privacy@healthy4u.world</a>.
-                </p>
+            <div class="highlight-box">
+                <p>We do not sell personal data.</p>
+            </div>
 
-                <!-- International Transfers -->
-                <h2 class="text-3xl font-bold text-brand-dark mt-12 mb-6">8. International Data Transfers</h2>
-                <p class="text-brand-muted leading-relaxed mb-8">
-                    Your data may be transferred to and processed in countries outside your jurisdiction. We ensure appropriate safeguards are in place to protect your data during such transfers.
-                </p>
+            <h2>4. Your Rights</h2>
+            <p>Users may request:</p>
+            <ul>
+                <li><strong>Access:</strong> View what personal data we hold about you</li>
+                <li><strong>Correction:</strong> Update or correct inaccurate information</li>
+                <li><strong>Deletion:</strong> Request removal of your personal data</li>
+                <li><strong>Portability:</strong> Receive your data in a structured format</li>
+                <li><strong>Objection:</strong> Object to certain data processing activities</li>
+            </ul>
+            <p>
+                To exercise these rights, contact us at <a href="mailto:privacy@healthy4u.world">privacy@healthy4u.world</a>.
+            </p>
 
-                <!-- Cookies -->
-                <h2 class="text-3xl font-bold text-brand-dark mt-12 mb-6">9. Cookies and Tracking</h2>
-                <p class="text-brand-muted leading-relaxed mb-8">
-                    We use cookies and similar technologies to improve service functionality and user experience. You can control cookie preferences through your browser settings.
-                </p>
+            <h2>5. Data Security</h2>
+            <p>
+                We implement industry-standard security measures to protect your data, including encryption at rest and in transit, access controls, and regular security audits. However, no method of transmission over the internet is 100% secure.
+            </p>
 
-                <!-- Children's Privacy -->
-                <h2 class="text-3xl font-bold text-brand-dark mt-12 mb-6">10. Children's Privacy</h2>
-                <p class="text-brand-muted leading-relaxed mb-8">
-                    The Service is not intended for individuals under 16 years old without parental consent. We do not knowingly collect data from children below the applicable digital consent age.
-                </p>
+            <h2>6. Data Retention</h2>
+            <p>
+                We retain personal data only as long as necessary to fulfill the purposes outlined in this policy or as required by law. Health data is retained according to clinic policies and applicable healthcare regulations.
+            </p>
 
-                <!-- Changes to Policy -->
-                <h2 class="text-3xl font-bold text-brand-dark mt-12 mb-6">11. Changes to This Policy</h2>
-                <p class="text-brand-muted leading-relaxed mb-8">
-                    We may update this Privacy Policy periodically. Significant changes will be communicated via email or service notification. Continued use of the Service after changes constitutes acceptance.
-                </p>
+            <h2>7. Data Processing Agreement</h2>
+            <p>
+                When clinics upload patient data, Healthy4U functions as a data processor while the clinic acts as the data controller. We commit to:
+            </p>
+            <ul>
+                <li>Processing data only per clinic instructions</li>
+                <li>Implementing appropriate security measures</li>
+                <li>Assisting with data subject rights requests</li>
+                <li>Notifying of data breaches promptly</li>
+                <li>Deleting or returning data upon contract termination</li>
+            </ul>
+            <p>
+                A complete Data Processing Agreement (DPA) is available upon request via <a href="mailto:privacy@healthy4u.world">privacy@healthy4u.world</a>.
+            </p>
 
-                <!-- Contact -->
-                <div class="mt-16 p-8 bg-brand-cream rounded-xl">
-                    <h3 class="text-2xl font-bold text-brand-dark mb-4">Contact Us</h3>
-                    <div class="space-y-2 text-brand-muted">
-                        <p><strong>Support:</strong> <a href="mailto:support@healthy4u.world" class="text-brand-orange hover:underline">support@healthy4u.world</a></p>
-                        <p><strong>Privacy:</strong> <a href="mailto:privacy@healthy4u.world" class="text-brand-orange hover:underline">privacy@healthy4u.world</a></p>
-                        <p><strong>Billing:</strong> <a href="mailto:billing@healthy4u.world" class="text-brand-orange hover:underline">billing@healthy4u.world</a></p>
-                    </div>
-                </div>
+            <h2>8. International Data Transfers</h2>
+            <p>
+                Your data may be transferred to and processed in countries outside your jurisdiction. We ensure appropriate safeguards are in place to protect your data during such transfers.
+            </p>
 
-                <p class="text-sm text-brand-muted mt-12">
-                    © 2026 HEALTHY4U Medical Technologies Ltd. All rights reserved.
-                </p>
+            <h2>9. Cookies and Tracking</h2>
+            <p>
+                We use cookies and similar technologies to improve service functionality and user experience. You can control cookie preferences through your browser settings.
+            </p>
+
+            <h2>10. Children's Privacy</h2>
+            <p>
+                The Service is not intended for individuals under 16 years old without parental consent. We do not knowingly collect data from children below the applicable digital consent age.
+            </p>
+
+            <h2>11. Changes to This Policy</h2>
+            <p>
+                We may update this Privacy Policy periodically. Significant changes will be communicated via email or service notification. Continued use of the Service after changes constitutes acceptance.
+            </p>
+
+            <div class="contact-box">
+                <h3>Contact Us</h3>
+                <p><strong>Support:</strong> <a href="mailto:support@healthy4u.world">support@healthy4u.world</a></p>
+                <p><strong>Privacy:</strong> <a href="mailto:privacy@healthy4u.world">privacy@healthy4u.world</a></p>
+                <p style="margin-bottom: 0;"><strong>Billing:</strong> <a href="mailto:billing@healthy4u.world">billing@healthy4u.world</a></p>
             </div>
         </div>
     </section>
 
-    <!-- Footer Container -->
-    <div id="footer-container"></div>
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <img src="h4ulogo.svg" alt="Healthy4U" style="height: 54px; margin-bottom: var(--spacing-md);">
+                    <p style="color: #636e72; line-height: 1.7; font-size: 0.95rem;">Empowering personal wellness through innovative healthcare technology.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#platform">Telemedicine</a></li>
+                        <li><a href="#platform">Wearables</a></li>
+                        <li><a href="#platform">Health Portal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>©2026 Healthy4U | All Rights Reserved</p>
+                <div style="display: flex; gap: var(--spacing-md);">
+                    <a href="privacy.html" style="color: #636e72; text-decoration: none; font-size: 0.9rem;">Privacy</a>
+                    <a href="terms.html" style="color: #636e72; text-decoration: none; font-size: 0.9rem;">Terms & Services</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
